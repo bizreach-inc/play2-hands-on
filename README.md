@@ -49,4 +49,4 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 * ユーザ情報を編集する
 * ユーザを削除する
 
-[[images/flow.png]]
+![作成するアプリケーションの画面遷移](https://github.com/bizreach/play2-hands-on/wiki/images/flow.png)
