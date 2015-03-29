@@ -10,11 +10,13 @@ import play.api.libs.json._
 
 object JsonController extends Controller {
 
-  // フォームの値を格納するケースクラス
-  case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
+  // UsersRowをJSONに変換するためのWritesを定義
+  implicit val usersRowWritesFormat = Json.writes[UsersRow]
 
-  implicit val userFormFormat = Json.format[UserForm]
-  implicit val userFormat = Json.format[UsersRow]
+  // ユーザ情報を受け取るためのケースクラス
+  case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
+  // JSONをUserFormに変換するためのReadsを定義
+  implicit val userFormFormat = Json.reads[UserForm]
 
   /**
    * 一覧表示
