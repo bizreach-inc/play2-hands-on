@@ -13,7 +13,8 @@ object myBuild extends Build {
     settings = Project.defaultSettings ++ Seq(
       scalaVersion := "2.10.4",
       libraryDependencies ++= List(
-        "com.typesafe.slick" %% "slick" % "2.0.1",
+        "com.typesafe.slick" %% "slick" % "2.1.0",
+        "com.typesafe.slick" %% "slick-codegen" % "2.1.0",
         "org.slf4j" % "slf4j-nop" % "1.6.4",
         "com.h2database" % "h2" % "1.3.170"
       ),
@@ -32,7 +33,7 @@ object myBuild extends Build {
     val jdbcDriver = "org.h2.Driver"
     val slickDriver = "scala.slick.driver.H2Driver"
     val pkg = "models"
-    toError(r.run("scala.slick.model.codegen.SourceCodeGenerator", cp.files, Array(slickDriver, jdbcDriver, url, outputDir, pkg, username, password), s.log))
+    toError(r.run("scala.slick.codegen.SourceCodeGenerator", cp.files, Array(slickDriver, jdbcDriver, url, outputDir, pkg, username, password), s.log))
     val fname = outputDir + "/models/Tables.scala"
     Seq(file(fname))
   }

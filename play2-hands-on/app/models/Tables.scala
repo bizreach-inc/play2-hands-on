@@ -17,8 +17,8 @@ trait Tables {
   lazy val ddl = Companies.ddl ++ Users.ddl
   
   /** Entity class storing rows of table Companies
-   *  @param id Database column ID PrimaryKey
-   *  @param name Database column NAME  */
+   *  @param id Database column ID DBType(INTEGER), PrimaryKey
+   *  @param name Database column NAME DBType(VARCHAR) */
   case class CompaniesRow(id: Int, name: String)
   /** GetResult implicit for fetching CompaniesRow objects using plain SQL queries */
   implicit def GetResultCompaniesRow(implicit e0: GR[Int], e1: GR[String]): GR[CompaniesRow] = GR{
@@ -26,23 +26,23 @@ trait Tables {
     CompaniesRow.tupled((<<[Int], <<[String]))
   }
   /** Table description of table COMPANIES. Objects of this class serve as prototypes for rows in queries. */
-  class Companies(tag: Tag) extends Table[CompaniesRow](tag, "COMPANIES") {
+  class Companies(_tableTag: Tag) extends Table[CompaniesRow](_tableTag, "COMPANIES") {
     def * = (id, name) <> (CompaniesRow.tupled, CompaniesRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = (id.?, name.?).shaped.<>({r=>import r._; _1.map(_=> CompaniesRow.tupled((_1.get, _2.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
     
-    /** Database column ID PrimaryKey */
+    /** Database column ID DBType(INTEGER), PrimaryKey */
     val id: Column[Int] = column[Int]("ID", O.PrimaryKey)
-    /** Database column NAME  */
+    /** Database column NAME DBType(VARCHAR) */
     val name: Column[String] = column[String]("NAME")
   }
   /** Collection-like TableQuery object for table Companies */
   lazy val Companies = new TableQuery(tag => new Companies(tag))
   
   /** Entity class storing rows of table Users
-   *  @param id Database column ID AutoInc, PrimaryKey
-   *  @param name Database column NAME 
-   *  @param companyId Database column COMPANY_ID  */
+   *  @param id Database column ID DBType(BIGINT), AutoInc, PrimaryKey
+   *  @param name Database column NAME DBType(VARCHAR)
+   *  @param companyId Database column COMPANY_ID DBType(INTEGER) */
   case class UsersRow(id: Long, name: String, companyId: Option[Int])
   /** GetResult implicit for fetching UsersRow objects using plain SQL queries */
   implicit def GetResultUsersRow(implicit e0: GR[Long], e1: GR[String], e2: GR[Option[Int]]): GR[UsersRow] = GR{
@@ -50,16 +50,16 @@ trait Tables {
     UsersRow.tupled((<<[Long], <<[String], <<?[Int]))
   }
   /** Table description of table USERS. Objects of this class serve as prototypes for rows in queries. */
-  class Users(tag: Tag) extends Table[UsersRow](tag, "USERS") {
+  class Users(_tableTag: Tag) extends Table[UsersRow](_tableTag, "USERS") {
     def * = (id, name, companyId) <> (UsersRow.tupled, UsersRow.unapply)
     /** Maps whole row to an option. Useful for outer joins. */
     def ? = (id.?, name.?, companyId).shaped.<>({r=>import r._; _1.map(_=> UsersRow.tupled((_1.get, _2.get, _3)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
     
-    /** Database column ID AutoInc, PrimaryKey */
+    /** Database column ID DBType(BIGINT), AutoInc, PrimaryKey */
     val id: Column[Long] = column[Long]("ID", O.AutoInc, O.PrimaryKey)
-    /** Database column NAME  */
+    /** Database column NAME DBType(VARCHAR) */
     val name: Column[String] = column[String]("NAME")
-    /** Database column COMPANY_ID  */
+    /** Database column COMPANY_ID DBType(INTEGER) */
     val companyId: Column[Option[Int]] = column[Option[Int]]("COMPANY_ID")
     
     /** Foreign key referencing Companies (database name IDX_USERS_FK0) */
