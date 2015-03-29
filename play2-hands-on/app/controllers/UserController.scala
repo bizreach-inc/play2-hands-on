@@ -41,7 +41,7 @@ object UserController extends Controller {
     // リクエストパラメータにIDが存在する場合
     val form = if(id.isDefined) {
       // IDからユーザ情報を1件取得
-      val user = Users.filter(t => t.id is id.get.bind).first
+      val user = Users.filter(t => t.id === id.get.bind).first
 
       // 値をフォームに詰める
       userForm.fill(UserForm(Some(user.id), user.name, user.companyId))
@@ -90,7 +90,7 @@ object UserController extends Controller {
       form  => {
         // ユーザ情報を更新
         val user = UsersRow(form.id.get, form.name, form.companyId)
-        Users.filter(t => t.id is user.id.bind).update(user)
+        Users.filter(t => t.id === user.id.bind).update(user)
 
         // 一覧画面にリダイレクト
         Redirect(routes.UserController.list)
@@ -103,7 +103,7 @@ object UserController extends Controller {
    */
   def remove(id: Long) = DBAction.transaction { implicit rs =>
     // ユーザを削除
-    Users.filter(t => t.id is id.bind).delete
+    Users.filter(t => t.id === id.bind).delete
 
     // 一覧画面へリダイレクト
     Redirect(routes.UserController.list)
