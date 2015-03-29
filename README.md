@@ -10,7 +10,11 @@
 * [06.ユーザ登録・編集画面の実装](https://github.com/bizreach/play2-hands-on/wiki/06.%E3%83%A6%E3%83%BC%E3%82%B6%E7%99%BB%E9%8C%B2%E3%83%BB%E7%B7%A8%E9%9B%86%E7%94%BB%E9%9D%A2%E3%81%AE%E5%AE%9F%E8%A3%85)
 * [07.登録、更新処理の実装](https://github.com/bizreach/play2-hands-on/wiki/07.%E7%99%BB%E9%8C%B2%E3%80%81%E6%9B%B4%E6%96%B0%E5%87%A6%E7%90%86%E3%81%AE%E5%AE%9F%E8%A3%85)
 * [08.削除処理の実装](https://github.com/bizreach/play2-hands-on/wiki/08.%E5%89%8A%E9%99%A4%E5%87%A6%E7%90%86%E3%81%AE%E5%AE%9F%E8%A3%85)
-* [09.Tips](https://github.com/bizreach/play2-hands-on/wiki/09.Tips)
+* [09.JSON APIの準備](https://github.com/bizreach/play2-hands-on/wiki/09.JSON-API%E3%81%AE%E6%BA%96%E5%82%99)
+* [10.ユーザ一覧APIの実装](https://github.com/bizreach/play2-hands-on/wiki/10.%E3%83%A6%E3%83%BC%E3%82%B6%E4%B8%80%E8%A6%A7API%E3%81%AE%E5%AE%9F%E8%A3%85)
+* [11.ユーザ登録・更新APIの実装](https://github.com/bizreach/play2-hands-on/wiki/11.%E3%83%A6%E3%83%BC%E3%82%B6%E7%99%BB%E9%8C%B2%E3%83%BB%E6%9B%B4%E6%96%B0API%E3%81%AE%E5%AE%9F%E8%A3%85)
+* [12.ユーザ削除APIの実装](https://github.com/bizreach/play2-hands-on/wiki/12.%E3%83%A6%E3%83%BC%E3%82%B6%E5%89%8A%E9%99%A4API%E3%81%AE%E5%AE%9F%E8%A3%85)
+* [13.Tips](https://github.com/bizreach/play2-hands-on/wiki/13.Tips)
 
 ## 目的
 
@@ -50,3 +54,5 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 * ユーザを削除する
 
 ![作成するアプリケーションの画面遷移](https://github.com/bizreach/play2-hands-on/wiki/images/flow.png)
+
+また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。
