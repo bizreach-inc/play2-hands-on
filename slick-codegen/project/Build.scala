@@ -11,12 +11,12 @@ object myBuild extends Build {
     id="slick-codegen",
     base=file("."),
     settings = Project.defaultSettings ++ Seq(
-      scalaVersion := "2.10.4",
+      scalaVersion := "2.11.6",
       libraryDependencies ++= List(
-        "com.typesafe.slick" %% "slick" % "2.1.0",
-        "com.typesafe.slick" %% "slick-codegen" % "2.1.0",
+        "com.typesafe.slick" %% "slick" % "3.0.0",
+        "com.typesafe.slick" %% "slick-codegen" % "3.0.0",
         "org.slf4j" % "slf4j-nop" % "1.6.4",
-        "com.h2database" % "h2" % "1.3.170"
+        "com.h2database" % "h2" % "1.4.177"
       ),
       slick <<= slickCodeGenTask, // register manual sbt command
       sourceGenerators in Compile <+= slickCodeGenTask // register automatic code generation on every compile, remove for only manual use
@@ -31,9 +31,9 @@ object myBuild extends Build {
     val username = "sa"
     val password = "sa"
     val jdbcDriver = "org.h2.Driver"
-    val slickDriver = "scala.slick.driver.H2Driver"
+    val slickDriver = "slick.driver.H2Driver"
     val pkg = "models"
-    toError(r.run("scala.slick.codegen.SourceCodeGenerator", cp.files, Array(slickDriver, jdbcDriver, url, outputDir, pkg, username, password), s.log))
+    toError(r.run("slick.codegen.SourceCodeGenerator", cp.files, Array(slickDriver, jdbcDriver, url, outputDir, pkg, username, password), s.log))
     val fname = outputDir + "/models/Tables.scala"
     Seq(file(fname))
   }
