@@ -1,4 +1,4 @@
-@(userForm: Form[controllers.UserController.UserForm], companies: List[models.Tables.CompaniesRow])
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit messages: Messages)
 
 @import helper._
 
