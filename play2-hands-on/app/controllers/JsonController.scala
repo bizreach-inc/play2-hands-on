@@ -9,6 +9,7 @@ import slick.driver.JdbcProfile
 import models.Tables._
 import javax.inject.Inject
 import scala.concurrent.Future
+import slick.driver.H2Driver.api._
 
 import play.api.libs.json._
 
@@ -25,7 +26,6 @@ object JsonController {
 
 class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) extends Controller
     with HasDatabaseConfigProvider[JdbcProfile] {
-  import driver.api._
   import JsonController._
 
   /**
@@ -82,12 +82,8 @@ class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) ext
    * ユーザ削除
    */
   def remove(id: Long) = Action.async { implicit rs =>
-    // TODO deleteメソッドが解決できない
-    // // ユーザを削除
-    // db.run(Users.filter(t => t.id === id.bind).delete).map { _ =>
-    //   Ok(Json.obj("result" -> "success"))
-    // }
-    Future {
+    // ユーザを削除
+    db.run(Users.filter(t => t.id === id.bind).delete).map { _ =>
       Ok(Json.obj("result" -> "success"))
     }
   }

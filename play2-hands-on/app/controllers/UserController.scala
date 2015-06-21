@@ -12,6 +12,7 @@ import slick.driver.JdbcProfile
 import models.Tables._
 import javax.inject.Inject
 import scala.concurrent.Future
+import slick.driver.H2Driver.api._
 
 object UserController {
   
@@ -31,7 +32,6 @@ object UserController {
 
 class UserController @Inject()(val dbConfigProvider: DatabaseConfigProvider, val messagesApi: MessagesApi) extends Controller 
     with HasDatabaseConfigProvider[JdbcProfile] with I18nSupport {
-  import driver.api._
   import UserController._
 
   /**
@@ -121,13 +121,9 @@ class UserController @Inject()(val dbConfigProvider: DatabaseConfigProvider, val
    * 削除実行
    */
   def remove(id: Long) = Action.async { implicit rs =>
-    // TODO deleteメソッドが解決できない
-    // // ユーザを削除
-    // db.run(Users.filter(t => t.id === id.bind).delete).map { _ =>
-    //   // 一覧画面へリダイレクト
-    //   Redirect(routes.UserController.list)
-    // }
-    Future {
+    // ユーザを削除
+    db.run(Users.filter(t => t.id === id.bind).delete).map { _ =>
+      // 一覧画面へリダイレクト
       Redirect(routes.UserController.list)
     }
   }
