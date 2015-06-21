@@ -55,7 +55,6 @@ class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) ext
     }.recoverTotal { e =>
       // NGの場合はバリデーションエラーを返す
       Future {
-        // TODO toFlatJsonが警告になる
         BadRequest(Json.obj("result" ->"failure", "error" -> JsError.toJson(e)))
       }
     }
@@ -74,7 +73,6 @@ class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) ext
     }.recoverTotal { e =>
       // NGの場合はバリデーションエラーを返す
       Future {
-        // TODO toFlatJsonが警告になる
         BadRequest(Json.obj("result" ->"failure", "error" -> JsError.toJson(e)))
       }
     }
