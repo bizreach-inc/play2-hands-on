@@ -33,7 +33,7 @@ sh start.sh
 ```
 ※起動後、そのターミナルは閉じないでください。
 
-[[images/er_diagram.png]]
+![アプリケーションで使用するER図](images/er_diagram.png)
 
 ## モデルの自動生成
 
@@ -58,7 +58,7 @@ sbt gen-tables
 
 すると`play2-hands-on`プロジェクトの`app/models`パッケージにモデルクラスが生成されます。
 
-[[images/gen_model.png]]
+![生成されたモデル](images/gen_model.png)
 
 ## DB接続の設定
 
@@ -83,4 +83,4 @@ db.default.password=sa
 ```
 
 ----
-[[＜IDEの準備に戻る|02.IDEの準備]] | [[ルーティングの定義に進む＞|04.ルーティングの定義]]
+[＜IDEの準備に戻る](02_preparation_of_ide.md) | [ルーティングの定義に進む＞](04_define_routing.md)

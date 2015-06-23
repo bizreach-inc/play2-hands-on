@@ -10,13 +10,11 @@ http://www.playframework.com/download からtypesafe-activator-1.3.2-minimal.zip
 activator new play2-hands-on
 ```
 
-[[images/create_project.png]]
+![プロジェクトの作成](images/create_project.png)
 
-## Play2.3.xように設定変更
+## Play2.3.x用に設定変更
 
-2015/5/26 にPlay `2.4` がリリースされた為、↑のコマンドで作成されるPlayのバージョンも上がっています。
-このHandsOnでは、まだ `2.3.9` を利用するため、以下の設定を変更してください。
-また、あわせてORMにSlickを使うため、一緒に設定を変更します。
+2015/5/26 にPlay `2.4` がリリースされた為、↑のコマンドで作成されるPlayのバージョンも上がっています。このHandsOnでは、まだ `2.3.9` を利用するため、以下の設定を変更してください。また、あわせてORMにSlickを使うため、一緒に設定を変更します。
 
 ### `build.sbt`
 
@@ -74,7 +72,7 @@ activator run
 
 ブラウザから http://localhost:9000/ にアクセスし、以下の画面が表示されることを確認します。
 
-[[images/welcome.png]]
+![Play2のウェルカム画面](images/welcome.png)
 
 `You’re using Play 2.3.9` が書かれていることを確認して下さい。
 
@@ -86,4 +84,4 @@ activator run
 > * 応答しなくなってしまった場合は一度コマンドプロンプトを閉じ、再度起動して`activator run`を実行してください
 
 ----
-[[＜ホームに戻る|Home]] | [[IDEの準備へ進む＞|02.IDEの準備]]
+[＜ホームに戻る](README.md) | [IDEの準備へ進む＞](02_preparation_of_ide.md)

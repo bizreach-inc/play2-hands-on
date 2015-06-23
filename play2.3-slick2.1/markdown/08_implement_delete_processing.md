@@ -31,4 +31,4 @@ DELETE FROM USERS WHERE ID = ?
 一覧画面から「削除」をクリックしてユーザ情報が削除されることを確認してください。
 
 ----
-[[＜登録、更新処理の実装に戻る|07.登録、更新処理の実装]] | [[JSON APIの準備に進む＞|09.JSON APIの準備]]
+[＜登録、更新処理の実装に戻る](07_implement_update_processing.md) | [JSON APIの準備に進む＞](09_preparation_for_json.md)

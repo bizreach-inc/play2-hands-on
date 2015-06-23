@@ -93,4 +93,4 @@ curl -H "Content-type: application/json" -XPOST -d '{"userName":"TestUser"}' htt
 ```
 
 ----
-[[＜ユーザ一覧APIの実装に戻る|10.ユーザ一覧APIの実装]] | [[ユーザ削除APIの実装に進む＞|12.ユーザ削除APIの実装]]
+[＜ユーザ一覧APIの実装に戻る](10_implement_list_api.md) | [ユーザ削除APIの実装に進む＞](12_implement_delete_api.md)

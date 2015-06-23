@@ -26,7 +26,7 @@ object JsonController extends Controller {
    * ユーザ登録
    */
   def create = TODO
-  
+
   /**
    * ユーザ更新
    */
@@ -54,4 +54,4 @@ POST        /json/update            controllers.JsonController.update
 POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
 ```
 ----
-[[＜削除処理の実装に戻る|08.削除処理の実装]] | [[ユーザ一覧APIの実装に進む＞|10.ユーザ一覧APIの実装]]
+[＜削除処理の実装に戻る](08_implement_delete_processing.md) | [ユーザ一覧APIの実装に進む＞](10_implement_list_api.md)

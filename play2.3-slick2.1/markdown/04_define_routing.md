@@ -92,4 +92,4 @@ POST    /user/remove/:id            controllers.UserController.remove(id: Long)
 > * routesのコメントに日本語を記述するとコンパイルエラーになることがあります
 
 ----
-[[＜DBの準備に戻る|03.DBの準備]] | [[ユーザ一覧の実装に進む＞|05.ユーザ一覧の実装]]
+[＜DBの準備に戻る](03_preparation_of_db.md) | [ユーザ一覧の実装に進む＞](05_implement_user_list.md)

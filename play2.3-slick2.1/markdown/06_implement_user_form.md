@@ -120,9 +120,9 @@ SELECT * FROM COMPANIES ORDER BY ID
 
 ここまで実装したらブラウザで一覧画面から新規作成やユーザ名のリンクをクリックし、以下のように登録画面と編集画面が表示されることを確認します。
 
-[[images/register_form.png]]
+![ユーザ登録画面](images/register_form.png)
 
-[[images/edit_form.png]]
+![ユーザ編集画面](images/edit_form.png)
 
 ----
-[[＜ユーザ一覧の実装に戻る|05.ユーザ一覧の実装]] | [[登録、更新処理の実装に進む＞|07.登録、更新処理の実装]]
+[＜ユーザ一覧の実装に戻る](05_implement_user_list.md) | [登録、更新処理の実装に進む＞](07_implement_update_processing.md)

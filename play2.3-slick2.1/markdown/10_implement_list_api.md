@@ -48,4 +48,4 @@ curl -XGET http://localhost:9000/json/list
 ```
 
 ----
-[[＜JSON APIの準備に戻る|09.JSON APIの準備]] | [[ユーザ登録・更新APIの実装に進む＞|11.ユーザ登録・更新APIの実装]]
+[＜JSON APIの準備に戻る](09_preparation_for_json.md) | [ユーザ登録・更新APIの実装に進む＞](11_implement_update_api.md)

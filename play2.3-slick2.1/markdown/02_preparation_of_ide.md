@@ -34,17 +34,17 @@ activator eclipse
 
 IntelliJのScalaプラグインはSBT（Acrtivator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
 
-[[images/open_project_intellij1.png]]
+![プロジェクトのインポート(1)](images/open_project_intellij1.png)
 
 インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New...」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。
 
-[[images/open_project_intellij2.png]]
+![プロジェクトのインポート(2)](images/open_project_intellij2.png)
 
 `build.sbt`を編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。
 
-[[images/re-import_project.png]]
+![プロジェクトのリフレッシュ](images/re-import_project.png)
 
 「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。
 
 ----
-[[＜プロジェクトの作成に戻る|01.プロジェクトの作成]] | [[DBの準備に進む＞|03.DBの準備]]
+[＜プロジェクトの作成に戻る](01_create_project.md) | [DBの準備に進む＞](03_preparation_of_db.md)

@@ -93,7 +93,7 @@ SELECT * FROM USERS ORDER BY ID
 
 ここまで実装したらブラウザから http://localhost:9000/user/list にアクセスします（`activator run`を実行していない場合は実行してください）。すると以下のような画面が表示されるはずです。
 
-[[images/user_list.png]]
+![ユーザ一覧画面](images/user_list.png)
 
 ----
-[[＜ルーティングの定義に戻る|04.ルーティングの定義]] | [[ユーザ登録・編集画面の実装に進む＞|06.ユーザ登録・編集画面の実装]]
+[＜ルーティングの定義に戻る](04_define_routing.md) | [ユーザ登録・編集画面の実装に進む＞](06_implement_user_form.md)

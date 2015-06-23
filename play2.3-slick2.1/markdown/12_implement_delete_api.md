@@ -22,4 +22,4 @@ curl -XPOST http://localhost:9000/json/remove/1
 ```
 
 ----
-[[＜ユーザ登録・更新APIの実装に戻る|11.ユーザ登録・更新APIの実装]] | [[Tipsに進む＞|13.Tips]]
+[＜ユーザ登録・更新APIの実装に戻る](11_implement_update_api.md) | [Tipsに進む＞](13_tips.md)

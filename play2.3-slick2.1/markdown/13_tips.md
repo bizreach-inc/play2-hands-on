@@ -22,8 +22,8 @@
 * IntelliJ上でクラスパスが解決できない場合
   * StringなどJavaの基本的な型が解決できずエラーになってしまう場合は実行した直後はJDKが選択されていない可能性があります
     * [File]→[Project Structure...]からインストール済みのJDKを選択してください
-[[images/idea_jdk.png]]
+![JDKを選択](images/idea_jdk.png)
   * `build.sbt`を変更してもクラスパスが解決されないことがありますが、その場合は「File」→「Invalidate Caches / Restart...」でIntelliJのキャッシュをクリアしてみてください
 
 ----
-[[＜削除処理の実装に戻る|08.削除処理の実装]]
+[＜削除処理の実装に戻る](12_implement_delete_api.md)
