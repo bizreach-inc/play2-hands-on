@@ -1,4 +1,20 @@
-# Play2 + Slickハンズオン
+# Play 2.3 + Slick 2.1ハンズオン
+
+## インデックス
+
+* [01.プロジェクトの作成](01_create_project.md)
+* [02.IDEの準備](02_preparation_of_ide.md)
+* [03.DBの準備](03_preparation_of_db.md)
+* [04.ルーティングの定義](04_define_routing.md)
+* [05.ユーザ一覧の実装](05_implement_user_list.md)
+* [06.ユーザ登録・編集画面の実装](06_implement_user_form.md)
+* [07.登録、更新処理の実装](07_implement_update_processing.md)
+* [08.削除処理の実装](08_implement_delete_processing.md)
+* [09.JSON APIの準備](09_preparation_for_json.md)
+* [10.ユーザ一覧APIの実装](10_implement_list_api.md)
+* [11.ユーザ登録・更新APIの実装](11_implement_update_api.md)
+* [12.ユーザ削除APIの実装](12_implement_delete_api.md)
+* [13.Tips](13_tips.md)
 
 ## 目的
 
@@ -15,10 +31,8 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 
 使用するフレームワークおよびバージョンは以下の通りです。
 
-* [Play 2.3.x / Slick 2.1.x](play2.3-slick2.1/markdown/README.md)
-* Play 2.4.x / Slick 3.0.x（作成中）
-
-ただし、特にSlickに関してはアグレッシブに変更が行われる傾向があるため、バージョンが上がると使い方が変わる可能性があります。随時、最新の内容に更新していきます。
+* Play 2.3.x
+* Slick 2.1.x
 
 ## 前提条件
 
@@ -37,6 +51,9 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 * ユーザ情報を編集する
 * ユーザを削除する
 
-![作成するアプリケーションの画面遷移](https://github.com/bizreach/play2-hands-on/wiki/images/flow.png)
+![作成するアプリケーションの画面遷移図](images/flow.png)
 
 また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。
+
+----
+[プロジェクトの作成へ進む＞](01_create_project.md)
