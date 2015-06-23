@@ -1,3 +1,5 @@
+# 04.ルーティングの定義
+
 ## Bootstrapを使うための準備
 
 `play new`コマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとして`app/views/main.scala.html`が生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。

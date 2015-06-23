@@ -1,3 +1,5 @@
+# 03.DBの準備
+
 ## ツールプロジェクトの準備
 
 [slick-codegen.zip](https://github.com/bizreach/play2-hands-on/releases/download/20150329/slick-codegen.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
