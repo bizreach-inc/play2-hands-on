@@ -12,16 +12,49 @@ import scala.concurrent.Future
 import slick.driver.H2Driver.api._
 
 import play.api.libs.json._
+import play.api.libs.functional.syntax._
 
 object JsonController {
   // ユーザ情報を受け取るためのケースクラス
   case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
-  
-  // JSONをUserFormに変換するためのReadsを定義
-  implicit val userFormFormat = Json.reads[UserForm]
-  
+
   // UsersRowをJSONに変換するためのWritesを定義
-  implicit val usersRowWritesFormat = Json.writes[UserForm]
+  implicit val usersRowWritesFormat = (
+    (__ \ "id"       ).write[Long]   and
+    (__ \ "name"     ).write[String] and
+    (__ \ "companyId").writeNullable[Int]
+  )(unlift(UsersRow.unapply))
+
+//  implicit val usersRowWritesFormat = new Writes[UsersRow]{
+//    def writes(user: UsersRow): JsValue = {
+//      Json.obj(
+//        "id"        -> user.id,
+//        "name"      -> user.name,
+//        "companyId" -> user.companyId
+//      )
+//    }
+//  }
+
+  // JSONをUserFormに変換するためのReadsを定義
+  implicit val userFormFormat = (
+    (__ \ "id"       ).readNullable[Long] and
+    (__ \ "name"     ).read[String]       and
+    (__ \ "companyId").readNullable[Int]
+  )(UserForm)
+
+//  implicit val userFormFormat = new Reads[UserForm]{
+//    def reads(js: JsValue): UserForm = {
+//      UserForm(
+//        id        = (js \ "id"       ).asOpt[Long],
+//        name      = (js \ "name"     ).as[String],
+//        companyId = (js \ "companyId").asOpt[Int]
+//      )
+//    }
+//  }
+
+  // マクロで自動生成することもできる
+  //implicit val userFormFormat = Json.reads[UserForm]
+  
 }
 
 class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) extends Controller
@@ -35,10 +68,7 @@ class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) ext
     // IDの昇順にすべてのユーザ情報を取得
     db.run(Users.sortBy(t => t.id).result).map { users =>
       // ユーザの一覧をJSONで返す
-      Ok(Json.obj("users" -> users.map { user =>
-        // TODO UsersRowそのままだとWritesの型があわないので別のケースクラスに詰め直している
-        UserForm(id = Some(user.id), name = user.name, companyId = user.companyId)
-      }))
+      Ok(Json.obj("users" -> users))
     }
   }
   
