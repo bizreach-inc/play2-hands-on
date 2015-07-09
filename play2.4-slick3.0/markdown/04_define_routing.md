@@ -29,7 +29,7 @@
 
 ## コントローラの雛形を作る
 
-`controllers`パッケージに`UserController`クラスを以下のように作成します。コンストラクタに`@Inject`アノテーションと2つの引数が定義されていますが、これはPlay 2.4から導入されたDI機能を使用するためのものです。
+`controllers`パッケージに`UserController`クラスを以下のように作成します。
 
 ```scala
 package controllers
@@ -78,6 +78,8 @@ class UserController @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 }
 ```
 
+Play 2.3まではコントローラはオブジェクトとして実装する必要がありましたが、Play 2.4ではクラスとして実装します。コンストラクタに`@Inject`アノテーションと2つの引数が定義されていますが、これはPlay 2.4から導入されたDI機能を使用するためのものです。
+
 上記のコントローラではDI機能を以下のような目的で使用しています。
 
 - `DatabaseConfigProvider` ... コントローラ内でデータベースアクセスを行うため
@@ -86,6 +88,7 @@ class UserController @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 また、実際にコントローラ内でデータベースアクセスや国際化機能を利用するためにはDIで上記のインスタンスを取得するだけでなく、それぞれ`HasDatabaseConfigProvider`トレイト、`I18nSupport`トレイトをミックスインする必要があります。
 
 > **POINT**
+> * Play 2.4ではコントローラはクラスとして実装します
 > * `@Inject`はDIのためのアノテーションです
 > * データベースアクセスを行うにはコントローラに`DatabaseConfigProvider`をDIし、`HasDatabaseConfigProvider`トレイトをミックスインします
 > * 国際化機能を使用するにはコントローラに`MessagesApi`をDIし、`I18nSupport`トレイトをミックスインします

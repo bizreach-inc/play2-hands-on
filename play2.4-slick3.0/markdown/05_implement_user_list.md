@@ -53,7 +53,7 @@
 
 ## コントローラ
 
-`list`メソッドを以下のように実装します。
+`UserController`の`list`メソッドを以下のように実装します。
 
 ```scala
 def list = Action.async { implicit rs =>
@@ -65,7 +65,7 @@ def list = Action.async { implicit rs =>
 }
 ```
 
-`Action.async`はアクションの処理結果を`Future`で非同期に返却します。Slick 3.0ではSQLの実行処理を`Future`で返すことができるため、これを利用してPlayのアクションも`Future`を返すようにしています。
+`Action.async`はアクションの処理結果を`Future`で非同期に返却します。Slick 3.0ではSQLの実行処理を`Future`で返すことができるため、これを利用してPlayのアクションも`Future`でレスポンスを返すようにしています。
 
 上記のコードでは以下の記述でユーザの一覧を取得するクエリを生成しています。
 
@@ -84,7 +84,7 @@ SELECT * FROM USERS ORDER BY ID
 このアクションの戻り値は「DBの検索結果をテンプレートに渡し、そのテンプレートのレンダリング結果をレスポンスとして返す`Future`」になります。
 
 > **POINT**
-> * Playの標準では`Action { ... }`の中に処理を記述しますが、DBを使用する場合は`DBAction { ... }`に処理を記述します
+> * Playの標準では`Action { ... }`の中に処理を記述しますが、レスポンスをFutureで返す場合は`Action.async { ... }`に処理を記述します
 >   * `implicit rs`はアクションの処理の中でHTTPリクエストやDBのセッションを暗黙的に使用するために必要になる記述です
 > * `Ok`に`views.html.・・・`と記述することで、表示したいHTMLのテンプレートを指定できます
 >   * 引数にはテンプレートに渡すパラメータを指定します

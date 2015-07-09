@@ -19,14 +19,14 @@ object JsonController {
   case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
 
   // UsersRowをJSONに変換するためのWritesを定義
-  implicit val usersRowWritesFormat = (
+  implicit val usersRowWritesWrites = (
     (__ \ "id"       ).write[Long]   and
     (__ \ "name"     ).write[String] and
     (__ \ "companyId").writeNullable[Int]
   )(unlift(UsersRow.unapply))
 
   // JSONをUserFormに変換するためのReadsを定義
-  implicit val userFormFormat = (
+  implicit val userFormReads = (
     (__ \ "id"       ).readNullable[Long] and
     (__ \ "name"     ).read[String]       and
     (__ \ "companyId").readNullable[Int]
