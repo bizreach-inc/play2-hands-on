@@ -3,7 +3,6 @@ package controllers
 import play.api.mvc._
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.i18n.{MessagesApi, I18nSupport}
 import play.api.db.slick._
 import slick.driver.JdbcProfile
 import models.Tables._
@@ -15,6 +14,7 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 
 object JsonController {
+
   // ユーザ情報を受け取るためのケースクラス
   case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
 
@@ -25,16 +25,6 @@ object JsonController {
     (__ \ "companyId").writeNullable[Int]
   )(unlift(UsersRow.unapply))
 
-//  implicit val usersRowWritesFormat = new Writes[UsersRow]{
-//    def writes(user: UsersRow): JsValue = {
-//      Json.obj(
-//        "id"        -> user.id,
-//        "name"      -> user.name,
-//        "companyId" -> user.companyId
-//      )
-//    }
-//  }
-
   // JSONをUserFormに変換するためのReadsを定義
   implicit val userFormFormat = (
     (__ \ "id"       ).readNullable[Long] and
@@ -42,19 +32,6 @@ object JsonController {
     (__ \ "companyId").readNullable[Int]
   )(UserForm)
 
-//  implicit val userFormFormat = new Reads[UserForm]{
-//    def reads(js: JsValue): UserForm = {
-//      UserForm(
-//        id        = (js \ "id"       ).asOpt[Long],
-//        name      = (js \ "name"     ).as[String],
-//        companyId = (js \ "companyId").asOpt[Int]
-//      )
-//    }
-//  }
-
-  // マクロで自動生成することもできる
-  //implicit val userFormFormat = Json.reads[UserForm]
-  
 }
 
 class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) extends Controller

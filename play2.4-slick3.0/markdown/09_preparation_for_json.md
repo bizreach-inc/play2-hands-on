@@ -12,7 +12,6 @@ package controllers
 import play.api.mvc._
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.i18n.{MessagesApi, I18nSupport}
 import play.api.db.slick._
 import slick.driver.JdbcProfile
 import models.Tables._
