@@ -59,7 +59,7 @@ def update = Action.async { implicit rs =>
 }
 ```
 
-上記のコードではそれぞれ以下の記述でユーザ情報の登録、更新を行うクエリを生成しています。
+上記のコードではそれぞれ以下の記述でユーザ情報の登録、更新を行う`DBIOAction`を生成しています。
 
 ```scala
 Users += user
@@ -77,9 +77,23 @@ UPDATE USERS SET NAME = ?, COMPANY_ID = ? WHERE ID = ?
 
 登録時は`UsersRow`のIDカラムに対応するプロパティに0を指定していますが、自動採番のカラムの場合、Slickはプロパティにセットされた値を無視して自動採番された値でインサートします（なので実はインサート時は0以外の値をセットしても構いません）。
 
+ここでは1つのSQLを実行しているだけですが、複数のSQLを実行するには以下のように`for`式を使って合成した`DBIOAction`を作成します。また、`DBIOAction`に対して`transactionally`メソッドを呼び出すことでその`DBIOAction`をトランザクションで処理できるようになります。
+
+```scala
+// 合成したDBIOActionを生成
+val action = (for {
+  ns <- Users.filter(_.name === name.bind).map(_.id).result
+  _ <- DBIO.seq(ns.map(id => Users.filter(_.id === id.bind).delete): _*)
+} yield ()).transactionally
+
+// 合成したDBIOActionを実行
+val f: Future[Unit] = db.run(action)
+```
+
 > **POINT**
-> * トランザクション制御が必要な場合は、`DBAction.transaction { ... }`の中に処理を記述します
 > * HTMLテンプレートでのリンク先と同様、リダイレクト先も`routes.・・・`でタイプセーフに指定することができます
+> * 複数のSQLを実行する場合は`for`式で`DBIOAction`を合成します
+> * `DBIOAction`に対して`transactionally`メソッドを呼び出すことでその`DBIOAction`をトランザクションで処理できます
 
 ## 実行
 
