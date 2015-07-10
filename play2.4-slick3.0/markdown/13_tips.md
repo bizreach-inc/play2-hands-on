@@ -6,9 +6,15 @@
 * Playが使用するローカルリポジトリ
   * 以前のバージョンのPlayは`PLAY_HOME/repository`ディレクトリ配下に独自のローカルリポジトリとキャッシュを持っていましたが、Play 2.3ではSBT標準の`HOME/.ivy2`ディレクトリ配下を使うようになりました
 * Play公式サイトのドキュメントは http://www.playframework-ja.org/ で日本語訳されています
+* Play 2.4以前から2.4へのマイグレーションについては以下のドキュメントを参照してください
+  * [Play 2.4 Migration Guide](https://www.playframework.com/documentation/2.4.x/Migration24)
+  * [Play Slick Migration Guide](https://www.playframework.com/documentation/2.4.x/PlaySlickMigrationGuide)
+* 本ハンズオンでは使用しませんでしたがPlay 2.4にはコンパイル時DIの機能もあります。詳しくは以下のブログエントリが参考になります
+  * http://loicdescotte.github.io/posts/play24-compile-time-di/
 
 ## Slick
 * https://github.com/bizreach/slick-reference でSlickのリファレンスを公開しています
+* Slick 2.xから3.0へのマイグレーションについては http://slick.typesafe.com/doc/3.0.0/upgrade.html#upgrade-from-2-1-to-3-0 を参照してください
 
 ## ScalaIDE
 * Scala IDEはEclipseのバージョン、Scalaのバージョンにあわせて更新サイトが用意されています
@@ -26,6 +32,13 @@
     * [File]→[Project Structure...]からインストール済みのJDKを選択してください
 ![JDKを選択](images/idea_jdk.png)
   * `build.sbt`を変更してもクラスパスが解決されないことがありますが、その場合は「File」→「Invalidate Caches / Restart...」でIntelliJのキャッシュをクリアしてみてください
+
+##その他
+* Emacsユーザの方はScalaの開発環境としてEnsimeを利用できます
+  * http://qiita.com/saito400/items/7ece94138ad76e091229
+* vimユーザの方はScala開発環境としてEclim + ScalaIDEを利用できます
+  * http://qiita.com/pecorarista/items/1aa7575aa40077d55b53
+
 
 ----
 [＜削除処理の実装に戻る](12_implement_delete_api.md)
