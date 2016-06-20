@@ -2,7 +2,7 @@
 
 ## Play本体のインストール
 
-http://www.playframework.com/download からtypesafe-activator-1.3.5-minimal.zipをダウンロードし、解凍したディレクトリを環境変数PATHに追加します。
+http://www.playframework.com/download からtypesafe-activator-1.3.10-minimal.zipをダウンロードし、解凍したディレクトリを環境変数PATHに追加します。
 
 ## 新規プロジェクト作成
 
@@ -17,30 +17,24 @@ activator new play2-hands-on
 `play2-hands-on`ディレクトリの`build.sbt`にORMとしてSlickを使用するための設定を行います。
 
 ```scala
-name := "play2-hands-on"
+name := """play2-hands-on"""
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  // jdbcからspec2〜まで消してください
-  
-  // jdbc,
-  // cache,
-  // ws,
-  // specs2 % Test
-  "com.h2database" % "h2" % "1.4.177",          // <- この行を追加してください
-  "com.typesafe.play" %% "play-slick" % "1.0.0" // <- この行を追加してください
+  jdbc,
+  cache,
+  ws,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+  "com.h2database" % "h2" % "1.4.192",　　　　　　// <- この行を追加してください
+  "com.typesafe.play" %% "play-slick" % "2.0.0" // <- この行を追加してください
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-// Play provides two styles of routers, one expects its actions to be injected, the
-// other, legacy style, accesses its actions statically.
-routesGenerator := InjectedRoutesGenerator
 ```
 
 ## 起動確認
@@ -55,7 +49,7 @@ activator run
 
 ![Play2のウェルカム画面](images/welcome.png)
 
-`You’re using Play 2.4.2` が書かれていることを確認して下さい。
+`You’re using Play 2.5.4` が書かれていることを確認して下さい。
 
 > **POINT**
 > * `activator run`で実行している間はホットデプロイが有効になっているため、ソースを修正するとすぐに変更が反映されます
