@@ -5,10 +5,9 @@
   * ヒープ設定やプロキシ設定などJVMの起動オプションを設定するには環境変数`JAVA_OPTS`を使用します
 * Playが使用するローカルリポジトリ
   * 以前のバージョンのPlayは`PLAY_HOME/repository`ディレクトリ配下に独自のローカルリポジトリとキャッシュを持っていましたが、Play 2.3ではSBT標準の`HOME/.ivy2`ディレクトリ配下を使うようになりました
-* Play公式サイトのドキュメントは http://www.playframework-ja.org/ で日本語訳されています（Play 2.4対応のものは未翻訳です）
-* Play 2.4以前から2.4へのマイグレーションについては以下のドキュメントを参照してください
-  * [Play 2.4 Migration Guide](https://www.playframework.com/documentation/2.4.x/Migration24)
-  * [Play Slick Migration Guide](https://www.playframework.com/documentation/2.4.x/PlaySlickMigrationGuide)
+* Play公式サイトのドキュメントは https://www.playframework.com/documentation/2.5.x/Home にあります（2.5.x向けのドキュメントは日本語には未翻訳です）
+* Play 2.5以前から2.5へのマイグレーションについては以下のドキュメントを参照してください
+  * [Play 2.5 Migration Guide](https://www.playframework.com/documentation/2.5.x/Migration25)
 
 ## Slick
 * https://github.com/bizreach/slick-reference でSlickのリファレンスを公開しています
