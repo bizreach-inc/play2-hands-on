@@ -34,7 +34,7 @@ activator eclipse
 
 **IntelliJの場合：**
 
-IntelliJのScalaプラグインはSBT（Acrtivator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
+IntelliJのScalaプラグインはSBT（Activator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
 
 ![プロジェクトのインポート(1)](images/open_project_intellij1.png)
 
