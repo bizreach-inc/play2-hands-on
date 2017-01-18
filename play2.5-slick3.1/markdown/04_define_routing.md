@@ -2,7 +2,7 @@
 
 ## Bootstrapを使うための準備
 
-`play new`コマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとして`app/views/main.scala.html`が生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。
+`sbt new`コマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとして`app/views/main.scala.html`が生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。
 
 ```html
 @(title: String)(content: Html)
@@ -25,6 +25,12 @@
     @content
   </body>
 </html>
+```
+
+また、デフォルトでは`Content-Security-Policy`ヘッダが`default-src 'self'`を返すため上記で指定した外部CDNのCSSファイルやJavaScriptファイルを読み込むことができません。そこで`conf/application.conf`に以下の設定を追加して`Content-Security-Policy`ヘッダが出力されないようにしておきます。
+
+```
+play.filters.headers.contentSecurityPolicy=null
 ```
 
 ## コントローラの雛形を作る
@@ -88,7 +94,7 @@ Play 2.3まではコントローラはオブジェクトとして実装する必
 また、実際にコントローラ内でデータベースアクセスや国際化機能を利用するためにはDIで上記のインスタンスを取得するだけでなく、それぞれ`HasDatabaseConfigProvider`トレイト、`I18nSupport`トレイトをミックスインする必要があります。
 
 > **POINT**
-> * Play 2.4ではコントローラはクラスとして実装します
+> * Play 2.5ではコントローラはクラスとして実装します
 > * `@Inject`はDIのためのアノテーションです
 > * データベースアクセスを行うにはコントローラに`DatabaseConfigProvider`をDIし、`HasDatabaseConfigProvider`トレイトをミックスインします
 > * 国際化機能を使用するにはコントローラに`MessagesApi`をDIし、`I18nSupport`トレイトをミックスインします

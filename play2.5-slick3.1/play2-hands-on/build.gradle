@@ -1,0 +1,45 @@
+plugins {
+    id 'play'
+    id 'idea'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.1'
+}
+
+repositories {
+    jcenter()
+    maven {
+        name "typesafe-maven-release"
+        url "https://repo.typesafe.com/typesafe/maven-releases"
+    }
+    ivy {
+        name "typesafe-ivy-release"
+        url "https://repo.typesafe.com/typesafe/ivy-releases"
+        layout "ivy"
+    }
+}
+
+def playVersion = '2.5.10'
+def scalaVersion = '2.11'
+
+model {
+    components {
+        play {
+            platform play: playVersion, scala: scalaVersion, java: '1.8'
+            injectedRoutesGenerator = true
+
+            sources {
+                twirlTemplates {
+                    defaultImports = TwirlImports.SCALA
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    ['filters-helpers', 'play-logback'].each { playModule ->
+        play "com.typesafe.play:${playModule}_$scalaVersion:$playVersion"
+    }
+}
