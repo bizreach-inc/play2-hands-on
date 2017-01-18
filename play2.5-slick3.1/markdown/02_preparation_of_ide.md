@@ -2,19 +2,8 @@
 
 ## プラグインのインストール
 
-Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また、ファイルのエンコードはUTF-8にしておいてください。
+Java7以降 + IntelliJは予めインストール済みとします。まずは以下の手順でIntelliJにScala開発用のプラグインを導入します。
 
-それぞれのIDEにScalaで開発を行うためのプラグインをインストールします。
-
-**Eclipseの場合：**
-* メニュー[Help]→[Install New Software...]→[Add...]をクリックして以下を入力
-  * Name: Scala IDE
-  * Location: http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site
-* 全部チェックを入れて（Sourcesは外してもOK）、[Next]をクリック
-* あとはウィザードに従う
-
-
-**IntelliJの場合：**
 * メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin...]をクリック
 * [Scala]を選択し、右クリック[Download and Install]をクリック
 
@@ -22,19 +11,7 @@ Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また�
 
 ## プロジェクトのインポート
 
-**Eclipseの場合：**
-
-`play2-hands-on`ディレクトリで以下のコマンドを実行し、IDE用の設定ファイルを生成します。その後、IDEにインポートします。
-
-```
-activator eclipse
-```
-
-`build.sbt`を編集してライブラリを追加した場合、再度`activator eclipse`を実行する必要があります
-
-**IntelliJの場合：**
-
-IntelliJのScalaプラグインはSBT（Activator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
+IntelliJのScalaプラグインはSBTプロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
 
 ![プロジェクトのインポート(1)](images/open_project_intellij1.png)
 

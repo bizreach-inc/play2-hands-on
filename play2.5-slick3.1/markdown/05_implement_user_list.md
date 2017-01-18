@@ -86,7 +86,7 @@ SELECT * FROM USERS ORDER BY ID
 >   * `implicit rs`はアクションの処理の中でHTTPリクエストやDBのセッションを暗黙的に使用するために必要になる記述です
 > * `Ok`に`views.html.・・・`と記述することで、表示したいHTMLのテンプレートを指定できます
 >   * 引数にはテンプレートに渡すパラメータを指定します
-> * Slick 3.0のクエリは`DBIOAction`を生成します。`DBIOAction`を`db.run`で実行すると検索結果を返す`Future`を取得できます
+> * Slick 3のクエリは`DBIOAction`を生成します。`DBIOAction`を`db.run`で実行すると検索結果を返す`Future`を取得できます
 
 ## 実行
 

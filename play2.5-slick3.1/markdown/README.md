@@ -14,7 +14,6 @@
 * [10.ユーザ一覧APIの実装](10_implement_list_api.md)
 * [11.ユーザ登録・更新APIの実装](11_implement_update_api.md)
 * [12.ユーザ削除APIの実装](12_implement_delete_api.md)
-* [13.Tips](13_tips.md)
 
 ## 目的
 

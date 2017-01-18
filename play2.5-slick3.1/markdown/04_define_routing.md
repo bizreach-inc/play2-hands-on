@@ -94,7 +94,7 @@ Play 2.3まではコントローラはオブジェクトとして実装する必
 また、実際にコントローラ内でデータベースアクセスや国際化機能を利用するためにはDIで上記のインスタンスを取得するだけでなく、それぞれ`HasDatabaseConfigProvider`トレイト、`I18nSupport`トレイトをミックスインする必要があります。
 
 > **POINT**
-> * Play 2.4ではコントローラはクラスとして実装します
+> * Play 2.5ではコントローラはクラスとして実装します
 > * `@Inject`はDIのためのアノテーションです
 > * データベースアクセスを行うにはコントローラに`DatabaseConfigProvider`をDIし、`HasDatabaseConfigProvider`トレイトをミックスインします
 > * 国際化機能を使用するにはコントローラに`MessagesApi`をDIし、`I18nSupport`トレイトをミックスインします
