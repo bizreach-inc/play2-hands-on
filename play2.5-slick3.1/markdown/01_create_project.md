@@ -1,15 +1,39 @@
 # 01.プロジェクトの作成
 
-## Play本体のインストール
+## sbtのインストール
 
-http://www.playframework.com/download からtypesafe-activator-1.3.10-minimal.zipをダウンロードし、解凍したディレクトリを環境変数PATHに追加します。
+まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。
+
+**Windowsの場合**
+
+以下のリンクからインストーラをダウンロードしてインストールします。
+
+https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msi
+
+**Macの場合**
+
+Homebrewでインストールします。
+
+```
+brew update
+brew install sbt
+```
+
+どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。
+
+```
+sbt sbt-version
+[info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins
+[info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/)
+[info] 0.13.13
+```
 
 ## 新規プロジェクト作成
 
-コマンドプロンプトで以下のコマンドを実行します。途中でScalaアプリケーションとJavaアプリケーションのどちらを作成するかを聞かれるのでScalaアプリケーションを選択します。
+コマンドプロンプトで以下のコマンドを実行します。プロジェクト名などを聞かれますが、ここではプロジェクト名を`play2-hands-on`とし、他の項目は初期値のままプロジェクトを作成するものとします。
 
 ```
-activator new play2-hands-on
+sbt new playframework/play-scala-seed.g8
 ```
 
 ![プロジェクトの作成](images/create_project.png)
@@ -18,23 +42,29 @@ activator new play2-hands-on
 
 ```scala
 name := """play2-hands-on"""
+organization := "com.example"
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
+libraryDependencies += filters
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+
+// ↓↓↓↓ここから追加↓↓↓↓
 libraryDependencies ++= Seq(
-  jdbc,
-  cache,
-  ws,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
-  "com.h2database" % "h2" % "1.4.192",          // <- この行を追加してください
-  "com.typesafe.play" %% "play-slick" % "2.0.0" // <- この行を追加してください
+  "com.h2database" % "h2" % "1.4.193",
+  "com.typesafe.play" %% "play-slick" % "2.0.2"
 )
+// ↑↑↑↑ここまで追加↑↑↑↑
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+// Adds additional packages into Twirl
+//TwirlKeys.templateImports += "com.example.controllers._"
+
+// Adds additional packages into conf/routes
+// play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
 ```
 
 ## 起動確認
@@ -42,14 +72,14 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 作成した`play2-hands-on`ディレクトリに移動し、以下のコマンドでプロジェクトを実行します。
 
 ```
-activator run
+sbt run
 ```
 
 ブラウザから http://localhost:9000/ にアクセスし、以下の画面が表示されることを確認します。
 
 ![Play2のウェルカム画面](images/welcome.png)
 
-`You’re using Play 2.5.4` が書かれていることを確認して下さい。
+`Welcome to Play!` が書かれていることを確認して下さい。
 
 > **POINT**
 > * `activator run`で実行している間はホットデプロイが有効になっているため、ソースを修正するとすぐに変更が反映されます

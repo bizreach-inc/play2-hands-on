@@ -2,7 +2,7 @@
 
 ## Bootstrapを使うための準備
 
-`play new`コマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとして`app/views/main.scala.html`が生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。
+`sbt new`コマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとして`app/views/main.scala.html`が生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。
 
 ```html
 @(title: String)(content: Html)
@@ -25,6 +25,12 @@
     @content
   </body>
 </html>
+```
+
+また、デフォルトでは`Content-Security-Policy`ヘッダが`default-src 'self'`を返すため上記で指定した外部CDNのCSSファイルやJavaScriptファイルを読み込むことができません。そこで`conf/application.conf`に以下の設定を追加して`Content-Security-Policy`ヘッダが出力されないようにしておきます。
+
+```
+play.filters.headers.contentSecurityPolicy=null
 ```
 
 ## コントローラの雛形を作る
