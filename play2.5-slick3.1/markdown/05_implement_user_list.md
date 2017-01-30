@@ -8,7 +8,10 @@
 
 ```html
 @* このテンプレートの引数 *@
-@(users: Seq[models.Tables.UsersRow])
+@(users: Seq[models.Tables.UsersRow])(implicit request: Request[Any])
+
+@* テンプレートで利用可能なヘルパーをインポート *@
+@import helper._
 
 @* main.scala.htmlを呼び出す *@
 @main("ユーザ一覧") {
@@ -32,7 +35,7 @@
       <tr>
         <td>@user.id</td>
         <td><a href="@routes.UserController.edit(Some(user.id))">@user.name</a></td>
-        <td>@helper.form(routes.UserController.remove(user.id)){
+        <td>@helper.form(CSRF(routes.UserController.remove(user.id))){
           <input type="submit" value="削除" class="btn btn-danger btn-xs"/>
         }
         </td>
@@ -45,11 +48,15 @@
 }
 ```
 
+テンプレート一行目に`(implicit request: Request[Any])`という引数が定義されていますが、これはテンプレート中で使用している`CSRF`というヘルパーを使用するために必要なものです。PlayではデフォルトでCSRF対策のためのフィルタが有効になっており、フォームの送信先を指定する際に`@helper.form(CSRF(...))`のように指定するだけで自動的にトークンを使用したCSRF機能を利用することができます（`CSRF`ヘルパーを指定しないとフォームの送信時に403エラーになってしまいます）。
+
 > **POINT**
 > * テンプレートの1行目にはコントローラから受け取る引数を記述します
 > * テンプレートには`@`でScalaのコードを埋め込むことができます
+> * `@import`でインポート文を記述することができます。`@import helper._`でPlayが提供する標準ヘルパー（フォームなどを出力する関数）をインポートしています
 > * テンプレートには`@*...*@`でコメントを記述することができます
 > * リンクやフォームのURLは、`@routes.・・・`と記述することでルーティングから生成することができます
+> * デフォルトでCSRFフィルタが有効になっているため、フォームの送信先は`CSRF(...)`で囲む必要があります
 
 ## コントローラ
 

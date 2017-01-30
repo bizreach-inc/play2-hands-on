@@ -1,10 +1,10 @@
-@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit messages: Messages)
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit request: Request[Any], messages: Messages)
 
 @import helper._
 
 @main("ユーザ作成") {
 
-  @form(userForm("id").value.map(x => routes.UserController.update).getOrElse(routes.UserController.create), 'class -> "container", 'role -> "form") {
+  @form(CSRF(userForm("id").value.map(x => routes.UserController.update).getOrElse(routes.UserController.create)), 'class -> "container", 'role -> "form") {
     <fieldset>
       <div class="form-group">
         @inputText(userForm("name"), '_label -> "名前")

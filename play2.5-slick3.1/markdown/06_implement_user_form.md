@@ -39,15 +39,14 @@ object UserController {
 続いて`views.user`パッケージに`edit.scala.html`を実装します。引数には`Form`のインスタンスと、プルダウンで選択する会社情報を格納した`Seq`を受け取ります。
 
 ```html
-@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit messages: Messages)
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit request: Request[Any], messages: Messages)
 
-@* テンプレートで利用可能なヘルパーをインポート *@
 @import helper._
 
 @main("ユーザ作成") {
 
   @* IDがある場合は更新処理、ない場合は登録処理を呼ぶ *@
-  @form(userForm("id").value.map(x => routes.UserController.update).getOrElse(routes.UserController.create), 'class -> "container", 'role -> "form") {
+  @form(CSRF(userForm("id").value.map(x => routes.UserController.update).getOrElse(routes.UserController.create)), 'class -> "container", 'role -> "form") {
     <fieldset>
       <div class="form-group">
         @inputText(userForm("name"), '_label -> "名前")
@@ -68,11 +67,7 @@ object UserController {
 }
 ```
 
-テンプレート一行目に`(implicit messages: Messages)`という引数が定義されていますが、これはテンプレート中で使用している`inputText`などのヘルパーがメッセージ等の国際化のために必要とするもので、コントローラにDIした`MessagesApi`によって暗黙的に渡されます。このハンズオンでは特に使用しませんが、Play2アプリケーションの国際化対応に必要になるものですので覚えておくとよいでしょう。
-
-> **POINT**
-> * テンプレートでも`@import`でインポート文を記述することができます
-> * `@import helper._`でPlayが提供する標準ヘルパー（フォームなどを出力する関数）を使用できるようになります
+このテンプレートではテンプレートの暗黙的な引数として`request`だけでなく`message`を受け取るようになっています。これはテンプレートでテキストフィールドを表示するために使用している`inputText`ヘルパーがメッセージ等の国際化のために必要とするもので、コントローラにDIした`MessagesApi`によって暗黙的に渡されます。このハンズオンでは特に使用しませんが、Play2アプリケーションの国際化対応に必要になるものですので覚えておくとよいでしょう。
 
 ## コントローラ
 

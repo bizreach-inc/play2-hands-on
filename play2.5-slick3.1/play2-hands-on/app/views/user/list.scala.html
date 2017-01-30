@@ -1,4 +1,4 @@
-@(users: Seq[models.Tables.UsersRow])
+@(users: Seq[models.Tables.UsersRow])(implicit request: Request[Any])
 
 @main("ユーザ一覧") {
 
@@ -20,7 +20,7 @@
       <tr>
         <td>@user.id</td>
         <td><a href="@routes.UserController.edit(Some(user.id))">@user.name</a></td>
-        <td>@helper.form(routes.UserController.remove(user.id)){
+        <td>@helper.form(CSRF(routes.UserController.remove(user.id))){
           <input type="submit" value="削除" class="btn btn-danger btn-xs"/>
         }
         </td>
