@@ -2,7 +2,7 @@
 
 ## ツールプロジェクトの準備
 
-[slick-codegen.zip](https://github.com/bizreach/play2-hands-on/releases/download/20150709/slick-codegen.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
+[slick-codegen-play2.5-slick3.1.zip](https://github.com/bizreach/play2-hands-on/raw/master/downloads/slick-codegen-play2.5-slick3.1.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
 
 ```
 +-/play2-hands-on
