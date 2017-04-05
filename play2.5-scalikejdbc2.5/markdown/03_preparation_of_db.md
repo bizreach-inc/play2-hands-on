@@ -2,7 +2,7 @@
 
 ## ツールプロジェクトの準備
 
-[slick-codegen.zip](https://github.com/bizreach/play2-hands-on/releases/download/20150709/slick-codegen.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
+[h2.zip](https://github.com/bizreach/play2-hands-on/raw/master/downloads/h2.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
 
 ```
 +-/play2-hands-on
@@ -13,11 +13,11 @@
 |   |
 |   +-...
 |
-+-/slick-codegen
++-/h2
     |
-    +-/project
+    +-create.sql
     |
-    +-/src
+    +-data.mv.db
     |
     +-...
 ```
@@ -26,12 +26,12 @@
 
 **Windowsの場合**
 
-まず、`slick-codegen`プロジェクトの`h2/start.bat`をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。
+まず、`h2/start.bat`をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。
 
 **Macの場合**
 
 ```
-cd slick-codegen/h2/
+cd h2/
 sh start.sh
 ```
 ※起動後、そのターミナルは閉じないでください。
