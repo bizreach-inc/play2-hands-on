@@ -24,15 +24,17 @@
 
 ## H2の起動
 
-- [Windows]
+**Windowsの場合**
 
 まず、`slick-codegen`プロジェクトの`h2/start.bat`をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。
 
-- [Mac]
+**Macの場合**
+
 ```
 cd slick-codegen/h2/
 sh start.sh
 ```
+
 ※起動後、そのターミナルは閉じないでください。
 
 ![アプリケーションで使用するER図](images/er_diagram.png)
