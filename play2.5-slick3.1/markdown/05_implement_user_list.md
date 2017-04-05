@@ -67,7 +67,7 @@ def list = Action.async { implicit rs =>
   // IDの昇順にすべてのユーザ情報を取得
   db.run(Users.sortBy(t => t.id).result).map { users =>
     // 一覧画面を表示
-    Ok(views.html.user.list(users))
+    Ok(views.html.list(users))
   }
 }
 ```
