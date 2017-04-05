@@ -2,7 +2,7 @@
 
 ## 目的
 
-Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。
+Play2 + Slick / ScalikeJDBCを使ってWebアプリケーションを作成するハンズオンです。
 
 主な目的は以下の通りです。
 
@@ -15,6 +15,7 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 
 使用するフレームワークおよびバージョンは以下の通りです。
 
+* [Play 2.5.x / ScalikeJDBC 2.5.x](play2.5-scalikejdbc2.5/markdown/README.md)
 * [Play 2.5.x / Slick 3.1.x](play2.5-slick3.1/markdown/README.md)
 * [Play 2.4.x / Slick 3.0.x](play2.4-slick3.0/markdown/README.md)
 * [Play 2.3.x / Slick 2.1.x](play2.3-slick2.1/markdown/README.md)
