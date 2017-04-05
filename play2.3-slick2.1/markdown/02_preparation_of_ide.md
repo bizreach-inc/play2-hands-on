@@ -7,6 +7,7 @@ Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また�
 それぞれのIDEにScalaで開発を行うためのプラグインをインストールします。
 
 **Eclipseの場合：**
+
 * メニュー[Help]→[Install New Software...]→[Add...]をクリックして以下を入力
   * Name: Scala IDE
   * Location: http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site
@@ -15,6 +16,7 @@ Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また�
 
 
 **IntelliJの場合：**
+
 * メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin...]をクリック
 * [Scala]を選択し、右クリック[Download and Install]をクリック
 
