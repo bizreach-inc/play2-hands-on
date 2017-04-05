@@ -67,7 +67,7 @@ curl -XGET http://localhost:9000/json/list
 結果として以下のようなJSONが表示されるはずです。
 
 ```json
-{"users":[{"id":1,"name":"Naoki Takezoe","companyId":1},{"id":2,"name":"Takako Shimamoto"}]}
+{"users":[{"id":1,"name":"Taro Yamada","companyId":1},{"id":2,"name":"Jiro Sato"}]}
 ```
 
 ----
