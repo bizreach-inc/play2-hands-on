@@ -90,10 +90,6 @@ sbt "scalikejdbcGen USERS, COMPANIES"
 
 すると`play2-hands-on`プロジェクトの`app/models`パッケージにモデルクラスが生成されます。
 
-<!--
-![生成されたモデル](images/gen_model.png)
--->
-
 ## DB接続の設定
 
 `play2-hands-on`プロジェクトの`conf/application.conf`に以下の設定を追加します。データベースの接続情報に加え、PlayとScalikeJDBCを連携させるための設定が含まれています。
