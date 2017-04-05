@@ -1,4 +1,4 @@
-# Play2 + Slickハンズオン
+# Play2 + Slick / ScalikeJDBCハンズオン
 
 ## 目的
 
