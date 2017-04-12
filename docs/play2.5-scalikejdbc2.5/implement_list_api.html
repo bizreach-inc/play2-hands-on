@@ -120,15 +120,16 @@ implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsV
     </nav>
 
     <article class="single">
-  <div class="content-inner">
-    <h1 class="title">ユーザ一覧APIの実装</h1>
+      <div class="content-inner">
+        <h1 class="title">ユーザ一覧APIの実装</h1>
 
-    <ul class="p-facts">
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/">play2.5-scalikejdbc2.5</a></li>
-      
-    </ul>
+        <ul class="p-facts">
+          <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/">play2.5-scalikejdbc2.5</a></li>
+          
+        </ul>
 
-    <div class="article-body">
+        <div class="article-body">
+          
 
 <p><code>USERS</code>テーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。</p>
 
@@ -205,51 +206,53 @@ def list = Action { implicit request =&gt;
 
 <pre><code class="language-json">{&quot;users&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;Taro Yamada&quot;,&quot;companyId&quot;:1},{&quot;id&quot;:2,&quot;name&quot;:&quot;Jiro Sato&quot;}]}
 </code></pre>
-</div>
-  </div>
-</article>
 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      
-      
-      
-        
-        <a href="preparation_for_json.html" class="pull-left">＜JSON APIの準備に戻る</a>
-      
-      
-        
-        <a href="implement_update_api.html" class="pull-right">ユーザ登録・更新APIの実装に進む＞</a>
-      
-    
-    
-    
-    
-    
-    
+          <hr>
+          <div class="nav">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+            
+            
+              
+              <a href="preparation_for_json.html" class="pull-left">＜JSON APIの準備に戻る</a>
+            
+            
+              
+              <a href="implement_update_api.html" class="pull-right">ユーザ登録・更新APIの実装に進む＞</a>
+            
+          
+          
+          
+          
+          
+          
+          </div>
+        </div>
+      </div>
+    </article>
   </div>
 
   <div class="col-md-4">
