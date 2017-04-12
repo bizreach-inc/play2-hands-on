@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
+    <link>http://example.org/index.xml</link>
+    <description>Recent content on Play2 &#43; Slick / ScalikeJDBCハンズオン</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>BizReach, Inc</copyright>
+    <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>DBの準備</title>
+      <link>http://example.org/play2.3-slick2.1/preparation_of_db.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.3-slick2.1/preparation_of_db.html</guid>
+      <description>
+
+&lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../downloads/slick-codegen-play2.3-slick2.1.zip&#34;&gt;slick-codegen-play2.3-slick2.1.zip&lt;/a&gt; をダウンロードし、以下のように&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトと同じディレクトリに展開します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+-/play2-hands-on
+|   |
+|   +-/app
+|   |
+|   +-/conf
+|   |
+|   +-...
+|
++-/slick-codegen
+    |
+    +-/project
+    |
+    +-/src
+    |
+    +-...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;h2の起動&#34;&gt;H2の起動&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;まず、&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトの&lt;code&gt;h2/start.bat&lt;/code&gt;をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd slick-codegen/h2/
+sh start.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※起動後、そのターミナルは閉じないでください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/er_diagram.png&#34; alt=&#34;アプリケーションで使用するER図&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;モデルの自動生成&#34;&gt;モデルの自動生成&lt;/h2&gt;
+
+&lt;p&gt;SlickではタイプセーフなAPIを使用するために&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タイプセーフなクエリで使うテーブル定義&lt;/li&gt;
+&lt;li&gt;エンティティオブジェクト&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;を用意する必要がありますが、これらはSlickが標準で提供しているジェネレータを使用することでDBスキーマから自動生成することができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトのルートディレクトリで以下のコマンドを実行します。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sbt gen-tables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./sbt.sh gen-tables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;app/models&lt;/code&gt;パッケージにモデルクラスが生成されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/gen_model.png&#34; alt=&#34;生成されたモデル&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;db接続の設定&#34;&gt;DB接続の設定&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;conf/application.conf&lt;/code&gt;にDB接続のための設定を行います。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;変更前：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;# db.default.driver=org.h2.Driver
+# db.default.url=&amp;quot;jdbc:h2:mem:play&amp;quot;
+# db.default.user=sa
+# db.default.password=&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;変更後：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;db.default.driver=org.h2.Driver
+db.default.url=&amp;quot;jdbc:h2:tcp://localhost/data&amp;quot;
+db.default.user=sa
+db.default.password=sa
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DBの準備</title>
+      <link>http://example.org/play2.4-slick3.0/preparation_of_db.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.4-slick3.0/preparation_of_db.html</guid>
+      <description>
+
+&lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../downloads/slick-codegen-play2.4-slick3.0.zip&#34;&gt;slick-codegen-play2.4-slick3.0.zip&lt;/a&gt; をダウンロードし、以下のように&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトと同じディレクトリに展開します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+-/play2-hands-on
+|   |
+|   +-/app
+|   |
+|   +-/conf
+|   |
+|   +-...
+|
++-/slick-codegen
+    |
+    +-/project
+    |
+    +-/src
+    |
+    +-...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;h2の起動&#34;&gt;H2の起動&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;まず、&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトの&lt;code&gt;h2/start.bat&lt;/code&gt;をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd slick-codegen/h2/
+sh start.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※起動後、そのターミナルは閉じないでください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.4-slick3.0/er_diagram.png&#34; alt=&#34;アプリケーションで使用するER図&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;モデルの自動生成&#34;&gt;モデルの自動生成&lt;/h2&gt;
+
+&lt;p&gt;SlickではタイプセーフなAPIを使用するために&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タイプセーフなクエリで使うテーブル定義&lt;/li&gt;
+&lt;li&gt;エンティティオブジェクト&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;を用意する必要がありますが、これらはSlickが標準で提供しているジェネレータを使用することでDBスキーマから自動生成することができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトのルートディレクトリで以下のコマンドを実行します。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sbt gen-tables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./sbt.sh gen-tables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;app/models&lt;/code&gt;パッケージにモデルクラスが生成されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.4-slick3.0/gen_model.png&#34; alt=&#34;生成されたモデル&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;db接続の設定&#34;&gt;DB接続の設定&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;conf/application.conf&lt;/code&gt;にDB接続のため以下の設定を追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;slick.dbs.default.driver=&amp;quot;slick.driver.H2Driver$&amp;quot;
+slick.dbs.default.db.driver=org.h2.Driver
+slick.dbs.default.db.url=&amp;quot;jdbc:h2:tcp://localhost/data&amp;quot;
+slick.dbs.default.db.user=sa
+slick.dbs.default.db.password=sa
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DBの準備</title>
+      <link>http://example.org/play2.5-scalikejdbc2.5/preparation_of_db.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-scalikejdbc2.5/preparation_of_db.html</guid>
+      <description>
+
+&lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../downloads/h2.zip&#34;&gt;h2.zip&lt;/a&gt; をダウンロードし、以下のように&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトと同じディレクトリに展開します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+-/play2-hands-on
+|   |
+|   +-/app
+|   |
+|   +-/conf
+|   |
+|   +-...
+|
++-/h2
+    |
+    +-create.sql
+    |
+    +-data.mv.db
+    |
+    +-...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;h2の起動&#34;&gt;H2の起動&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;まず、&lt;code&gt;h2/start.bat&lt;/code&gt;をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd h2/
+sh start.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※起動後、そのターミナルは閉じないでください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-scalikejdbc2.5/er_diagram.png&#34; alt=&#34;アプリケーションで使用するER図&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;モデルの自動生成&#34;&gt;モデルの自動生成&lt;/h2&gt;
+
+&lt;p&gt;ScalikeJDBCではタイプセーフなAPIを使用するためにモデルクラスを用意する必要がありますが、ScalikeJDBCがsbtプラグインとして提供しているジェネレータを使用することでDBスキーマから自動生成することができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトでScalikeJDBCの自動生成ツールを使えるようにします。&lt;code&gt;project/plugins.sbt&lt;/code&gt;に以下の設定を追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;libraryDependencies += &amp;quot;com.h2database&amp;quot; % &amp;quot;h2&amp;quot; % &amp;quot;1.4.193&amp;quot;
+addSbtPlugin(&amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-mapper-generator&amp;quot; % &amp;quot;2.5.1&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、&lt;code&gt;project/scalikejdbc.properties&lt;/code&gt;というファイルを以下の内容で作成します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;# ---
+# jdbc settings
+
+jdbc.driver=org.h2.Driver
+jdbc.url=jdbc:h2:tcp://localhost/data
+jdbc.username=sa
+jdbc.password=sa
+jdbc.schema=PUBLIC
+
+# ---
+# source code generator settings
+
+generator.packageName=models
+# generator.lineBreak: LF/CRLF
+generator.lineBreak=LF
+# generator.template: interpolation/queryDsl
+generator.template=queryDsl
+# generator.testTemplate: specs2unit/specs2acceptance/ScalaTestFlatSpec
+generator.testTemplate=specs2unit
+generator.encoding=UTF-8
+# When you&#39;re using Scala 2.11 or higher, you can use case classes for 22+ columns tables
+generator.caseClassOnly=true
+# Set AutoSession for implicit DBSession parameter&#39;s default value
+generator.defaultAutoSession=true
+# Use autoConstruct macro (default: false)
+generator.autoConstruct=false
+# joda-time (org.joda.time.DateTime) or JSR-310 (java.time.ZonedDateTime java.time.OffsetDateTime)
+generator.dateTimeClass=java.time.OffsetDateTime
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ではコードを自動生成してみましょう。&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトのルートディレクトリで以下のコマンドを実行します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sbt &amp;quot;scalikejdbcGen USERS, COMPANIES&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;app/models&lt;/code&gt;パッケージにモデルクラスが生成されます。&lt;/p&gt;
+
+&lt;h2 id=&#34;db接続の設定&#34;&gt;DB接続の設定&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;conf/application.conf&lt;/code&gt;に以下の設定を追加します。データベースの接続情報に加え、PlayとScalikeJDBCを連携させるための設定が含まれています。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;# Database configuration
+# ~~~~~
+# You can declare as many datasources as you want.
+# By convention, the default datasource is named `default`
+db.default.driver=org.h2.Driver
+db.default.url=&amp;quot;jdbc:h2:tcp://localhost/data&amp;quot;
+# NOTE: sclaikejdbc-config 2.2.6 doesn&#39;t support username, use 2.2.7 or higher
+db.default.username=sa
+db.default.password=sa
+
+# ScalikeJDBC original configuration
+#db.default.poolInitialSize=10
+#db.default.poolMaxSize=10
+#db.default.poolValidationQuery=
+
+scalikejdbc.global.loggingSQLAndTime.enabled=true
+scalikejdbc.global.loggingSQLAndTime.singleLineMode=false
+scalikejdbc.global.loggingSQLAndTime.logLevel=debug
+scalikejdbc.global.loggingSQLAndTime.warningEnabled=true
+scalikejdbc.global.loggingSQLAndTime.warningThresholdMillis=5
+scalikejdbc.global.loggingSQLAndTime.warningLogLevel=warn
+
+play.modules.enabled += &amp;quot;scalikejdbc.PlayModule&amp;quot;
+# scalikejdbc.PlayModule doesn&#39;t depend on Play&#39;s DBModule
+play.modules.disabled += &amp;quot;play.api.db.DBModule&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DBの準備</title>
+      <link>http://example.org/play2.5-slick3.1/preparation_of_db.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-slick3.1/preparation_of_db.html</guid>
+      <description>
+
+&lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;../downloads/slick-codegen-play2.5-slick3.1.zip&#34;&gt;slick-codegen-play2.5-slick3.1.zip&lt;/a&gt; をダウンロードし、以下のように&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトと同じディレクトリに展開します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+-/play2-hands-on
+|   |
+|   +-/app
+|   |
+|   +-/conf
+|   |
+|   +-...
+|
++-/slick-codegen
+    |
+    +-/project
+    |
+    +-/src
+    |
+    +-...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;h2の起動&#34;&gt;H2の起動&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;まず、&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトの&lt;code&gt;h2/start.bat&lt;/code&gt;をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd slick-codegen/h2/
+sh start.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;※起動後、そのターミナルは閉じないでください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-slick3.1/er_diagram.png&#34; alt=&#34;アプリケーションで使用するER図&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;モデルの自動生成&#34;&gt;モデルの自動生成&lt;/h2&gt;
+
+&lt;p&gt;SlickではタイプセーフなAPIを使用するために&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タイプセーフなクエリで使うテーブル定義&lt;/li&gt;
+&lt;li&gt;エンティティオブジェクト&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;を用意する必要がありますが、これらはSlickが標準で提供しているジェネレータを使用することでDBスキーマから自動生成することができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトのルートディレクトリで以下のコマンドを実行します。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sbt gen-tables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./sbt.sh gen-tables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すると&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;app/models&lt;/code&gt;パッケージにモデルクラスが生成されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-slick3.1/gen_model.png&#34; alt=&#34;生成されたモデル&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;db接続の設定&#34;&gt;DB接続の設定&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;conf/application.conf&lt;/code&gt;にDB接続のため以下の設定を追加します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;slick.dbs.default.driver=&amp;quot;slick.driver.H2Driver$&amp;quot;
+slick.dbs.default.db.driver=org.h2.Driver
+slick.dbs.default.db.url=&amp;quot;jdbc:h2:tcp://localhost/data&amp;quot;
+slick.dbs.default.db.user=sa
+slick.dbs.default.db.password=sa
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IDEの準備</title>
+      <link>http://example.org/play2.3-slick2.1/preparation_of_ide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.3-slick2.1/preparation_of_ide.html</guid>
+      <description>
+
+&lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
+
+&lt;p&gt;Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また、ファイルのエンコードはUTF-8にしておいてください。&lt;/p&gt;
+
+&lt;p&gt;それぞれのIDEにScalaで開発を行うためのプラグインをインストールします。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Eclipseの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メニュー[Help]→[Install New Software&amp;hellip;]→[Add&amp;hellip;]をクリックして以下を入力
+
+&lt;ul&gt;
+&lt;li&gt;Name: Scala IDE&lt;/li&gt;
+&lt;li&gt;Location: &lt;a href=&#34;http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site&#34;&gt;http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;全部チェックを入れて（Sourcesは外してもOK）、[Next]をクリック&lt;/li&gt;
+&lt;li&gt;あとはウィザードに従う&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;IntelliJの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック&lt;/li&gt;
+&lt;li&gt;[Scala]を選択し、右クリック[Download and Install]をクリック&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。&lt;/p&gt;
+
+&lt;h2 id=&#34;プロジェクトのインポート&#34;&gt;プロジェクトのインポート&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Eclipseの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;ディレクトリで以下のコマンドを実行し、IDE用の設定ファイルを生成します。その後、IDEにインポートします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;activator eclipse
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、再度&lt;code&gt;activator eclipse&lt;/code&gt;を実行する必要があります&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IntelliJの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;IntelliJのScalaプラグインはSBT（Activator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/open_project_intellij1.png&#34; alt=&#34;プロジェクトのインポート(1)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New&amp;hellip;」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/open_project_intellij2.png&#34; alt=&#34;プロジェクトのインポート(2)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/re-import_project.png&#34; alt=&#34;プロジェクトのリフレッシュ&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IDEの準備</title>
+      <link>http://example.org/play2.4-slick3.0/preparation_of_ide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.4-slick3.0/preparation_of_ide.html</guid>
+      <description>
+
+&lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
+
+&lt;p&gt;Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また、ファイルのエンコードはUTF-8にしておいてください。&lt;/p&gt;
+
+&lt;p&gt;それぞれのIDEにScalaで開発を行うためのプラグインをインストールします。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Eclipseの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メニュー[Help]→[Install New Software&amp;hellip;]→[Add&amp;hellip;]をクリックして以下を入力
+
+&lt;ul&gt;
+&lt;li&gt;Name: Scala IDE&lt;/li&gt;
+&lt;li&gt;Location: &lt;a href=&#34;http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site&#34;&gt;http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;全部チェックを入れて（Sourcesは外してもOK）、[Next]をクリック&lt;/li&gt;
+&lt;li&gt;あとはウィザードに従う&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;IntelliJの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック&lt;/li&gt;
+&lt;li&gt;[Scala]を選択し、右クリック[Download and Install]をクリック&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。&lt;/p&gt;
+
+&lt;h2 id=&#34;プロジェクトのインポート&#34;&gt;プロジェクトのインポート&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Eclipseの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;ディレクトリで以下のコマンドを実行し、IDE用の設定ファイルを生成します。その後、IDEにインポートします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;activator eclipse
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、再度&lt;code&gt;activator eclipse&lt;/code&gt;を実行する必要があります&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IntelliJの場合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;IntelliJのScalaプラグインはSBT（Activator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.4-slick3.0/open_project_intellij1.png&#34; alt=&#34;プロジェクトのインポート(1)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New&amp;hellip;」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.4-slick3.0/open_project_intellij2.png&#34; alt=&#34;プロジェクトのインポート(2)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.4-slick3.0/re-import_project.png&#34; alt=&#34;プロジェクトのリフレッシュ&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IDEの準備</title>
+      <link>http://example.org/play2.5-scalikejdbc2.5/preparation_of_ide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-scalikejdbc2.5/preparation_of_ide.html</guid>
+      <description>
+
+&lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
+
+&lt;p&gt;Java7以降 + IntelliJは予めインストール済みとします。まずは以下の手順でIntelliJにScala開発用のプラグインを導入します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック&lt;/li&gt;
+&lt;li&gt;[Scala]を選択し、右クリック[Download and Install]をクリック&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。&lt;/p&gt;
+
+&lt;h2 id=&#34;プロジェクトのインポート&#34;&gt;プロジェクトのインポート&lt;/h2&gt;
+
+&lt;p&gt;IntelliJのScalaプラグインはSBTプロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクト内の&lt;code&gt;build.sbt&lt;/code&gt;を選択するとSBTプロジェクトとしてインポートすることができます（プロジェクトのルートディレクトリを選択するとGradleプロジェクトとしてインポートされてしまいますので注意してください）。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-scalikejdbc2.5/open_project_intellij1.png&#34; alt=&#34;プロジェクトのインポート(1)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New&amp;hellip;」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-scalikejdbc2.5/open_project_intellij2.png&#34; alt=&#34;プロジェクトのインポート(2)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-scalikejdbc2.5/re-import_project.png&#34; alt=&#34;プロジェクトのリフレッシュ&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IDEの準備</title>
+      <link>http://example.org/play2.5-slick3.1/preparation_of_ide.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-slick3.1/preparation_of_ide.html</guid>
+      <description>
+
+&lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
+
+&lt;p&gt;Java7以降 + IntelliJは予めインストール済みとします。まずは以下の手順でIntelliJにScala開発用のプラグインを導入します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック&lt;/li&gt;
+&lt;li&gt;[Scala]を選択し、右クリック[Download and Install]をクリック&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。&lt;/p&gt;
+
+&lt;h2 id=&#34;プロジェクトのインポート&#34;&gt;プロジェクトのインポート&lt;/h2&gt;
+
+&lt;p&gt;IntelliJのScalaプラグインはSBTプロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクト内の&lt;code&gt;build.sbt&lt;/code&gt;を選択するとSBTプロジェクトとしてインポートすることができます（プロジェクトのルートディレクトリを選択するとGradleプロジェクトとしてインポートされてしまいますので注意してください）。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-slick3.1/open_project_intellij1.png&#34; alt=&#34;プロジェクトのインポート(1)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New&amp;hellip;」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-slick3.1/open_project_intellij2.png&#34; alt=&#34;プロジェクトのインポート(2)&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-slick3.1/re-import_project.png&#34; alt=&#34;プロジェクトのリフレッシュ&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JSON APIの準備</title>
+      <link>http://example.org/play2.3-slick2.1/preparation_for_json.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.3-slick2.1/preparation_for_json.html</guid>
+      <description>
+
+&lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
+
+&lt;h2 id=&#34;コントローラの雛形を作る&#34;&gt;コントローラの雛形を作る&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;controllers&lt;/code&gt;パッケージに&lt;code&gt;JsonController&lt;/code&gt;オブジェクトを以下の内容で作成します。SlickやPlay2のJSONサポートを使用するためのimport文を予め含めています。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package controllers
+
+import play.api.mvc._
+
+import play.api.db.slick._
+import models.Tables._
+import profile.simple._
+
+import play.api.libs.json._
+
+object JsonController extends Controller {
+
+  /**
+   * 一覧表示
+   */
+  def list = TODO
+
+  /**
+   * ユーザ登録
+   */
+  def create = TODO
+
+  /**
+   * ユーザ更新
+   */
+  def update = TODO
+
+  /**
+   * ユーザ削除
+   */
+  def remove(id: Long) = TODO
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;play.api.libs.json._&lt;/code&gt;はPlay2のJSONサポート機能を使用するために必要なimport文です&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;ルーティングの定義&#34;&gt;ルーティングの定義&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;conf/routes&lt;/code&gt;に以下の内容を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# JSON API
+GET         /json/list              controllers.JsonController.list
+POST        /json/create            controllers.JsonController.create
+POST        /json/update            controllers.JsonController.update
+POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JSON APIの準備</title>
+      <link>http://example.org/play2.4-slick3.0/preparation_for_json.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.4-slick3.0/preparation_for_json.html</guid>
+      <description>
+
+&lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
+
+&lt;h2 id=&#34;コントローラの雛形を作る&#34;&gt;コントローラの雛形を作る&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;controllers&lt;/code&gt;パッケージに&lt;code&gt;JsonController&lt;/code&gt;オブジェクトを以下の内容で作成します。SlickやPlay2のJSONサポートを使用するためのimport文を予め含めています。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package controllers
+
+import play.api.mvc._
+
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.db.slick._
+import slick.driver.JdbcProfile
+import models.Tables._
+import javax.inject.Inject
+import scala.concurrent.Future
+import slick.driver.H2Driver.api._
+
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+
+class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) extends Controller
+    with HasDatabaseConfigProvider[JdbcProfile] {
+
+  /**
+   * 一覧表示
+   */
+  def list = TODO
+
+  /**
+   * ユーザ登録
+   */
+  def create = TODO
+
+  /**
+   * ユーザ更新
+   */
+  def update = TODO
+
+  /**
+   * ユーザ削除
+   */
+  def remove(id: Long) = TODO
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コンストラクタで&lt;code&gt;DatabaseConfigProvider&lt;/code&gt;をDIしていたり、&lt;code&gt;HasDatabaseConfigProvider&lt;/code&gt;トレイトをミックスインしているのは&lt;code&gt;UserController&lt;/code&gt;と同じですが、テンプレートを使用していないので国際化機能のために必要だった&lt;code&gt;MessagesApi&lt;/code&gt;のDIや&lt;code&gt;I18nSupport&lt;/code&gt;トレイトのミックスインは行っていません。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;play.api.libs.json._&lt;/code&gt;はPlay2のJSONサポート機能を使用するために必要なimport文です&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;ルーティングの定義&#34;&gt;ルーティングの定義&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;conf/routes&lt;/code&gt;に以下の内容を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# JSON API
+GET         /json/list              controllers.JsonController.list
+POST        /json/create            controllers.JsonController.create
+POST        /json/update            controllers.JsonController.update
+POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JSON APIの準備</title>
+      <link>http://example.org/play2.5-scalikejdbc2.5/preparation_for_json.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-scalikejdbc2.5/preparation_for_json.html</guid>
+      <description>
+
+&lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
+
+&lt;h2 id=&#34;コントローラの雛形を作る&#34;&gt;コントローラの雛形を作る&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;controllers&lt;/code&gt;パッケージに&lt;code&gt;JsonController&lt;/code&gt;オブジェクトを以下の内容で作成します。SlickやPlay2のJSONサポートを使用するためのimport文を予め含めています。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package controllers
+
+import play.api.mvc._
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+import scalikejdbc._
+import models._
+
+class JsonController extends Controller {
+
+  /**
+   * 一覧表示
+   */
+  def list = TODO
+
+  /**
+   * ユーザ登録
+   */
+  def create = TODO
+
+  /**
+   * ユーザ更新
+   */
+  def update = TODO
+
+  /**
+   * ユーザ削除
+   */
+  def remove(id: Long) = TODO
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;UserController&lt;/code&gt;と比べると、テンプレートでの国際化機能のために必要だった&lt;code&gt;MessagesApi&lt;/code&gt;のDIや&lt;code&gt;I18nSupport&lt;/code&gt;トレイトのミックスインを行っていないため、非常にシンプルなクラス定義になっています。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;play.api.libs.json._&lt;/code&gt;はPlay2のJSONサポート機能を使用するために必要なimport文です&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;ルーティングの定義&#34;&gt;ルーティングの定義&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;conf/routes&lt;/code&gt;に以下の内容を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# JSON API
+GET         /json/list              controllers.JsonController.list
+POST        /json/create            controllers.JsonController.create
+POST        /json/update            controllers.JsonController.update
+POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JSON APIの準備</title>
+      <link>http://example.org/play2.5-slick3.1/preparation_for_json.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-slick3.1/preparation_for_json.html</guid>
+      <description>
+
+&lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
+
+&lt;h2 id=&#34;コントローラの雛形を作る&#34;&gt;コントローラの雛形を作る&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;controllers&lt;/code&gt;パッケージに&lt;code&gt;JsonController&lt;/code&gt;オブジェクトを以下の内容で作成します。SlickやPlay2のJSONサポートを使用するためのimport文を予め含めています。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package controllers
+
+import play.api.mvc._
+
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.db.slick._
+import slick.driver.JdbcProfile
+import models.Tables._
+import javax.inject.Inject
+import scala.concurrent.Future
+import slick.driver.H2Driver.api._
+
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+
+class JsonController @Inject()(val dbConfigProvider: DatabaseConfigProvider) extends Controller
+    with HasDatabaseConfigProvider[JdbcProfile] {
+
+  /**
+   * 一覧表示
+   */
+  def list = TODO
+
+  /**
+   * ユーザ登録
+   */
+  def create = TODO
+
+  /**
+   * ユーザ更新
+   */
+  def update = TODO
+
+  /**
+   * ユーザ削除
+   */
+  def remove(id: Long) = TODO
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コンストラクタで&lt;code&gt;DatabaseConfigProvider&lt;/code&gt;をDIしていたり、&lt;code&gt;HasDatabaseConfigProvider&lt;/code&gt;トレイトをミックスインしているのは&lt;code&gt;UserController&lt;/code&gt;と同じですが、テンプレートを使用していないので国際化機能のために必要だった&lt;code&gt;MessagesApi&lt;/code&gt;のDIや&lt;code&gt;I18nSupport&lt;/code&gt;トレイトのミックスインは行っていません。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;play.api.libs.json._&lt;/code&gt;はPlay2のJSONサポート機能を使用するために必要なimport文です&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;ルーティングの定義&#34;&gt;ルーティングの定義&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;conf/routes&lt;/code&gt;に以下の内容を追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# JSON API
+GET         /json/list              controllers.JsonController.list
+POST        /json/create            controllers.JsonController.create
+POST        /json/update            controllers.JsonController.update
+POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Play 2.3 &#43; Slick 2.1ハンズオン</title>
+      <link>http://example.org/play2.3-slick2.1.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.3-slick2.1.html</guid>
+      <description>
+
+&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
+
+&lt;p&gt;Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。&lt;/p&gt;
+
+&lt;p&gt;主な目的は以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Scalaに触れてもらう&lt;/li&gt;
+&lt;li&gt;数時間でとりあえず動くものを作ってみる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そのため、なるべくフレームワークが提供する機能をそのまま使います。&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;使用するフレームワークおよびバージョンは以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Play 2.3.x&lt;/li&gt;
+&lt;li&gt;Slick 2.1.x&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
+
+&lt;p&gt;このハンズオンを実施するにあたっての前提条件は以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること&lt;/li&gt;
+&lt;li&gt;JDK 1.7以降がインストールされていること&lt;/li&gt;
+&lt;li&gt;EclipseもしくはIntelliJ IDEAの最新版がインストールされていること&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;内容&#34;&gt;内容&lt;/h2&gt;
+
+&lt;p&gt;ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ユーザ一覧を表示する&lt;/li&gt;
+&lt;li&gt;新規ユーザ登録を行う&lt;/li&gt;
+&lt;li&gt;ユーザ情報を編集する&lt;/li&gt;
+&lt;li&gt;ユーザを削除する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/flow.png&#34; alt=&#34;作成するアプリケーションの画面遷移図&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Play 2.4 &#43; Slick 3.0ハンズオン</title>
+      <link>http://example.org/play2.4-slick3.0.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.4-slick3.0.html</guid>
+      <description>
+
+&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
+
+&lt;p&gt;Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。&lt;/p&gt;
+
+&lt;p&gt;主な目的は以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Scalaに触れてもらう&lt;/li&gt;
+&lt;li&gt;数時間でとりあえず動くものを作ってみる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そのため、なるべくフレームワークが提供する機能をそのまま使います。&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;使用するフレームワークおよびバージョンは以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Play 2.4.x&lt;/li&gt;
+&lt;li&gt;Slick 3.0.x&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
+
+&lt;p&gt;このハンズオンを実施するにあたっての前提条件は以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること&lt;/li&gt;
+&lt;li&gt;JDK 1.7以降がインストールされていること&lt;/li&gt;
+&lt;li&gt;EclipseもしくはIntelliJ IDEAの最新版がインストールされていること&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;内容&#34;&gt;内容&lt;/h2&gt;
+
+&lt;p&gt;ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ユーザ一覧を表示する&lt;/li&gt;
+&lt;li&gt;新規ユーザ登録を行う&lt;/li&gt;
+&lt;li&gt;ユーザ情報を編集する&lt;/li&gt;
+&lt;li&gt;ユーザを削除する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.4-slick3.0/flow.png&#34; alt=&#34;作成するアプリケーションの画面遷移図&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Play 2.5 &#43; ScalikeJDBC 2.5 ハンズオン</title>
+      <link>http://example.org/play2.5-scalikejdbc2.5.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/play2.5-scalikejdbc2.5.html</guid>
+      <description>
+
+&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
+
+&lt;p&gt;Play2 + ScalikeJBDC を使ってWebアプリケーションを作成するハンズオンです。&lt;/p&gt;
+
+&lt;p&gt;主な目的は以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Scalaに触れてもらう&lt;/li&gt;
+&lt;li&gt;数時間でとりあえず動くものを作ってみる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;そのため、なるべくフレームワークが提供する機能をそのまま使います。&lt;/p&gt;
+
+&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
+
+&lt;p&gt;使用するフレームワークおよびバージョンは以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Play 2.5.x&lt;/li&gt;
+&lt;li&gt;ScalikeJDBC 2.5.x&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
+
+&lt;p&gt;このハンズオンを実施するにあたっての前提条件は以下の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること&lt;/li&gt;
+&lt;li&gt;JDK 1.7以降がインストールされていること&lt;/li&gt;
+&lt;li&gt;EclipseもしくはIntelliJ IDEAの最新版がインストールされていること&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;内容&#34;&gt;内容&lt;/h2&gt;
+
+&lt;p&gt;ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ユーザ一覧を表示する&lt;/li&gt;
+&lt;li&gt;新規ユーザ登録を行う&lt;/li&gt;
+&lt;li&gt;ユーザ情報を編集する&lt;/li&gt;
+&lt;li&gt;ユーザを削除する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/play2.5-scalikejdbc2.5/flow.png&#34; alt=&#34;作成するアプリケーションの画面遷移図&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
