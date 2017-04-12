@@ -1,0 +1,26 @@
+{{ define "title" }}{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ end }}
+
+{{ define "main" }}
+<div class="row">
+  <div class="col-md-8">
+
+    {{ if not .IsHome }}
+    <header class="p-page-title">
+      <h1 class="title">{{ .Title }}</h1>
+    </header>
+    {{ end }}
+
+    <div class="row">
+      {{ range $i, $p := (.Paginate .Data.Pages).Pages }}
+      <div class="col-sm-6 col-xs-12">{{ $p.Render "li" }}</div>
+      {{ if eq (mod (add $i 1) 2) 0 }}<div class="col-sm-12"></div>{{ end }}
+      {{ end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+  </div>
+  <div class="col-md-4">
+    {{ partial "sidebar.html" . }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,72 @@
+{{ define "title" }}{{ .Title }} - {{ end }}
+
+{{ define "meta" }}
+{{ partial "single_meta.html" . }}
+{{ partial "single_json_ld.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol>
+        <li><a href="{{ .Site.BaseURL }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        {{ with .Section }}
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ $.Site.BaseURL }}{{ . | urlize }}/" itemprop="url"><span itemprop="title">{{ . }}</span></a></li>
+        {{ end }}
+        <li class="active">{{ .Title }}</li>
+      </ol>
+    </nav>
+    <article class="single">
+      <div class="content-inner">
+        <h1 class="title">Play2 + Slick / ScalikeJDBCハンズオン</h1>
+        <div class="article-body">
+          <h2>目的</h2>
+          <p>
+            Play2 + Slick / ScalikeJDBCを使ってWebアプリケーションを作成するハンズオンです。
+          </p>
+          <p>
+            主な目的は以下の通りです。
+          </p>
+          <ul>
+            <li>Scalaに触れてもらう</li>
+            <li>数時間でとりあえず動くものを作ってみる</li>
+          </ul>
+          <p>
+            そのため、なるべくフレームワークが提供する機能をそのまま使います。
+          </p>
+          <h2>構成</h2>
+          <p>
+            使用するフレームワークおよびバージョンは以下の通りです。
+          </p>
+          <ul>
+            <li><a href="play2.5-scalikejdbc2.5/index.html">Play 2.5.x + ScalikeJDBC 2.5.x</a></li>
+            <li><a href="play2.5-slick3.1/index.html">Play 2.5.x + Slick 3.1.x</a></li>
+            <li><a href="play2.4-slick3.0/index.html">Play 2.4.x + Slick 3.0.x</a></li>
+            <li><a href="play2.3-slick2.1/index.html">Play 2.3.x + Slick 2.1.x</a></li>
+          </ul>
+          <h2>内容</h2>
+          <p>
+            ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。また、後半では同様のCRUD処理を行うJSONベースのWeb APIも作成します。
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="col-md-4">
+    <section>
+      <header>フレームワークとバージョン</header>
+      <div>
+        <ul>
+          <li class="p-terms"><a href="play2.5-scalikejdbc2.5/index.html">Play 2.5.x + ScalikeJDBC 2.5.x</a></li>
+          <li class="p-terms"><a href="play2.5-slick3.1/index.html">Play 2.5.x + Slick 3.1.x</a></li>
+          <li class="p-terms"><a href="play2.4-slick3.0/index.html">Play 2.4.x + Slick 3.0.x</a></li>
+          <li class="p-terms"><a href="play2.3-slick2.1/index.html">Play 2.3.x + Slick 2.1.x</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+{{ end }}

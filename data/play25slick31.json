@@ -1,0 +1,15 @@
+[
+  {"file": "index", "title": "イントロダクション" },
+  {"file": "create_project", "title": "プロジェクトの作成" },
+  {"file": "preparation_of_ide", "title": "IDEの準備"},
+  {"file": "preparation_of_db", "title": "DBの準備"},
+  {"file": "define_routing", "title": "ルーティングの定義"},
+  {"file": "implement_user_list", "title": "ユーザ一覧の実装"},
+  {"file": "implement_user_form", "title": "ユーザ登録・編集画面の実装"},
+  {"file": "implement_update_processing", "title": "登録・更新処理の実装"},
+  {"file": "implement_delete_processing", "title": "削除処理の実装"},
+  {"file": "preparation_for_json", "title": "JSON APIの準備"},
+  {"file": "implement_list_api", "title": "ユーザ一覧APIの実装"},
+  {"file": "implement_update_api", "title": "ユーザ登録・更新APIの実装"},
+  {"file": "implement_delete_api", "title": "ユーザ削除APIの実装"}
+]

@@ -1,0 +1,8 @@
+languageCode = "ja-JP"
+title = "Play2 + Slick / ScalikeJDBCハンズオン"
+baseURL = "http://example.org/"
+theme = "hugo_theme_robust"
+metadataformat = "yaml"
+canonifyurls = true
+uglyurls = true
+copyright = "BizReach, Inc"
