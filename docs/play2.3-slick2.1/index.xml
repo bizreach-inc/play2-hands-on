@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Play2.3-slick2.1s on Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
-    <link>http://example.org/play2.3-slick2.1.xml</link>
+    <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.xml</link>
     <description>Recent content in Play2.3-slick2.1s on Play2 &#43; Slick / ScalikeJDBCハンズオン</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>BizReach, Inc</copyright>
-    <atom:link href="http://example.org/play2.3-slick2.1.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>DBの準備</title>
-      <link>http://example.org/play2.3-slick2.1/preparation_of_db.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_db.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/preparation_of_db.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_db.html</guid>
       <description>
 
 &lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
@@ -105,10 +105,10 @@ db.default.password=sa
     
     <item>
       <title>IDEの準備</title>
-      <link>http://example.org/play2.3-slick2.1/preparation_of_ide.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_ide.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/preparation_of_ide.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_ide.html</guid>
       <description>
 
 &lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
@@ -170,10 +170,10 @@ db.default.password=sa
     
     <item>
       <title>JSON APIの準備</title>
-      <link>http://example.org/play2.3-slick2.1/preparation_for_json.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_for_json.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/preparation_for_json.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_for_json.html</guid>
       <description>
 
 &lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
@@ -239,10 +239,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>Play 2.3 &#43; Slick 2.1ハンズオン</title>
-      <link>http://example.org/play2.3-slick2.1.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</guid>
       <description>
 
 &lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
@@ -296,10 +296,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>Tips</title>
-      <link>http://example.org/play2.3-slick2.1/tips.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/tips.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/tips.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/tips.html</guid>
       <description>
 
 &lt;h2 id=&#34;play2&#34;&gt;Play2&lt;/h2&gt;
@@ -363,10 +363,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>プロジェクトの作成</title>
-      <link>http://example.org/play2.3-slick2.1/create_project.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/create_project.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/create_project.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/create_project.html</guid>
       <description>
 
 &lt;h2 id=&#34;play本体のインストール&#34;&gt;Play本体のインストール&lt;/h2&gt;
@@ -458,10 +458,10 @@ object Application extends Controller {  // &amp;lt;- class から object に書
     
     <item>
       <title>ユーザ一覧APIの実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_list_api.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_list_api.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_list_api.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_list_api.html</guid>
       <description>
 
 &lt;p&gt;&lt;code&gt;USERS&lt;/code&gt;テーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。&lt;/p&gt;
@@ -518,10 +518,10 @@ object Application extends Controller {  // &amp;lt;- class から object に書
     
     <item>
       <title>ユーザ一覧の実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_user_list.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_list.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_user_list.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_list.html</guid>
       <description>
 
 &lt;p&gt;&lt;code&gt;USERS&lt;/code&gt;テーブルからIDの昇順に全件取得し、ユーザ一覧画面を表示します。&lt;/p&gt;
@@ -636,10 +636,10 @@ import profile.simple._
     
     <item>
       <title>ユーザ削除APIの実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_delete_api.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_api.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_delete_api.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_api.html</guid>
       <description>
 
 &lt;p&gt;指定したIDのユーザを&lt;code&gt;USERS&lt;/code&gt;テーブルから削除します。&lt;/p&gt;
@@ -667,10 +667,10 @@ import profile.simple._
     
     <item>
       <title>ユーザ登録・更新APIの実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_update_api.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_api.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_update_api.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_api.html</guid>
       <description>
 
 &lt;p&gt;ユーザ情報をJSONで受け取り、登録もしくは更新を行います。&lt;/p&gt;
@@ -769,10 +769,10 @@ import profile.simple._
     
     <item>
       <title>ユーザ登録・編集画面の実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_user_form.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_form.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_user_form.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_form.html</guid>
       <description>
 
 &lt;p&gt;リクエストパラメータにIDが指定押されているかどうかに応じて以下の処理を行います。&lt;/p&gt;
@@ -913,10 +913,10 @@ import play.api.data.Forms._
     
     <item>
       <title>ルーティングの定義</title>
-      <link>http://example.org/play2.3-slick2.1/define_routing.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/define_routing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/define_routing.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/define_routing.html</guid>
       <description>
 
 &lt;h2 id=&#34;bootstrapを使うための準備&#34;&gt;Bootstrapを使うための準備&lt;/h2&gt;
@@ -1023,10 +1023,10 @@ POST    /user/remove/:id            controllers.UserController.remove(id: Long)
     
     <item>
       <title>削除処理の実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_delete_processing.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_processing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_delete_processing.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_processing.html</guid>
       <description>
 
 &lt;p&gt;指定したIDのユーザを&lt;code&gt;USERS&lt;/code&gt;テーブルから削除し、一覧画面へリダイレクトします。&lt;/p&gt;
@@ -1062,10 +1062,10 @@ POST    /user/remove/:id            controllers.UserController.remove(id: Long)
     
     <item>
       <title>登録・更新処理の実装</title>
-      <link>http://example.org/play2.3-slick2.1/implement_update_processing.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_processing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/implement_update_processing.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_processing.html</guid>
       <description>
 
 &lt;p&gt;入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。&lt;/p&gt;

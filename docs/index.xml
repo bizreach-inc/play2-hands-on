@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
-    <link>http://example.org/index.xml</link>
+    <link>http://bizreach.github.io/play2-hands-on/index.xml</link>
     <description>Recent content on Play2 &#43; Slick / ScalikeJDBCハンズオン</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>BizReach, Inc</copyright>
-    <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://bizreach.github.io/play2-hands-on/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>DBの準備</title>
-      <link>http://example.org/play2.3-slick2.1/preparation_of_db.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_db.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/preparation_of_db.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_db.html</guid>
       <description>
 
 &lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
@@ -105,10 +105,10 @@ db.default.password=sa
     
     <item>
       <title>DBの準備</title>
-      <link>http://example.org/play2.4-slick3.0/preparation_of_db.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_of_db.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.4-slick3.0/preparation_of_db.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_of_db.html</guid>
       <description>
 
 &lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
@@ -190,10 +190,10 @@ slick.dbs.default.db.password=sa
     
     <item>
       <title>DBの準備</title>
-      <link>http://example.org/play2.5-scalikejdbc2.5/preparation_of_db.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_of_db.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-scalikejdbc2.5/preparation_of_db.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_of_db.html</guid>
       <description>
 
 &lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
@@ -317,10 +317,10 @@ play.modules.disabled += &amp;quot;play.api.db.DBModule&amp;quot;
     
     <item>
       <title>DBの準備</title>
-      <link>http://example.org/play2.5-slick3.1/preparation_of_db.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_of_db.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-slick3.1/preparation_of_db.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_of_db.html</guid>
       <description>
 
 &lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
@@ -402,10 +402,10 @@ slick.dbs.default.db.password=sa
     
     <item>
       <title>IDEの準備</title>
-      <link>http://example.org/play2.3-slick2.1/preparation_of_ide.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_ide.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/preparation_of_ide.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_ide.html</guid>
       <description>
 
 &lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
@@ -467,10 +467,10 @@ slick.dbs.default.db.password=sa
     
     <item>
       <title>IDEの準備</title>
-      <link>http://example.org/play2.4-slick3.0/preparation_of_ide.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_of_ide.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.4-slick3.0/preparation_of_ide.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_of_ide.html</guid>
       <description>
 
 &lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
@@ -532,10 +532,10 @@ slick.dbs.default.db.password=sa
     
     <item>
       <title>IDEの準備</title>
-      <link>http://example.org/play2.5-scalikejdbc2.5/preparation_of_ide.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_of_ide.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-scalikejdbc2.5/preparation_of_ide.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_of_ide.html</guid>
       <description>
 
 &lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
@@ -569,10 +569,10 @@ slick.dbs.default.db.password=sa
     
     <item>
       <title>IDEの準備</title>
-      <link>http://example.org/play2.5-slick3.1/preparation_of_ide.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_of_ide.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-slick3.1/preparation_of_ide.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_of_ide.html</guid>
       <description>
 
 &lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
@@ -606,10 +606,10 @@ slick.dbs.default.db.password=sa
     
     <item>
       <title>JSON APIの準備</title>
-      <link>http://example.org/play2.3-slick2.1/preparation_for_json.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_for_json.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1/preparation_for_json.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_for_json.html</guid>
       <description>
 
 &lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
@@ -675,10 +675,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>JSON APIの準備</title>
-      <link>http://example.org/play2.4-slick3.0/preparation_for_json.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_for_json.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.4-slick3.0/preparation_for_json.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_for_json.html</guid>
       <description>
 
 &lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
@@ -752,10 +752,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>JSON APIの準備</title>
-      <link>http://example.org/play2.5-scalikejdbc2.5/preparation_for_json.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_for_json.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-scalikejdbc2.5/preparation_for_json.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_for_json.html</guid>
       <description>
 
 &lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
@@ -821,10 +821,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>JSON APIの準備</title>
-      <link>http://example.org/play2.5-slick3.1/preparation_for_json.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_for_json.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-slick3.1/preparation_for_json.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_for_json.html</guid>
       <description>
 
 &lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
@@ -898,10 +898,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>Play 2.3 &#43; Slick 2.1ハンズオン</title>
-      <link>http://example.org/play2.3-slick2.1.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.3-slick2.1.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</guid>
       <description>
 
 &lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
@@ -955,10 +955,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>Play 2.4 &#43; Slick 3.0ハンズオン</title>
-      <link>http://example.org/play2.4-slick3.0.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.4-slick3.0.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0.html</guid>
       <description>
 
 &lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
@@ -1012,10 +1012,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
     
     <item>
       <title>Play 2.5 &#43; ScalikeJDBC 2.5 ハンズオン</title>
-      <link>http://example.org/play2.5-scalikejdbc2.5.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/play2.5-scalikejdbc2.5.html</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5.html</guid>
       <description>
 
 &lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
