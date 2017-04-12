@@ -5,7 +5,7 @@ layout: play2.5-scalikejdbc2.5
 
 ## ツールプロジェクトの準備
 
-[h2.zip](https://github.com/bizreach/play2-hands-on/raw/master/downloads/h2.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
+[h2.zip](../downloads/h2.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
 
 ```
 +-/play2-hands-on

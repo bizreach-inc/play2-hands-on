@@ -5,7 +5,7 @@ layout: play2.5-slick3.1
 
 ## ツールプロジェクトの準備
 
-[slick-codegen-play2.5-slick3.1.zip](https://github.com/bizreach/play2-hands-on/raw/master/downloads/slick-codegen-play2.5-slick3.1.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
+[slick-codegen-play2.5-slick3.1.zip](../downloads/slick-codegen-play2.5-slick3.1.zip) をダウンロードし、以下のように`play2-hands-on`プロジェクトと同じディレクトリに展開します。
 
 ```
 +-/play2-hands-on
