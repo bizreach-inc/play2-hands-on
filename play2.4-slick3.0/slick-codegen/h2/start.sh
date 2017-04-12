@@ -1,1 +1,0 @@
-java -cp h2-1.4.177.jar org.h2.tools.Server -tcp -web -baseDir .

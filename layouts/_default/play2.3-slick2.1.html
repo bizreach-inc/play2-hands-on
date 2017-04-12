@@ -1,0 +1,57 @@
+{{ define "title" }}{{ .Title }} - {{ end }}
+
+{{ define "meta" }}
+{{ partial "single_meta.html" . }}
+{{ partial "single_json_ld.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol>
+        <li><a href="{{ .Site.BaseURL }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        {{ with .Section }}
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ $.Site.BaseURL }}{{ . | urlize }}/" itemprop="url"><span itemprop="title">{{ . }}</span></a></li>
+        {{ end }}
+        <li class="active">{{ .Title }}</li>
+      </ol>
+    </nav>
+
+    {{ .Render "summary" }}
+
+    {{ range $index, $element := $.Site.Data.play23slick21 }}
+    {{ if eq $.File.BaseFileName $element.file }}
+      {{ $prev := sub $index 1}}
+      {{ $next := add $index 1}}
+      {{ if ge $prev 0 }}
+        {{ $target := (index $.Site.Data.play23slick21 $prev) }}
+        <a href="{{ $target.file }}.html" class="pull-left">＜{{ $target.title }}に戻る</a>
+      {{ end }}
+      {{ if lt $next (len $.Site.Data.play23slick21) }}
+        {{ $target := (index $.Site.Data.play23slick21 $next) }}
+        <a href="{{ $target.file }}.html" class="pull-right">{{ $target.title }}に進む＞</a>
+      {{ end }}
+    {{ end }}
+    {{ end }}
+  </div>
+
+  <div class="col-md-4">
+    <section>
+      <header>Play 2.3 + Slick 2.1</header>
+      <div>
+        <ul>
+          {{ range $.Site.Data.play23slick21 }}
+          {{ if eq $.File.BaseFileName .file }}
+          <li class="p-terms"><a href="{{ .file }}.html" class="active">{{ .title }}</a></li>
+          {{ else }}
+          <li class="p-terms"><a href="{{ .file }}.html">{{ .title }}</a></li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+{{ end }}
