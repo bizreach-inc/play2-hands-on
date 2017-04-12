@@ -1,0 +1,11 @@
+/.idea/
+*~
+target/
+*.log
+*.iml
+/.target/
+/.cache
+/.project
+/.classpath
+/.settings/org.scala-ide.sdt.core.prefs
+
