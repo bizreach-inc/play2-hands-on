@@ -43,7 +43,7 @@ sbt new playframework/play-scala-seed.g8
 
 ![プロジェクトの作成](../images/play2.5-scalikejdbc2.5/create_project.png)
 
-`play2-hands-on`ディレクトリの`build.sbt`にORMとしてSlickを使用するための設定を行います。
+`play2-hands-on`ディレクトリの`build.sbt`にORMとしてScalikeJDBCを使用するための設定を行います。
 
 ```scala
 name := """play2-hands-on"""

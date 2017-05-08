@@ -406,7 +406,7 @@ brew install sbt
 
 &lt;p&gt;&lt;img src=&#34;../images/play2.5-scalikejdbc2.5/create_project.png&#34; alt=&#34;プロジェクトの作成&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;ディレクトリの&lt;code&gt;build.sbt&lt;/code&gt;にORMとしてSlickを使用するための設定を行います。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;ディレクトリの&lt;code&gt;build.sbt&lt;/code&gt;にORMとしてScalikeJDBCを使用するための設定を行います。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot;
 organization := &amp;quot;com.example&amp;quot;
