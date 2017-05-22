@@ -79,6 +79,7 @@ object UserController extends Controller {
 ```
 
 > **POINT**
+>
 > * テンプレートでも`@import`でインポート文を記述することができます
 > * `@import helper._`でPlayが提供する標準ヘルパー（フォームなどを出力する関数）を使用できるようになります
 
