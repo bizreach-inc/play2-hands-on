@@ -5,4 +5,5 @@ theme = "hugo_theme_robust"
 metadataformat = "yaml"
 canonifyurls = true
 uglyurls = true
+publishDir = "docs"
 copyright = "BizReach, Inc"
