@@ -1,6 +1,6 @@
 ---
 title: Play 2.5 + ScalikeJDBC 2.5 ハンズオン
-layout: play2.5-scalikejdbc2.5
+layout: play25-scalikejdbc25
 ---
 
 ## 目的

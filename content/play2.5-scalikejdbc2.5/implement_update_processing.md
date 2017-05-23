@@ -1,6 +1,6 @@
 ---
 title: 登録・更新処理の実装
-layout: play2.5-scalikejdbc2.5
+layout: play25-scalikejdbc25
 ---
 
 入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。

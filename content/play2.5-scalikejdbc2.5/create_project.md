@@ -1,6 +1,6 @@
 ---
 title: プロジェクトの作成
-layout: play2.5-scalikejdbc2.5
+layout: play25-scalikejdbc25
 ---
 
 ## sbtのインストール

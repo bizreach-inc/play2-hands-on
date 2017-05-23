@@ -1,6 +1,6 @@
 ---
 title: ユーザ一覧APIの実装
-layout: play2.5-scalikejdbc2.5
+layout: play25-scalikejdbc25
 ---
 
 `USERS`テーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。

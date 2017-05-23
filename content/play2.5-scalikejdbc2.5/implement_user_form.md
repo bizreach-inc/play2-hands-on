@@ -1,6 +1,6 @@
 ---
 title: ユーザ登録・編集画面の実装
-layout: play2.5-scalikejdbc2.5
+layout: play25-scalikejdbc25
 ---
 
 リクエストパラメータにIDが指定押されているかどうかに応じて以下の処理を行います。

@@ -1,6 +1,6 @@
 ---
 title: Play 2.3 + Slick 2.1ハンズオン
-layout: play2.3-slick2.1
+layout: play23-slick21
 ---
 
 ## 目的

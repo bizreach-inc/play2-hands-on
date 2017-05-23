@@ -1,6 +1,6 @@
 ---
 title: 削除処理の実装
-layout: play2.4-slick3.0
+layout: play24-slick30
 ---
 
 指定したIDのユーザを`USERS`テーブルから削除し、一覧画面へリダイレクトします。

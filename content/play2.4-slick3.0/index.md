@@ -1,6 +1,6 @@
 ---
 title: Play 2.4 + Slick 3.0ハンズオン
-layout: play2.4-slick3.0
+layout: play24-slick30
 ---
 
 ## 目的

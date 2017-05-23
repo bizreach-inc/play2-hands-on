@@ -1,6 +1,6 @@
 ---
 title: ユーザ登録・更新APIの実装
-layout: play2.3-slick2.1
+layout: play23-slick21
 ---
 
 ユーザ情報をJSONで受け取り、登録もしくは更新を行います。

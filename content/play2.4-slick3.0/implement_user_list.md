@@ -1,6 +1,6 @@
 ---
 title: ユーザ一覧の実装
-layout: play2.4-slick3.0
+layout: play24-slick30
 ---
 
 `USERS`テーブルからIDの昇順に全件取得し、ユーザ一覧画面を表示します。

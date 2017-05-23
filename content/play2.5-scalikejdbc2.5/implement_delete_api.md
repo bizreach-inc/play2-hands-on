@@ -1,6 +1,6 @@
 ---
 title: ユーザ削除APIの実装
-layout: play2.5-scalikejdbc2.5
+layout: play25-scalikejdbc25
 ---
 
 指定したIDのユーザを`USERS`テーブルから削除します。

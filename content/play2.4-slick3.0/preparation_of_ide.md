@@ -1,6 +1,6 @@
 ---
 title: IDEの準備
-layout: play2.4-slick3.0
+layout: play24-slick30
 ---
 
 ## プラグインのインストール
