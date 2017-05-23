@@ -63,6 +63,7 @@ def update = DBAction.transaction(parse.json) { implicit rs =>
 ```
 
 > **POINT**
+>
 > * `parse.json`はボディパーサと呼ばれるもので、リクエストボディの処理方法を決めるものです
 
 ## 実行
