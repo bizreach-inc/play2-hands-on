@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="theme-color" content="#263238">
 
-<meta name="generator" content="Hugo 0.20.7" />
+<meta name="generator" content="Hugo 0.19" />
 
 <link rel="shortcut icon" href="http://bizreach.github.io/play2-hands-on/images/favicon.ico" />
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
@@ -210,6 +210,11 @@ generator.defaultAutoSession=true
 generator.autoConstruct=false
 # joda-time (org.joda.time.DateTime) or JSR-310 (java.time.ZonedDateTime java.time.OffsetDateTime)
 generator.dateTimeClass=java.time.OffsetDateTime
+</code></pre>
+
+<p>最後に<code>buils.sbt</code>に以下の記述を追加します。これでこのプロジェクトで<code>scalikejdbcGen</code>タスクが使用できるようになります。</p>
+
+<pre><code class="language-scala">scalikejdbcSettings
 </code></pre>
 
 <p>ではコードを自動生成してみましょう。<code>play2-hands-on</code>プロジェクトのルートディレクトリで以下のコマンドを実行します。</p>
