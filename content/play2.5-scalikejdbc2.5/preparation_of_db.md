@@ -85,6 +85,12 @@ generator.autoConstruct=false
 generator.dateTimeClass=java.time.OffsetDateTime
 ```
 
+最後に`buils.sbt`に以下の記述を追加します。これでこのプロジェクトで`scalikejdbcGen`タスクが使用できるようになります。
+
+```scala
+scalikejdbcSettings
+```
+
 ではコードを自動生成してみましょう。`play2-hands-on`プロジェクトのルートディレクトリで以下のコマンドを実行します。
 
 ```
