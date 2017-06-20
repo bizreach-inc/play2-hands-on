@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="theme-color" content="#263238">
 
-<meta name="generator" content="Hugo 0.19" />
+<meta name="generator" content="Hugo 0.23" />
 
 <link rel="shortcut icon" href="http://bizreach.github.io/play2-hands-on/images/favicon.ico" />
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
@@ -192,7 +192,7 @@ object Application extends Controller {  // &lt;- class から object に書き�
 
 <p>作成した<code>play2-hands-on</code>ディレクトリに移動し、以下のコマンドでプロジェクトを実行します。</p>
 
-<pre><code>activator run
+<pre><code>sbt run
 </code></pre>
 
 <p>ブラウザから <a href="http://localhost:9000/">http://localhost:9000/</a> にアクセスし、以下の画面が表示されることを確認します。</p>
@@ -205,11 +205,11 @@ object Application extends Controller {  // &lt;- class から object に書き�
 <p><strong>POINT</strong></p>
 
 <ul>
-<li><code>activator run</code>で実行している間はホットデプロイが有効になっているため、ソースを修正するとすぐに変更が反映されます</li>
-<li>CTRL+Dで<code>activator run</code>での実行を終了することができます</li>
+<li><code>sbt run</code>で実行している間はホットデプロイが有効になっているため、ソースを修正するとすぐに変更が反映されます</li>
+<li>CTRL+Dで<code>sbt run</code>での実行を終了することができます</li>
 <li><code>activator  run</code>で実行中に何度も修正を行っているとヒープが不足してプロセスが終了してしまったりエラーが出たまま応答がなくなってしまう場合があります</li>
-<li>プロセスが終了してしまった場合は再度<code>activator run</code>を実行してください</li>
-<li>応答しなくなってしまった場合は一度コマンドプロンプトを閉じ、再度起動して<code>activator run</code>を実行してください</li>
+<li>プロセスが終了してしまった場合は再度<code>sbt run</code>を実行してください</li>
+<li>応答しなくなってしまった場合は一度コマンドプロンプトを閉じ、再度起動して<code>sbt run</code>を実行してください</li>
 </ul>
 </blockquote>
 
