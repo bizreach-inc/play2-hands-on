@@ -98,6 +98,6 @@ SELECT * FROM USERS ORDER BY ID
 
 ## 実行
 
-ここまで実装したらブラウザから http://localhost:9000/user/list にアクセスします（`activator run`を実行していない場合は実行してください）。すると以下のような画面が表示されるはずです。
+ここまで実装したらブラウザから http://localhost:9000/user/list にアクセスします（`sbt run`を実行していない場合は実行してください）。すると以下のような画面が表示されるはずです。
 
 ![ユーザ一覧画面](../images/play2.3-slick2.1/user_list.png)
