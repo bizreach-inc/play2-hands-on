@@ -2,12 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Play2.3-slick2.1s on Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
-    <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.xml</link>
+    <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</link>
     <description>Recent content in Play2.3-slick2.1s on Play2 &#43; Slick / ScalikeJDBCハンズオン</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>BizReach, Inc</copyright>
-    <atom:link href="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>DBの準備</title>
@@ -15,92 +17,21 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_db.html</guid>
-      <description>
-
-&lt;h2 id=&#34;ツールプロジェクトの準備&#34;&gt;ツールプロジェクトの準備&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;../downloads/slick-codegen-play2.3-slick2.1.zip&#34;&gt;slick-codegen-play2.3-slick2.1.zip&lt;/a&gt; をダウンロードし、以下のように&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトと同じディレクトリに展開します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;+-/play2-hands-on
-|   |
-|   +-/app
-|   |
-|   +-/conf
-|   |
-|   +-...
-|
-+-/slick-codegen
-    |
-    +-/project
-    |
-    +-/src
-    |
-    +-...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;h2の起動&#34;&gt;H2の起動&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;まず、&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトの&lt;code&gt;h2/start.bat&lt;/code&gt;をダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd slick-codegen/h2/
-sh start.sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;※起動後、そのターミナルは閉じないでください。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/er_diagram.png&#34; alt=&#34;アプリケーションで使用するER図&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;モデルの自動生成&#34;&gt;モデルの自動生成&lt;/h2&gt;
-
-&lt;p&gt;SlickではタイプセーフなAPIを使用するために&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;タイプセーフなクエリで使うテーブル定義&lt;/li&gt;
-&lt;li&gt;エンティティオブジェクト&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;を用意する必要がありますが、これらはSlickが標準で提供しているジェネレータを使用することでDBスキーマから自動生成することができます。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;slick-codegen&lt;/code&gt;プロジェクトのルートディレクトリで以下のコマンドを実行します。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Windowsの場合&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sbt gen-tables
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Macの場合&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./sbt.sh gen-tables
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;すると&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;app/models&lt;/code&gt;パッケージにモデルクラスが生成されます。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/gen_model.png&#34; alt=&#34;生成されたモデル&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;db接続の設定&#34;&gt;DB接続の設定&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;プロジェクトの&lt;code&gt;conf/application.conf&lt;/code&gt;にDB接続のための設定を行います。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;変更前：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;# db.default.driver=org.h2.Driver
-# db.default.url=&amp;quot;jdbc:h2:mem:play&amp;quot;
-# db.default.user=sa
-# db.default.password=&amp;quot;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;変更後：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;db.default.driver=org.h2.Driver
-db.default.url=&amp;quot;jdbc:h2:tcp://localhost/data&amp;quot;
-db.default.user=sa
-db.default.password=sa
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description> ツールプロジェクトの準備 slick-codegen-play2.3-slick2.1.zip をダウンロードし、以下のようにplay2-hands-onプロジェクトと同じディレクトリに展開します。
++-/play2-hands-on | | | +-/app | | | +-/conf | | | +-... | +-/slick-codegen | +-/project | +-/src | +-...  H2の起動 Windowsの場合
+まず、slick-codegenプロジェクトのh2/start.batをダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。
+Macの場合
+cd slick-codegen/h2/ sh start.sh  ※起動後、そのターミナルは閉じないでください。
+モデルの自動生成 SlickではタイプセーフなAPIを使用するために
+ タイプセーフなクエリで使うテーブル定義 エンティティオブジェクト  を用意する必要がありますが、これらはSlickが標準で提供しているジェネレータを使用することでDBスキーマから自動生成することができます。
+slick-codegenプロジェクトのルートディレクトリで以下のコマンドを実行します。
+Windowsの場合
+sbt gen-tables  Macの場合
+./sbt.sh gen-tables  するとplay2-hands-onプロジェクトのapp/modelsパッケージにモデルクラスが生成されます。
+DB接続の設定 play2-hands-onプロジェクトのconf/application.confにDB接続のための設定を行います。
+変更前：
+# db.default.driver=org.h2.Driver # db.default.url=&amp;quot;jdbc:h2:mem:play&amp;quot; # db.default.user=sa # db.default.password=&amp;quot;&amp;quot;  変更後：
+db.default.driver=org.h2.Driver db.default.url=&amp;quot;jdbc:h2:tcp://localhost/data&amp;quot; db.default.user=sa db.default.password=sa  </description>
     </item>
     
     <item>
@@ -109,63 +40,19 @@ db.default.password=sa
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_ide.html</guid>
-      <description>
-
-&lt;h2 id=&#34;プラグインのインストール&#34;&gt;プラグインのインストール&lt;/h2&gt;
-
-&lt;p&gt;Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また、ファイルのエンコードはUTF-8にしておいてください。&lt;/p&gt;
-
-&lt;p&gt;それぞれのIDEにScalaで開発を行うためのプラグインをインストールします。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Eclipseの場合：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;メニュー[Help]→[Install New Software&amp;hellip;]→[Add&amp;hellip;]をクリックして以下を入力
-
-&lt;ul&gt;
-&lt;li&gt;Name: Scala IDE&lt;/li&gt;
-&lt;li&gt;Location: &lt;a href=&#34;http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site&#34;&gt;http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;全部チェックを入れて（Sourcesは外してもOK）、[Next]をクリック&lt;/li&gt;
-&lt;li&gt;あとはウィザードに従う&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;IntelliJの場合：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック&lt;/li&gt;
-&lt;li&gt;[Scala]を選択し、右クリック[Download and Install]をクリック&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。&lt;/p&gt;
-
-&lt;h2 id=&#34;プロジェクトのインポート&#34;&gt;プロジェクトのインポート&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Eclipseの場合：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;play2-hands-on&lt;/code&gt;ディレクトリで以下のコマンドを実行し、IDE用の設定ファイルを生成します。その後、IDEにインポートします。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;activator eclipse
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、再度&lt;code&gt;activator eclipse&lt;/code&gt;を実行する必要があります&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;IntelliJの場合：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;IntelliJのScalaプラグインはSBT（Activator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/open_project_intellij1.png&#34; alt=&#34;プロジェクトのインポート(1)&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New&amp;hellip;」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/open_project_intellij2.png&#34; alt=&#34;プロジェクトのインポート(2)&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;を編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/re-import_project.png&#34; alt=&#34;プロジェクトのリフレッシュ&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。&lt;/p&gt;
-</description>
+      <description>プラグインのインストール Java7以降 + Eclipse or IntelliJの環境は構築済みとします。また、ファイルのエンコードはUTF-8にしておいてください。
+それぞれのIDEにScalaで開発を行うためのプラグインをインストールします。
+Eclipseの場合：
+ メニュー[Help]→[Install New Software&amp;hellip;]→[Add&amp;hellip;]をクリックして以下を入力  Name: Scala IDE Location: http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site  全部チェックを入れて（Sourcesは外してもOK）、[Next]をクリック あとはウィザードに従う  IntelliJの場合：
+ メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック [Scala]を選択し、右クリック[Download and Install]をクリック  ※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。
+プロジェクトのインポート Eclipseの場合：
+play2-hands-onディレクトリで以下のコマンドを実行し、IDE用の設定ファイルを生成します。その後、IDEにインポートします。
+activator eclipse  build.sbtを編集してライブラリを追加した場合、再度activator eclipseを実行する必要があります
+IntelliJの場合：
+IntelliJのScalaプラグインはSBT（Activator）プロジェクトをネイティブサポートしており、「File」メニューから「Open」を選択し、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
+インポートする際に以下のダイアログが表示されます。初回は「Project SDK」が未選択の状態になっているかもしれません。「New&amp;hellip;」をクリックしてJDKがインストールされているディレクトリを選択してから「OK」をクリックしてください。
+build.sbtを編集してライブラリを追加した場合、ウィンドウ右上に以下のようなメッセージが表示されます。
+「Refresh」を選択するとプロジェクトが再インポートされ、ライブラリが自動的にインターネット経由でダウンロードされクラスパスに追加されます。また、「Enable auto-import」を選択するとbuild.sbtを変更するたびに自動的に再インポートされるようになります（プロジェクトのインポート時に自動インポートを有効にしておくことも可能です）。</description>
     </item>
     
     <item>
@@ -174,124 +61,26 @@ db.default.password=sa
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_for_json.html</guid>
-      <description>
-
-&lt;p&gt;フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。&lt;/p&gt;
-
-&lt;h2 id=&#34;コントローラの雛形を作る&#34;&gt;コントローラの雛形を作る&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;controllers&lt;/code&gt;パッケージに&lt;code&gt;JsonController&lt;/code&gt;オブジェクトを以下の内容で作成します。SlickやPlay2のJSONサポートを使用するためのimport文を予め含めています。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package controllers
-
-import play.api.mvc._
-
-import play.api.db.slick._
-import models.Tables._
-import profile.simple._
-
-import play.api.libs.json._
-
-object JsonController extends Controller {
-
-  /**
-   * 一覧表示
-   */
-  def list = TODO
-
-  /**
-   * ユーザ登録
-   */
-  def create = TODO
-
-  /**
-   * ユーザ更新
-   */
-  def update = TODO
-
-  /**
-   * ユーザ削除
-   */
-  def remove(id: Long) = TODO
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;play.api.libs.json._&lt;/code&gt;はPlay2のJSONサポート機能を使用するために必要なimport文です&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;ルーティングの定義&#34;&gt;ルーティングの定義&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;conf/routes&lt;/code&gt;に以下の内容を追記します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# JSON API
-GET         /json/list              controllers.JsonController.list
-POST        /json/create            controllers.JsonController.create
-POST        /json/update            controllers.JsonController.update
-POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。
+コントローラの雛形を作る controllersパッケージにJsonControllerオブジェクトを以下の内容で作成します。SlickやPlay2のJSONサポートを使用するためのimport文を予め含めています。
+package controllers import play.api.mvc._ import play.api.db.slick._ import models.Tables._ import profile.simple._ import play.api.libs.json._ object JsonController extends Controller { /** * 一覧表示 */ def list = TODO /** * ユーザ登録 */ def create = TODO /** * ユーザ更新 */ def update = TODO /** * ユーザ削除 */ def remove(id: Long) = TODO }   POINT
+ play.api.libs.json._はPlay2のJSONサポート機能を使用するために必要なimport文です   ルーティングの定義 conf/routesに以下の内容を追記します。
+# JSON API GET /json/list controllers.</description>
     </item>
     
     <item>
       <title>Play 2.3 &#43; Slick 2.1ハンズオン</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</guid>
-      <description>
-
-&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
-
-&lt;p&gt;Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。&lt;/p&gt;
-
-&lt;p&gt;主な目的は以下の通りです。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scalaに触れてもらう&lt;/li&gt;
-&lt;li&gt;数時間でとりあえず動くものを作ってみる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;そのため、なるべくフレームワークが提供する機能をそのまま使います。&lt;/p&gt;
-
-&lt;h2 id=&#34;構成&#34;&gt;構成&lt;/h2&gt;
-
-&lt;p&gt;使用するフレームワークおよびバージョンは以下の通りです。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Play 2.3.x&lt;/li&gt;
-&lt;li&gt;Slick 2.1.x&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
-
-&lt;p&gt;このハンズオンを実施するにあたっての前提条件は以下の通りです。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること&lt;/li&gt;
-&lt;li&gt;JDK 1.7以降がインストールされていること&lt;/li&gt;
-&lt;li&gt;EclipseもしくはIntelliJ IDEAの最新版がインストールされていること&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;内容&#34;&gt;内容&lt;/h2&gt;
-
-&lt;p&gt;ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ユーザ一覧を表示する&lt;/li&gt;
-&lt;li&gt;新規ユーザ登録を行う&lt;/li&gt;
-&lt;li&gt;ユーザ情報を編集する&lt;/li&gt;
-&lt;li&gt;ユーザを削除する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/flow.png&#34; alt=&#34;作成するアプリケーションの画面遷移図&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。&lt;/p&gt;
-</description>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/</guid>
+      <description>目的 Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。
+主な目的は以下の通りです。
+ Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。
+構成 使用するフレームワークおよびバージョンは以下の通りです。
+ Play 2.3.x Slick 2.1.x  前提条件 このハンズオンを実施するにあたっての前提条件は以下の通りです。
+ JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること JDK 1.7以降がインストールされていること EclipseもしくはIntelliJ IDEAの最新版がインストールされていること  内容 ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。
+ ユーザ一覧を表示する 新規ユーザ登録を行う ユーザ情報を編集する ユーザを削除する  また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。</description>
     </item>
     
     <item>
@@ -300,65 +89,7 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/tips.html</guid>
-      <description>
-
-&lt;h2 id=&#34;play2&#34;&gt;Play2&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;playコマンド実行時のVMオプションの設定
-
-&lt;ul&gt;
-&lt;li&gt;ヒープ設定やプロキシ設定などJVMの起動オプションを設定するには環境変数&lt;code&gt;JAVA_OPTS&lt;/code&gt;を使用します&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Playが使用するローカルリポジトリ
-
-&lt;ul&gt;
-&lt;li&gt;以前のバージョンのPlayは&lt;code&gt;PLAY_HOME/repository&lt;/code&gt;ディレクトリ配下に独自のローカルリポジトリとキャッシュを持っていましたが、Play 2.3ではSBT標準の&lt;code&gt;HOME/.ivy2&lt;/code&gt;ディレクトリ配下を使うようになりました&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Play公式サイトのドキュメントは &lt;a href=&#34;https://www.playframework.com/documentation/ja/2.3.x/Home&#34;&gt;https://www.playframework.com/documentation/ja/2.3.x/Home&lt;/a&gt; で日本語訳されています&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;slick&#34;&gt;Slick&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/bizreach/slick-reference&#34;&gt;https://github.com/bizreach/slick-reference&lt;/a&gt; でSlickのリファレンスを公開しています&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;scalaide&#34;&gt;ScalaIDE&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scala IDEはEclipseのバージョン、Scalaのバージョンにあわせて更新サイトが用意されています
-
-&lt;ul&gt;
-&lt;li&gt;最新情報は &lt;a href=&#34;http://scala-ide.org/download/current.html&#34;&gt;http://scala-ide.org/download/current.html&lt;/a&gt; を参照してください&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;intellij-idea&#34;&gt;IntelliJ IDEA&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;キーボードショートカット
-
-&lt;ul&gt;
-&lt;li&gt;(Windows) &lt;a href=&#34;http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf&#34;&gt;http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;(Mac) &lt;a href=&#34;http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard_Mac.pdf&#34;&gt;http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard_Mac.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IDEAの外観を変更
-
-&lt;ul&gt;
-&lt;li&gt;スキンの変更（背景を黒に）&lt;/li&gt;
-&lt;li&gt;[Appearance]→[Theme]の箇所を&amp;rdquo;Default&amp;rdquo;から&amp;rdquo;Darcula&amp;rdquo;に変更&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IntelliJ上でクラスパスが解決できない場合
-
-&lt;ul&gt;
-&lt;li&gt;StringなどJavaの基本的な型が解決できずエラーになってしまう場合は実行した直後はJDKが選択されていない可能性があります&lt;/li&gt;
-&lt;li&gt;[File]→[Project Structure&amp;hellip;]からインストール済みのJDKを選択してください
-&lt;img src=&#34;../images/play2.3-slick2.1/idea_jdk.png&#34; alt=&#34;JDKを選択&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;build.sbt&lt;/code&gt;を変更してもクラスパスが解決されないことがありますが、その場合は「File」→「Invalidate Caches / Restart&amp;hellip;」でIntelliJのキャッシュをクリアしてみてください&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description> Play2  playコマンド実行時のVMオプションの設定  ヒープ設定やプロキシ設定などJVMの起動オプションを設定するには環境変数JAVA_OPTSを使用します  Playが使用するローカルリポジトリ  以前のバージョンのPlayはPLAY_HOME/repositoryディレクトリ配下に独自のローカルリポジトリとキャッシュを持っていましたが、Play 2.3ではSBT標準のHOME/.ivy2ディレクトリ配下を使うようになりました  Play公式サイトのドキュメントは https://www.playframework.com/documentation/ja/2.3.x/Home で日本語訳されています  Slick  https://github.com/bizreach/slick-reference でSlickのリファレンスを公開しています  ScalaIDE  Scala IDEはEclipseのバージョン、Scalaのバージョンにあわせて更新サイトが用意されています  最新情報は http://scala-ide.org/download/current.html を参照してください   IntelliJ IDEA  キーボードショートカット  (Windows) http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf (Mac) http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard_Mac.pdf  IDEAの外観を変更  スキンの変更（背景を黒に） [Appearance]→[Theme]の箇所を&amp;rdquo;Default&amp;rdquo;から&amp;rdquo;Darcula&amp;rdquo;に変更  IntelliJ上でクラスパスが解決できない場合  StringなどJavaの基本的な型が解決できずエラーになってしまう場合は実行した直後はJDKが選択されていない可能性があります [File]→[Project Structure&amp;hellip;]からインストール済みのJDKを選択してください  build.sbtを変更してもクラスパスが解決されないことがありますが、その場合は「File」→「Invalidate Caches / Restart&amp;hellip;」でIntelliJのキャッシュをクリアしてみてください   </description>
     </item>
     
     <item>
@@ -367,93 +98,10 @@ POST        /json/remove/:id        controllers.JsonController.remove(id: Long)
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/create_project.html</guid>
-      <description>
-
-&lt;h2 id=&#34;play本体のインストール&#34;&gt;Play本体のインストール&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.playframework.com/download&#34;&gt;http://www.playframework.com/download&lt;/a&gt; からtypesafe-activator-1.3.2-minimal.zipをダウンロードし、解凍したディレクトリを環境変数PATHに追加します。&lt;/p&gt;
-
-&lt;h2 id=&#34;新規プロジェクト作成&#34;&gt;新規プロジェクト作成&lt;/h2&gt;
-
-&lt;p&gt;コマンドプロンプトで以下のコマンドを実行します。途中でScalaアプリケーションとJavaアプリケーションのどちらを作成するかを聞かれるのでScalaアプリケーションを選択します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;activator new play2-hands-on
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/create_project.png&#34; alt=&#34;プロジェクトの作成&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;play2-3-x用に設定変更&#34;&gt;Play2.3.x用に設定変更&lt;/h2&gt;
-
-&lt;p&gt;2015/5/26 にPlay &lt;code&gt;2.4&lt;/code&gt; がリリースされた為、↑のコマンドで作成されるPlayのバージョンも上がっています。このHandsOnでは、まだ &lt;code&gt;2.3.9&lt;/code&gt; を利用するため、以下の設定を変更してください。また、あわせてORMにSlickを使うため、一緒に設定を変更します。&lt;/p&gt;
-
-&lt;h3 id=&#34;build-sbt&#34;&gt;&lt;code&gt;build.sbt&lt;/code&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;name := &amp;quot;play2-hands-on&amp;quot;
-
-version := &amp;quot;1.0-SNAPSHOT&amp;quot;
-
-lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala)
-
-scalaVersion := &amp;quot;2.11.6&amp;quot;
-
-libraryDependencies ++= Seq(
-// jdbcからspec2〜まで消してください
-
-//  jdbc,
-//  anorm,
-//  cache,
-//  ws,
-// specs2 % Test
-  &amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play-slick&amp;quot; % &amp;quot;0.8.1&amp;quot; // &amp;lt;- この行を追加してください。
-)
-
-//routesGenerator := InjectedRoutesGenerator　// &amp;lt;- この行は消してください。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;project-plugins-sbt&#34;&gt;&lt;code&gt;project/plugins.sbt&lt;/code&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;// addSbtPlugin(&amp;quot;com.typesafe.play&amp;quot; % &amp;quot;sbt-plugin&amp;quot; % &amp;quot;2.4.0&amp;quot;) // &amp;lt;- この行を消して
-addSbtPlugin(&amp;quot;com.typesafe.play&amp;quot; % &amp;quot;sbt-plugin&amp;quot; % &amp;quot;2.3.9&amp;quot;)  // &amp;lt;- この行を追加
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;app-controllers-appliction-scala&#34;&gt;&lt;code&gt;app/controllers/Appliction.scala&lt;/code&gt;&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;// class Application extends Controller {
-object Application extends Controller {  // &amp;lt;- class から object に書き換えてください。
-
-  def index = Action {
-    Ok(views.html.index(&amp;quot;Your new application is ready.&amp;quot;))
-  }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;起動確認&#34;&gt;起動確認&lt;/h2&gt;
-
-&lt;p&gt;作成した&lt;code&gt;play2-hands-on&lt;/code&gt;ディレクトリに移動し、以下のコマンドでプロジェクトを実行します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;activator run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ブラウザから &lt;a href=&#34;http://localhost:9000/&#34;&gt;http://localhost:9000/&lt;/a&gt; にアクセスし、以下の画面が表示されることを確認します。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/welcome.png&#34; alt=&#34;Play2のウェルカム画面&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;You’re using Play 2.3.9&lt;/code&gt; が書かれていることを確認して下さい。&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;activator run&lt;/code&gt;で実行している間はホットデプロイが有効になっているため、ソースを修正するとすぐに変更が反映されます&lt;/li&gt;
-&lt;li&gt;CTRL+Dで&lt;code&gt;activator run&lt;/code&gt;での実行を終了することができます&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;activator  run&lt;/code&gt;で実行中に何度も修正を行っているとヒープが不足してプロセスが終了してしまったりエラーが出たまま応答がなくなってしまう場合があります&lt;/li&gt;
-&lt;li&gt;プロセスが終了してしまった場合は再度&lt;code&gt;activator run&lt;/code&gt;を実行してください&lt;/li&gt;
-&lt;li&gt;応答しなくなってしまった場合は一度コマンドプロンプトを閉じ、再度起動して&lt;code&gt;activator run&lt;/code&gt;を実行してください&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Play本体のインストール http://www.playframework.com/download からtypesafe-activator-1.3.2-minimal.zipをダウンロードし、解凍したディレクトリを環境変数PATHに追加します。
+新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。途中でScalaアプリケーションとJavaアプリケーションのどちらを作成するかを聞かれるのでScalaアプリケーションを選択します。
+activator new play2-hands-on  Play2.3.x用に設定変更 2015/5/26 にPlay 2.4 がリリースされた為、↑のコマンドで作成されるPlayのバージョンも上がっています。このHandsOnでは、まだ 2.3.9 を利用するため、以下の設定を変更してください。また、あわせてORMにSlickを使うため、一緒に設定を変更します。
+build.sbt name := &amp;quot;play2-hands-on&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.6&amp;quot; libraryDependencies ++= Seq( // jdbcからspec2〜まで消してください // jdbc, // anorm, // cache, // ws, // specs2 % Test &amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play-slick&amp;quot; % &amp;quot;0.8.1&amp;quot; // &amp;lt;- この行を追加してください。 ) //routesGenerator := InjectedRoutesGenerator　// &amp;lt;- この行は消してください。  project/plugins.sbt // addSbtPlugin(&amp;quot;com.typesafe.play&amp;quot; % &amp;quot;sbt-plugin&amp;quot; % &amp;quot;2.</description>
     </item>
     
     <item>
@@ -462,58 +110,15 @@ object Application extends Controller {  // &amp;lt;- class から object に書
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_list_api.html</guid>
-      <description>
-
-&lt;p&gt;&lt;code&gt;USERS&lt;/code&gt;テーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。&lt;/p&gt;
-
-&lt;h2 id=&#34;writesの定義&#34;&gt;Writesの定義&lt;/h2&gt;
-
-&lt;p&gt;Play2のJSONサポートでは、ScalaオブジェクトをJSONに変換するには&lt;code&gt;Writes&lt;/code&gt;、JSONをScalaオブジェクトに変換するためには&lt;code&gt;Reads&lt;/code&gt;を定義する必要があります。&lt;/p&gt;
-
-&lt;p&gt;ここでは&lt;code&gt;USERS&lt;/code&gt;テーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、&lt;code&gt;USERS&lt;/code&gt;テーブルに対応する&lt;code&gt;UsersRow&lt;/code&gt;クラスに対応する&lt;code&gt;Writes&lt;/code&gt;を定義しておく必要があります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object JsonController extends Controller {
-  // UsersRowをJSONに変換するためのWritesを定義
-  implicit val usersRowWrites = Json.writes[UsersRow]
-  ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Json.writes&lt;/code&gt;や&lt;code&gt;Json.reads&lt;/code&gt;の代わりに&lt;code&gt;Json.format&lt;/code&gt;で&lt;code&gt;Format&lt;/code&gt;を定義することで&lt;code&gt;Writes&lt;/code&gt;と&lt;code&gt;Reads&lt;/code&gt;を同時に定義することができます。同じケースクラスを読み込みと書き出しの両方に使う場合は&lt;code&gt;Json.format&lt;/code&gt;を使うとよいでしょう&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;JsonController&lt;/code&gt;の&lt;code&gt;list&lt;/code&gt;メソッドを以下のように実装します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def list = DBAction { implicit rs =&amp;gt;
-  // IDの昇順にすべてのユーザ情報を取得
-  val users = Users.sortBy(t =&amp;gt; t.id).list
-
-  // ユーザの一覧をJSONで返す
-  Ok(Json.obj(&amp;quot;users&amp;quot; -&amp;gt; users))
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;Json.obj&lt;/code&gt;メソッドでケースクラスからJSONへの変換が行われますが、このときにケースクラスに対応した&lt;code&gt;Writes&lt;/code&gt;が定義されていないとコンパイルエラーになります。&lt;/p&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;コマンドラインから以下のコマンドを実行してユーザ一覧がJSONで取得できることを確認してみましょう。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -XGET http://localhost:9000/json/list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;結果として以下のようなJSONが表示されるはずです。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;users&amp;quot;:[{&amp;quot;id&amp;quot;:1,&amp;quot;name&amp;quot;:&amp;quot;Taro Yamada&amp;quot;,&amp;quot;companyId&amp;quot;:1},{&amp;quot;id&amp;quot;:2,&amp;quot;name&amp;quot;:&amp;quot;Jiro Sato&amp;quot;}]}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description> USERSテーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。
+Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSONに変換するにはWrites、JSONをScalaオブジェクトに変換するためにはReadsを定義する必要があります。
+ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersRowクラスに対応するWritesを定義しておく必要があります。
+object JsonController extends Controller { // UsersRowをJSONに変換するためのWritesを定義 implicit val usersRowWrites = Json.writes[UsersRow] ...   POINT
+ Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます Json.writesやJson.readsの代わりにJson.formatでFormatを定義することでWritesとReadsを同時に定義することができます。同じケースクラスを読み込みと書き出しの両方に使う場合はJson.formatを使うとよいでしょう   コントローラ JsonControllerのlistメソッドを以下のように実装します。
+def list = DBAction { implicit rs =&amp;gt; // IDの昇順にすべてのユーザ情報を取得 val users = Users.sortBy(t =&amp;gt; t.id).list // ユーザの一覧をJSONで返す Ok(Json.obj(&amp;quot;users&amp;quot; -&amp;gt; users)) }  Json.objメソッドでケースクラスからJSONへの変換が行われますが、このときにケースクラスに対応したWritesが定義されていないとコンパイルエラーになります。
+実行 コマンドラインから以下のコマンドを実行してユーザ一覧がJSONで取得できることを確認してみましょう。
+curl -XGET http://localhost:9000/json/list  結果として以下のようなJSONが表示されるはずです。
+{&amp;quot;users&amp;quot;:[{&amp;quot;id&amp;quot;:1,&amp;quot;name&amp;quot;:&amp;quot;Taro Yamada&amp;quot;,&amp;quot;companyId&amp;quot;:1},{&amp;quot;id&amp;quot;:2,&amp;quot;name&amp;quot;:&amp;quot;Jiro Sato&amp;quot;}]}  </description>
     </item>
     
     <item>
@@ -522,116 +127,10 @@ object Application extends Controller {  // &amp;lt;- class から object に書
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_list.html</guid>
-      <description>
-
-&lt;p&gt;&lt;code&gt;USERS&lt;/code&gt;テーブルからIDの昇順に全件取得し、ユーザ一覧画面を表示します。&lt;/p&gt;
-
-&lt;h2 id=&#34;ビュー&#34;&gt;ビュー&lt;/h2&gt;
-
-&lt;p&gt;テンプレートは&lt;code&gt;views&lt;/code&gt;パッケージに作成します。appディレクトリ配下に&lt;code&gt;views.user&lt;/code&gt;パッケージを作成し、以下の内容で&lt;code&gt;list.scala.html&lt;/code&gt;を作成します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;@* このテンプレートの引数 *@
-@(users: List[models.Tables.UsersRow])
-
-@* main.scala.htmlを呼び出す *@
-@main(&amp;quot;ユーザ一覧&amp;quot;) {
-
-&amp;lt;div&amp;gt;
-  &amp;lt;a href=&amp;quot;@routes.UserController.edit()&amp;quot; class=&amp;quot;btn btn-success&amp;quot; role=&amp;quot;button&amp;quot;&amp;gt;新規作成&amp;lt;/a&amp;gt;
-&amp;lt;/div&amp;gt;
-
-&amp;lt;div class=&amp;quot;col-xs-6&amp;quot;&amp;gt;
-  &amp;lt;table class=&amp;quot;table table-hover&amp;quot;&amp;gt;
-    &amp;lt;thead&amp;gt;
-      &amp;lt;tr&amp;gt;
-        &amp;lt;th&amp;gt;ID&amp;lt;/th&amp;gt;
-        &amp;lt;th&amp;gt;名前&amp;lt;/th&amp;gt;
-        &amp;lt;th&amp;gt;&amp;amp;nbsp;&amp;lt;/th&amp;gt;
-      &amp;lt;/tr&amp;gt;
-    &amp;lt;/thead&amp;gt;
-    &amp;lt;tbody&amp;gt;
-    @* ユーザの一覧をループで出力 *@
-    @users.map { user =&amp;gt;
-      &amp;lt;tr&amp;gt;
-        &amp;lt;td&amp;gt;@user.id&amp;lt;/td&amp;gt;
-        &amp;lt;td&amp;gt;&amp;lt;a href=&amp;quot;@routes.UserController.edit(Some(user.id))&amp;quot;&amp;gt;@user.name&amp;lt;/a&amp;gt;&amp;lt;/td&amp;gt;
-        &amp;lt;td&amp;gt;@helper.form(routes.UserController.remove(user.id)){
-          &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;削除&amp;quot; class=&amp;quot;btn btn-danger btn-xs&amp;quot;/&amp;gt;
-        }
-        &amp;lt;/td&amp;gt;
-      &amp;lt;/tr&amp;gt;
-    }
-    &amp;lt;/tbody&amp;gt;
-  &amp;lt;/table&amp;gt;
-&amp;lt;/div&amp;gt;
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;テンプレートの1行目にはコントローラから受け取る引数を記述します&lt;/li&gt;
-&lt;li&gt;テンプレートには&lt;code&gt;@&lt;/code&gt;でScalaのコードを埋め込むことができます&lt;/li&gt;
-&lt;li&gt;テンプレートには&lt;code&gt;@*...*@&lt;/code&gt;でコメントを記述することができます&lt;/li&gt;
-&lt;li&gt;リンクやフォームのURLは、&lt;code&gt;@routes.・・・&lt;/code&gt;と記述することでルーティングから生成することができます&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;まずインポートに以下を追加します。これで&lt;code&gt;UserController&lt;/code&gt;から&lt;code&gt;models&lt;/code&gt;パッケージで定義されたモデルクラスを使用したDBアクセスが可能になります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import play.api.db.slick._
-import models.Tables._
-import profile.simple._
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;list&lt;/code&gt;メソッドを実装します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def list = DBAction { implicit rs =&amp;gt;
-  // ユーザをIDの昇順でソートして取得
-  val users = Users.sortBy(t =&amp;gt; t.id).list
-
-  // テンプレートをレンダリングしてレスポンスを返却
-  Ok(views.html.user.list(users))
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上記のコードでは以下の記述でユーザの一覧を取得しています。この部分がSlickを使用したコードになります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val users = Users.sortBy(t =&amp;gt; t.id).list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これは以下のSQLと同じ意味になります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM USERS ORDER BY ID
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Playの標準では&lt;code&gt;Action { ... }&lt;/code&gt;の中に処理を記述しますが、DBを使用する場合は&lt;code&gt;DBAction { ... }&lt;/code&gt;に処理を記述します
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;implicit rs&lt;/code&gt;はアクションの処理の中でHTTPリクエストやDBのセッションを暗黙的に使用するために必要になる記述です&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Ok&lt;/code&gt;に&lt;code&gt;views.html.・・・&lt;/code&gt;と記述することで、表示したいHTMLのテンプレートを指定できます
-
-&lt;ul&gt;
-&lt;li&gt;引数にはテンプレートに渡すパラメータを指定します&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;ここまで実装したらブラウザから &lt;a href=&#34;http://localhost:9000/user/list&#34;&gt;http://localhost:9000/user/list&lt;/a&gt; にアクセスします（&lt;code&gt;activator run&lt;/code&gt;を実行していない場合は実行してください）。すると以下のような画面が表示されるはずです。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/user_list.png&#34; alt=&#34;ユーザ一覧画面&#34; /&gt;&lt;/p&gt;
-</description>
+      <description>USERSテーブルからIDの昇順に全件取得し、ユーザ一覧画面を表示します。
+ビュー テンプレートはviewsパッケージに作成します。appディレクトリ配下にviews.userパッケージを作成し、以下の内容でlist.scala.htmlを作成します。
+@* このテンプレートの引数 *@ @(users: List[models.Tables.UsersRow]) @* main.scala.htmlを呼び出す *@ @main(&amp;quot;ユーザ一覧&amp;quot;) { &amp;lt;div&amp;gt; &amp;lt;a href=&amp;quot;@routes.UserController.edit()&amp;quot; class=&amp;quot;btn btn-success&amp;quot; role=&amp;quot;button&amp;quot;&amp;gt;新規作成&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;col-xs-6&amp;quot;&amp;gt; &amp;lt;table class=&amp;quot;table table-hover&amp;quot;&amp;gt; &amp;lt;thead&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;ID&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;名前&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;&amp;amp;nbsp;&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/thead&amp;gt; &amp;lt;tbody&amp;gt; @* ユーザの一覧をループで出力 *@ @users.map { user =&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;@user.id&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;a href=&amp;quot;@routes.UserController.edit(Some(user.id))&amp;quot;&amp;gt;@user.name&amp;lt;/a&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;@helper.form(routes.UserController.remove(user.id)){ &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;削除&amp;quot; class=&amp;quot;btn btn-danger btn-xs&amp;quot;/&amp;gt; } &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; } &amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/div&amp;gt; }   POINT
+ テンプレートの1行目にはコントローラから受け取る引数を記述します テンプレートには@でScalaのコードを埋め込むことができます テンプレートには@*...*@でコメントを記述することができます リンクやフォームのURLは、@routes.・・・と記述することでルーティングから生成することができます   コントローラ まずインポートに以下を追加します。これでUserControllerからmodelsパッケージで定義されたモデルクラスを使用したDBアクセスが可能になります。</description>
     </item>
     
     <item>
@@ -640,29 +139,10 @@ import profile.simple._
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_api.html</guid>
-      <description>
-
-&lt;p&gt;指定したIDのユーザを&lt;code&gt;USERS&lt;/code&gt;テーブルから削除します。&lt;/p&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;JsonController&lt;/code&gt;の&lt;code&gt;remove&lt;/code&gt;メソッドを以下のように実装します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def remove(id: Long) = DBAction.transaction { implicit rs =&amp;gt;
-  // ユーザを削除
-  Users.filter(t =&amp;gt; t.id === id.bind).delete
-
-  Ok(Json.obj(&amp;quot;result&amp;quot; -&amp;gt; &amp;quot;success&amp;quot;))
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;コマンドラインから以下のコマンドを実行してユーザが削除されることを確認してください。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -XPOST http://localhost:9000/json/remove/1
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description> 指定したIDのユーザをUSERSテーブルから削除します。
+コントローラ JsonControllerのremoveメソッドを以下のように実装します。
+def remove(id: Long) = DBAction.transaction { implicit rs =&amp;gt; // ユーザを削除 Users.filter(t =&amp;gt; t.id === id.bind).delete Ok(Json.obj(&amp;quot;result&amp;quot; -&amp;gt; &amp;quot;success&amp;quot;)) }  実行 コマンドラインから以下のコマンドを実行してユーザが削除されることを確認してください。
+curl -XPOST http://localhost:9000/json/remove/1  </description>
     </item>
     
     <item>
@@ -671,103 +151,12 @@ import profile.simple._
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_api.html</guid>
-      <description>
-
-&lt;p&gt;ユーザ情報をJSONで受け取り、登録もしくは更新を行います。&lt;/p&gt;
-
-&lt;h2 id=&#34;readsの定義&#34;&gt;Readsの定義&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;JsonController&lt;/code&gt;にユーザ情報を受け取るためのケースクラスと、JSONからそのケースクラスに変換するための&lt;code&gt;Reads&lt;/code&gt;を定義します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object JsonController extends Controller {
-  ...
-  // ユーザ情報を受け取るためのケースクラス
-  case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
-  // JSONをUserFormに変換するためのReadsを定義
-  implicit val userFormReads = Json.reads[UserForm]
-  ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;JsonController&lt;/code&gt;の&lt;code&gt;create&lt;/code&gt;メソッドを以下のように実装します。&lt;/p&gt;
-
-&lt;p&gt;JSONリクエストを受け取る場合は&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;DBAction(parse.json) { ... }&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;DBAction.transaction(parse.json) { ... }&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;のようにアクションに&lt;code&gt;parse.json&lt;/code&gt;を指定します。&lt;code&gt;rs.body.validate&lt;/code&gt;メソッドでJSONをケースクラスに変換でき、変換に失敗した場合の処理を&lt;code&gt;recoverTotal&lt;/code&gt;メソッドで行うことができます。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def create = DBAction.transaction(parse.json) { implicit rs =&amp;gt;
-  rs.body.validate[UserForm].map { form =&amp;gt;
-    // OKの場合はユーザを登録
-    val user = UsersRow(0, form.name, form.companyId)
-    Users.insert(user)
-    Ok(Json.obj(&amp;quot;result&amp;quot; -&amp;gt; &amp;quot;success&amp;quot;))
-
-  }.recoverTotal { e =&amp;gt;
-    // NGの場合はバリデーションエラーを返す
-    BadRequest(Json.obj(&amp;quot;result&amp;quot; -&amp;gt;&amp;quot;failure&amp;quot;, &amp;quot;error&amp;quot; -&amp;gt; JsError.toFlatJson(e)))
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;同様に&lt;code&gt;update&lt;/code&gt;メソッドを以下のように実装します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def update = DBAction.transaction(parse.json) { implicit rs =&amp;gt;
-  rs.body.validate[UserForm].map { form =&amp;gt;
-    // OKの場合はユーザ情報を更新
-    val user = UsersRow(form.id.get, form.name, form.companyId)
-    Users.filter(t =&amp;gt; t.id === user.id.bind).update(user)
-    Ok(Json.obj(&amp;quot;result&amp;quot; -&amp;gt; &amp;quot;success&amp;quot;))
-
-  }.recoverTotal { e =&amp;gt;
-    // NGの場合はバリデーションエラーを返す
-    BadRequest(Json.obj(&amp;quot;result&amp;quot; -&amp;gt;&amp;quot;failure&amp;quot;, &amp;quot;error&amp;quot; -&amp;gt; JsError.toFlatJson(e)))
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;parse.json&lt;/code&gt;はボディパーサと呼ばれるもので、リクエストボディの処理方法を決めるものです&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;コマンドラインから以下のコマンドを実行してユーザ情報を登録・更新できることを確認しましょう。&lt;/p&gt;
-
-&lt;p&gt;登録：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Content-type: application/json&amp;quot; -XPOST -d &#39;{&amp;quot;name&amp;quot;:&amp;quot;TestUser&amp;quot;, &amp;quot;companyId&amp;quot;:1}&#39; http://localhost:9000/json/create
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;更新：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Content-type: application/json&amp;quot; -XPOST -d &#39;{&amp;quot;id&amp;quot;:1, &amp;quot;name&amp;quot;:&amp;quot;TestUser&amp;quot;, &amp;quot;companyId&amp;quot;:1}&#39; http://localhost:9000/json/update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;いずれの場合も成功すると以下のJSONが返却されます。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;result&amp;quot;:&amp;quot;success&amp;quot;}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;エラー時のレスポンスを確認するために、以下のように不正なJSONを送信してみましょう（プロパティ名が&lt;code&gt;name&lt;/code&gt;ではなく&lt;code&gt;userName&lt;/code&gt;になっている）。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -H &amp;quot;Content-type: application/json&amp;quot; -XPOST -d &#39;{&amp;quot;userName&amp;quot;:&amp;quot;TestUser&amp;quot;}&#39; http://localhost:9000/json/create
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;すると以下のようにエラー情報を含むJSONが返却されます。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&amp;quot;result&amp;quot;:&amp;quot;failure&amp;quot;,&amp;quot;error&amp;quot;:{&amp;quot;obj.name&amp;quot;:[{&amp;quot;msg&amp;quot;:&amp;quot;error.path.missing&amp;quot;,&amp;quot;args&amp;quot;:[]}]}}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>ユーザ情報をJSONで受け取り、登録もしくは更新を行います。
+Readsの定義 JsonControllerにユーザ情報を受け取るためのケースクラスと、JSONからそのケースクラスに変換するためのReadsを定義します。
+object JsonController extends Controller { ... // ユーザ情報を受け取るためのケースクラス case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // JSONをUserFormに変換するためのReadsを定義 implicit val userFormReads = Json.reads[UserForm] ...  コントローラ JsonControllerのcreateメソッドを以下のように実装します。
+JSONリクエストを受け取る場合は
+ DBAction(parse.json) { ... } DBAction.transaction(parse.json) { ... }  のようにアクションにparse.jsonを指定します。rs.body.validateメソッドでJSONをケースクラスに変換でき、変換に失敗した場合の処理をrecoverTotalメソッドで行うことができます。
+def create = DBAction.transaction(parse.json) { implicit rs =&amp;gt; rs.body.validate[UserForm].map { form =&amp;gt; // OKの場合はユーザを登録 val user = UsersRow(0, form.name, form.companyId) Users.insert(user) Ok(Json.obj(&amp;quot;result&amp;quot; -&amp;gt; &amp;quot;success&amp;quot;)) }.recoverTotal { e =&amp;gt; // NGの場合はバリデーションエラーを返す BadRequest(Json.</description>
     </item>
     
     <item>
@@ -776,145 +165,13 @@ import profile.simple._
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_form.html</guid>
-      <description>
-
-&lt;p&gt;リクエストパラメータにIDが指定押されているかどうかに応じて以下の処理を行います。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;リクエストパラメータにIDなし ⇒ 新規登録画面を表示します。&lt;/li&gt;
-&lt;li&gt;リクエストパラメータにIDあり ⇒ &lt;code&gt;USERS&lt;/code&gt;テーブルを検索し、該当のユーザ情報を初期表示した編集画面を表示します。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;フォーム&#34;&gt;フォーム&lt;/h2&gt;
-
-&lt;p&gt;画面からの入力値を受け取るための&lt;code&gt;Form&lt;/code&gt;をコントローラに定義します。&lt;code&gt;Form&lt;/code&gt;は必ずしもコントローラに定義する必要はないのですが、コントローラでの処理に強く依存するため特に理由がない限りコントローラ内に定義するとよいでしょう。&lt;/p&gt;
-
-&lt;p&gt;まず、&lt;code&gt;UserController&lt;/code&gt;の冒頭に以下のインポート文を追加します。これで&lt;code&gt;Form&lt;/code&gt;の定義や基本的なバリデーションができるようになります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import play.api.data._
-import play.api.data.Forms._
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;登録・編集画面からの入力値を受け取るための&lt;code&gt;Form&lt;/code&gt;を定義します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object UserController extends Controller {
-
-  // フォームの値を格納する
-  case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
-
-  // formのデータ⇔ケースクラスの変換を行う
-  val userForm = Form(
-    mapping(
-      &amp;quot;id&amp;quot;        -&amp;gt; optional(longNumber),
-      &amp;quot;name&amp;quot;      -&amp;gt; nonEmptyText(maxLength = 20),
-      &amp;quot;companyId&amp;quot; -&amp;gt; optional(number)
-    )(UserForm.apply)(UserForm.unapply)
-  )
-
-  ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Form&lt;/code&gt;はStrutsのアクションフォームのようなものです&lt;/li&gt;
-&lt;li&gt;マッピングに従ってバリデーション（後述）が行われます&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;ビュー&#34;&gt;ビュー&lt;/h2&gt;
-
-&lt;p&gt;続いて&lt;code&gt;views.user&lt;/code&gt;パッケージに&lt;code&gt;edit.scala.html&lt;/code&gt;を実装します。引数には&lt;code&gt;Form&lt;/code&gt;のインスタンスと、プルダウンで選択する会社情報を格納した&lt;code&gt;List&lt;/code&gt;を受け取ります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;@(userForm: Form[controllers.UserController.UserForm], companies: List[models.Tables.CompaniesRow])
-
-@* テンプレートで利用可能なヘルパーをインポート *@
-@import helper._
-
-@main(&amp;quot;ユーザ作成&amp;quot;) {
-
-  @* IDがある場合は更新処理、ない場合は登録処理を呼ぶ *@
-  @form(userForm(&amp;quot;id&amp;quot;).value.map(x =&amp;gt; routes.UserController.update).getOrElse(routes.UserController.create), &#39;class -&amp;gt; &amp;quot;container&amp;quot;, &#39;role -&amp;gt; &amp;quot;form&amp;quot;) {
-    &amp;lt;fieldset&amp;gt;
-      &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-        @inputText(userForm(&amp;quot;name&amp;quot;), &#39;_label -&amp;gt; &amp;quot;名前&amp;quot;)
-      &amp;lt;/div&amp;gt;
-      &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-        @select(userForm(&amp;quot;companyId&amp;quot;), companies.map(x =&amp;gt; x.id.toString -&amp;gt; x.name).toSeq, &#39;_label -&amp;gt; &amp;quot;会社&amp;quot;, &#39;_default -&amp;gt; &amp;quot;-- 会社名を選択してください --&amp;quot;)
-      &amp;lt;/div&amp;gt;
-      @* IDがある場合（更新の場合）のみhiddenを出力する *@
-      @userForm(&amp;quot;id&amp;quot;).value.map { value =&amp;gt;
-        &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;id&amp;quot; value=&amp;quot;@value&amp;quot; /&amp;gt;
-      }
-      &amp;lt;div&amp;gt;
-        &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;保存&amp;quot; class=&amp;quot;btn btn-success&amp;quot;&amp;gt;
-      &amp;lt;/div&amp;gt;
-    &amp;lt;/fieldset&amp;gt;
-  }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;テンプレートでも&lt;code&gt;@import&lt;/code&gt;でインポート文を記述することができます&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@import helper._&lt;/code&gt;でPlayが提供する標準ヘルパー（フォームなどを出力する関数）を使用できるようになります&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;最後に&lt;code&gt;UserController&lt;/code&gt;の&lt;code&gt;edit&lt;/code&gt;メソッドを実装します。引数&lt;code&gt;id&lt;/code&gt;が指定されていた場合は空の&lt;code&gt;Form&lt;/code&gt;、指定されていた場合は&lt;code&gt;Form#fill&lt;/code&gt;メソッドで&lt;code&gt;Form&lt;/code&gt;に初期表示する値をセットしたうえでテンプレートを呼び出すようにします。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def edit(id: Option[Long]) = DBAction { implicit rs =&amp;gt;
-  // リクエストパラメータにIDが存在する場合
-  val form = if(id.isDefined) {
-    // IDからユーザ情報を1件取得
-    val user = Users.filter(_.id === id.get.bind).first
-
-    // 値をフォームに詰める
-    userForm.fill(UserForm(Some(user.id), user.name, user.companyId))
-  } else {
-    // リクエストパラメータにIDが存在しない場合
-    userForm
-  }
-
-  // 会社一覧を取得
-  val companies = Companies.sortBy(t =&amp;gt; t.id).list
-
-  Ok(views.html.user.edit(form, companies))
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scalaでは、&lt;code&gt;if&lt;/code&gt;式は値を返します（ブロックの最後に評価した値が&lt;code&gt;if&lt;/code&gt;式の戻り値になります）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;上記のコードでは以下の記述で会社情報の一覧を取得しています。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val companies = Companies.sortBy(t =&amp;gt; t.id).list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これは以下のSQLと同じ意味になります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM COMPANIES ORDER BY ID
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;ここまで実装したらブラウザで一覧画面から新規作成やユーザ名のリンクをクリックし、以下のように登録画面と編集画面が表示されることを確認します。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/register_form.png&#34; alt=&#34;ユーザ登録画面&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/edit_form.png&#34; alt=&#34;ユーザ編集画面&#34; /&gt;&lt;/p&gt;
-</description>
+      <description>リクエストパラメータにIDが指定押されているかどうかに応じて以下の処理を行います。
+ リクエストパラメータにIDなし ⇒ 新規登録画面を表示します。 リクエストパラメータにIDあり ⇒ USERSテーブルを検索し、該当のユーザ情報を初期表示した編集画面を表示します。  フォーム 画面からの入力値を受け取るためのFormをコントローラに定義します。Formは必ずしもコントローラに定義する必要はないのですが、コントローラでの処理に強く依存するため特に理由がない限りコントローラ内に定義するとよいでしょう。
+まず、UserControllerの冒頭に以下のインポート文を追加します。これでFormの定義や基本的なバリデーションができるようになります。
+import play.api.data._ import play.api.data.Forms._  登録・編集画面からの入力値を受け取るためのFormを定義します。
+object UserController extends Controller { // フォームの値を格納する case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // formのデータ⇔ケースクラスの変換を行う val userForm = Form( mapping( &amp;quot;id&amp;quot; -&amp;gt; optional(longNumber), &amp;quot;name&amp;quot; -&amp;gt; nonEmptyText(maxLength = 20), &amp;quot;companyId&amp;quot; -&amp;gt; optional(number) )(UserForm.apply)(UserForm.unapply) ) ...   POINT
+ FormはStrutsのアクションフォームのようなものです マッピングに従ってバリデーション（後述）が行われます   ビュー 続いてviews.userパッケージにedit.scala.htmlを実装します。引数にはFormのインスタンスと、プルダウンで選択する会社情報を格納したListを受け取ります。
+@(userForm: Form[controllers.UserController.UserForm], companies: List[models.Tables.CompaniesRow]) @* テンプレートで利用可能なヘルパーをインポート *@ @import helper.</description>
     </item>
     
     <item>
@@ -923,108 +180,9 @@ import play.api.data.Forms._
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/define_routing.html</guid>
-      <description>
-
-&lt;h2 id=&#34;bootstrapを使うための準備&#34;&gt;Bootstrapを使うための準備&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;play new&lt;/code&gt;コマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとして&lt;code&gt;app/views/main.scala.html&lt;/code&gt;が生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;@(title: String)(content: Html)
-
-&amp;lt;!DOCTYPE html&amp;gt;
-
-&amp;lt;html&amp;gt;
-  &amp;lt;head&amp;gt;
-    &amp;lt;title&amp;gt;@title&amp;lt;/title&amp;gt;
-    &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;@routes.Assets.at(&amp;quot;stylesheets/main.css&amp;quot;)&amp;quot;&amp;gt;
-    &amp;lt;link rel=&amp;quot;shortcut icon&amp;quot; type=&amp;quot;image/png&amp;quot; href=&amp;quot;@routes.Assets.at(&amp;quot;images/favicon.png&amp;quot;)&amp;quot;&amp;gt;
-    &amp;lt;script src=&amp;quot;@routes.Assets.at(&amp;quot;javascripts/hello.js&amp;quot;)&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-    @* ↓↓↓↓ここから追加↓↓↓↓ *@
-    &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css&amp;quot;&amp;gt;
-    &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&amp;quot;&amp;gt;
-    &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-    @* ↑↑↑↑ここまで追加↑↑↑↑ *@
-  &amp;lt;/head&amp;gt;
-  &amp;lt;body&amp;gt;
-    @content
-  &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;コントローラの雛形を作る&#34;&gt;コントローラの雛形を作る&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;controllers&lt;/code&gt;パッケージに&lt;code&gt;UserController&lt;/code&gt;オブジェクトを以下のように作成します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package controllers
-
-import play.api.mvc._
-
-object UserController extends Controller {
-
-  /**
-   * 一覧表示
-   */
-  def list = TODO
-
-  /**
-   * 登録・編集画面表示
-   */
-  def edit(id: Option[Long]) = TODO
-
-  /**
-   * 登録実行
-   */
-  def create = TODO
-
-  /**
-   * 更新実行
-   */
-  def update = TODO
-
-  /**
-   * 削除実行
-   */
-  def remove(id: Long) = TODO
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;object&lt;/code&gt;はシングルトンなオブジェクトを定義するときに使います&lt;/li&gt;
-&lt;li&gt;メソッドは&lt;code&gt;def&lt;/code&gt;キーワードで定義します&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TODO&lt;/code&gt;メソッドは&lt;code&gt;Action not implemented yet.&lt;/code&gt;という&lt;code&gt;501 NOT_IMPLEMENTED&lt;/code&gt;レスポンスを返します&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;ルーティングの設定&#34;&gt;ルーティングの設定&lt;/h2&gt;
-
-&lt;p&gt;クライアントから送信されたリクエストは、&lt;code&gt;conf/routes&lt;/code&gt;の設定に従ってコントローラのメソッドへルーティングされます。
-以下の設定を追記します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Mapping to /user/list
-GET     /user/list                  controllers.UserController.list
-# Mapping to /user/edit or /user/edit?id=&amp;lt;number&amp;gt;
-GET     /user/edit                  controllers.UserController.edit(id: Option[Long] ?= None)
-# Mapping to /user/create
-POST    /user/create                controllers.UserController.create
-# Mapping to /user/update
-POST    /user/update                controllers.UserController.update
-# Mapping to /user/remove/&amp;lt;number&amp;gt;
-POST    /user/remove/:id            controllers.UserController.remove(id: Long)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;マッピング定義で引数の型を省略すると、&lt;code&gt;String&lt;/code&gt;になります&lt;/li&gt;
-&lt;li&gt;routesのコメントに日本語を記述するとコンパイルエラーになることがあります&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>Bootstrapを使うための準備 play newコマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとしてapp/views/main.scala.htmlが生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。
+@(title: String)(content: Html) &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;@title&amp;lt;/title&amp;gt; &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;@routes.Assets.at(&amp;quot;stylesheets/main.css&amp;quot;)&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;shortcut icon&amp;quot; type=&amp;quot;image/png&amp;quot; href=&amp;quot;@routes.Assets.at(&amp;quot;images/favicon.png&amp;quot;)&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;@routes.Assets.at(&amp;quot;javascripts/hello.js&amp;quot;)&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; @* ↓↓↓↓ここから追加↓↓↓↓ *@ &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; @* ↑↑↑↑ここまで追加↑↑↑↑ *@ &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; @content &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  コントローラの雛形を作る controllersパッケージにUserControllerオブジェクトを以下のように作成します。
+package controllers import play.api.mvc._ object UserController extends Controller { /** * 一覧表示 */ def list = TODO /** * 登録・編集画面表示 */ def edit(id: Option[Long]) = TODO /** * 登録実行 */ def create = TODO /** * 更新実行 */ def update = TODO /** * 削除実行 */ def remove(id: Long) = TODO }   POINT</description>
     </item>
     
     <item>
@@ -1033,37 +191,11 @@ POST    /user/remove/:id            controllers.UserController.remove(id: Long)
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_processing.html</guid>
-      <description>
-
-&lt;p&gt;指定したIDのユーザを&lt;code&gt;USERS&lt;/code&gt;テーブルから削除し、一覧画面へリダイレクトします。&lt;/p&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;すでに一覧画面に「削除」ボタンは表示されているので、そこから呼び出されるコントローラのメソッドのみ実装します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def remove(id: Long) = DBAction.transaction { implicit rs =&amp;gt;
-  // ユーザIDを指定して削除
-  Users.filter(t =&amp;gt; t.id === id.bind).delete
-
-  // 一覧画面へリダイレクト
-  Redirect(routes.UserController.list)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上記のコードでは以下の記述でユーザ情報の削除を行っています。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Users.filter( t =&amp;gt; t.id === id.bind).delete
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これは以下のSQLと同じ意味になります。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;DELETE FROM USERS WHERE ID = ?
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;一覧画面から「削除」をクリックしてユーザ情報が削除されることを確認してください。&lt;/p&gt;
-</description>
+      <description>指定したIDのユーザをUSERSテーブルから削除し、一覧画面へリダイレクトします。
+コントローラ すでに一覧画面に「削除」ボタンは表示されているので、そこから呼び出されるコントローラのメソッドのみ実装します。
+def remove(id: Long) = DBAction.transaction { implicit rs =&amp;gt; // ユーザIDを指定して削除 Users.filter(t =&amp;gt; t.id === id.bind).delete // 一覧画面へリダイレクト Redirect(routes.UserController.list) }  上記のコードでは以下の記述でユーザ情報の削除を行っています。
+Users.filter( t =&amp;gt; t.id === id.bind).delete  これは以下のSQLと同じ意味になります。
+DELETE FROM USERS WHERE ID = ?  実行 一覧画面から「削除」をクリックしてユーザ情報が削除されることを確認してください。</description>
     </item>
     
     <item>
@@ -1072,100 +204,11 @@ POST    /user/remove/:id            controllers.UserController.remove(id: Long)
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_processing.html</guid>
-      <description>
-
-&lt;p&gt;入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。&lt;/li&gt;
-&lt;li&gt;エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;コントローラ&#34;&gt;コントローラ&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;UserController&lt;/code&gt;のメソッドのうち、登録処理を行う&lt;code&gt;create&lt;/code&gt;メソッドと更新処理を行う&lt;code&gt;update&lt;/code&gt;メソッドを実装します。&lt;/p&gt;
-
-&lt;p&gt;入力フォームの値を受け取るには、&lt;code&gt;userForm.bindFromRequest&lt;/code&gt;メソッドでリクエストの内容をFormにバインドし、&lt;code&gt;fold&lt;/code&gt;メソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下は&lt;code&gt;create&lt;/code&gt;メソッドの実装例です。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def create = DBAction.transaction { implicit rs =&amp;gt;
-  // リクエストの内容をバインド
-  userForm.bindFromRequest.fold(
-    // エラーの場合は登録画面に戻す
-    error =&amp;gt; BadRequest(views.html.user.edit(error, Companies.sortBy(t =&amp;gt; t.id).list)),
-
-    // OKの場合は登録を行い一覧画面にリダイレクトする
-    form  =&amp;gt; {
-      // ユーザを登録
-      val user = UsersRow(0, form.name, form.companyId)
-      Users.insert(user)
-
-      // 一覧画面にリダイレクト
-      Redirect(routes.UserController.list)
-    }
-  )
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;update&lt;/code&gt;メソッドも同じように実装します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def update = DBAction.transaction { implicit rs =&amp;gt;
-  // リクエストの内容をバインド
-  userForm.bindFromRequest.fold(
-    // エラーの場合
-    error =&amp;gt; BadRequest(views.html.user.edit(error, Companies.sortBy(t =&amp;gt; t.id).list)),
-
-    // OKの場合
-    form  =&amp;gt; {
-      // ユーザ情報を更新
-      val user = UsersRow(form.id.get, form.name, form.companyId)
-      Users.filter(_.id === user.id.bind).update(user)
-
-      // 一覧画面へリダイレクト
-      Redirect(routes.UserController.list)
-    }
-  )
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上記のコードではそれぞれ以下の記述でユーザ情報の登録、更新を行っています。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// ユーザを登録
-val user = UsersRow(0, form.name, form.companyId)
-Users.insert(user)
-
-// ユーザ情報を更新
-val user = UsersRow(form.id.get, form.name, form.companyId)
-Users.filter(_.id is user.id.bind).update(user)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これはそれぞれ以下のSQLに該当します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;// ユーザを登録
-INSERT INTO USERS (ID, NAME, COMPANY_ID) VALUES (?, ?, ?)
-
-// ユーザ情報を更新
-UPDATE USERS SET NAME = ?, COMPANY_ID = ? WHERE ID = ?
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;登録時は&lt;code&gt;UsersRow&lt;/code&gt;のIDカラムに対応するプロパティに0を指定していますが、自動採番のカラムの場合、Slickはプロパティにセットされた値を無視して自動採番された値でインサートします（なので実はインサート時は0以外の値をセットしても構いません）。&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;POINT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;トランザクション制御が必要な場合は、&lt;code&gt;DBAction.transaction { ... }&lt;/code&gt;の中に処理を記述します&lt;/li&gt;
-&lt;li&gt;HTMLテンプレートでのリンク先と同様、リダイレクト先も&lt;code&gt;routes.・・・&lt;/code&gt;でタイプセーフに指定することができます&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;実行&#34;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;ここまで実装したら、登録画面や編集画面からユーザ情報の登録、編集を行えることを確認しましょう。ユーザ名を空欄や20文字以上で登録しようとするとエラーメッセージが表示され、バリデーションが働いていることも確認できるはずです。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;バリデーションエラー時の表示：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../images/play2.3-slick2.1/validation.png&#34; alt=&#34;バリデーションエラー時の表示&#34; /&gt;&lt;/p&gt;
-</description>
+      <description>入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。
+ エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。 エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。  コントローラ UserControllerのメソッドのうち、登録処理を行うcreateメソッドと更新処理を行うupdateメソッドを実装します。
+入力フォームの値を受け取るには、userForm.bindFromRequestメソッドでリクエストの内容をFormにバインドし、foldメソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下はcreateメソッドの実装例です。
+def create = DBAction.transaction { implicit rs =&amp;gt; // リクエストの内容をバインド userForm.bindFromRequest.fold( // エラーの場合は登録画面に戻す error =&amp;gt; BadRequest(views.html.user.edit(error, Companies.sortBy(t =&amp;gt; t.id).list)), // OKの場合は登録を行い一覧画面にリダイレクトする form =&amp;gt; { // ユーザを登録 val user = UsersRow(0, form.name, form.companyId) Users.insert(user) // 一覧画面にリダイレクト Redirect(routes.UserController.list) } ) }  updateメソッドも同じように実装します。
+def update = DBAction.transaction { implicit rs =&amp;gt; // リクエストの内容をバインド userForm.bindFromRequest.fold( // エラーの場合 error =&amp;gt; BadRequest(views.html.user.edit(error, Companies.</description>
     </item>
     
   </channel>
