@@ -36,7 +36,7 @@ sbt sbt-version
 コマンドプロンプトで以下のコマンドを実行します。
 
 ```
-sbt new playframework/play-scala-seed.g8
+sbt new playframework/play-scala-seed.g8 --branch 2.5.x
 ```
 
 プロジェクト名などを聞かれますが、ここではプロジェクト名を`play2-hands-on`とし、他の項目は初期値のままプロジェクトを作成するものとします。
