@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="theme-color" content="#263238">
 
-<meta name="generator" content="Hugo 0.23" />
+<meta name="generator" content="Hugo 0.31.1" />
 
 <link rel="shortcut icon" href="http://bizreach.github.io/play2-hands-on/images/favicon.ico" />
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
@@ -190,7 +190,7 @@ Macの場合
 Homebrewでインストールします。
 brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。
 sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。
-sbt new playframework/play-scala-seed.g8  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。
+sbt new playframework/play-scala-seed.g8 --branch 2.5.x  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。
 play2-hands-onディレクトリのbuild.sbtにORMとしてScalikeJDBCを使用するための設定を行います。
 name := &quot;&quot;&quot;play2-hands-on&quot;&quot;&quot; organization := &quot;com.example&quot; version := &quot;1.0-SNAPSHOT&quot; lazy val root = (project in file(&quot;.&quot;)).enablePlugins(PlayScala) scalaVersion := &quot;2.11.8&quot; libraryDependencies += filters libraryDependencies += &quot;org.scalatestplus.play&quot; %% &quot;scalatestplus-play&quot; % &quot;1.</div>
   </div>

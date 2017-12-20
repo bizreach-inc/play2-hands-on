@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="theme-color" content="#263238">
 
-<meta name="generator" content="Hugo 0.23" />
+<meta name="generator" content="Hugo 0.31.1" />
 
 <link rel="shortcut icon" href="http://bizreach.github.io/play2-hands-on/images/favicon.ico" />
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
@@ -23,21 +23,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
     <title>プロジェクトの作成 - Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
     
-<meta name="description" content="sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。Windowsの場合以下のリンクからインストーラをダウンロードしてインストールします。https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msiMacの場合Homebrewでインストールします。brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。sbt new playframework/play-scala-seed.g8  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot; organization := &amp;quot;com.example&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.8&amp;quot; libraryDependencies &#43;= filters libraryDependencies &#43;= &amp;quot;org.scalatestplus.play&amp;quot; %% &amp;quot;scalatestplus-play&amp;quot; % &amp;quot;1.">
+<meta name="description" content="sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。Windowsの場合以下のリンクからインストーラをダウンロードしてインストールします。https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msiMacの場合Homebrewでインストールします。brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。sbt new playframework/play-scala-seed.g8 --branch 2.5.x  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot; organization := &amp;quot;com.example&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.8&amp;quot; libraryDependencies &#43;= filters libraryDependencies &#43;= &amp;quot;org.scalatestplus.play&amp;quot; %% &amp;quot;scalatestplus-play&amp;quot; % &amp;quot;1.">
 
 <meta property="og:title" content="プロジェクトの作成 - Play2 &#43; Slick / ScalikeJDBCハンズオン">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/create_project.html">
 <meta property="og:image" content="http://bizreach.github.io/play2-hands-on/images/default.png">
 <meta property="og:site_name" content="Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta property="og:description" content="sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。Windowsの場合以下のリンクからインストーラをダウンロードしてインストールします。https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msiMacの場合Homebrewでインストールします。brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。sbt new playframework/play-scala-seed.g8  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot; organization := &amp;quot;com.example&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.8&amp;quot; libraryDependencies &#43;= filters libraryDependencies &#43;= &amp;quot;org.scalatestplus.play&amp;quot; %% &amp;quot;scalatestplus-play&amp;quot; % &amp;quot;1.">
+<meta property="og:description" content="sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。Windowsの場合以下のリンクからインストーラをダウンロードしてインストールします。https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msiMacの場合Homebrewでインストールします。brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。sbt new playframework/play-scala-seed.g8 --branch 2.5.x  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot; organization := &amp;quot;com.example&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.8&amp;quot; libraryDependencies &#43;= filters libraryDependencies &#43;= &amp;quot;org.scalatestplus.play&amp;quot; %% &amp;quot;scalatestplus-play&amp;quot; % &amp;quot;1.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="Play2 &#43; Slick / ScalikeJDBCハンズオン">
 <meta name="twitter:url" content="http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/create_project.html">
 <meta name="twitter:title" content="プロジェクトの作成 - Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta name="twitter:description" content="sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。Windowsの場合以下のリンクからインストーラをダウンロードしてインストールします。https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msiMacの場合Homebrewでインストールします。brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。sbt new playframework/play-scala-seed.g8  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot; organization := &amp;quot;com.example&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.8&amp;quot; libraryDependencies &#43;= filters libraryDependencies &#43;= &amp;quot;org.scalatestplus.play&amp;quot; %% &amp;quot;scalatestplus-play&amp;quot; % &amp;quot;1.">
+<meta name="twitter:description" content="sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。Windowsの場合以下のリンクからインストーラをダウンロードしてインストールします。https://dl.bintray.com/sbt/native-packages/sbt/0.13.13.1/sbt-0.13.13.1.msiMacの場合Homebrewでインストールします。brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。sbt new playframework/play-scala-seed.g8 --branch 2.5.x  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quot; organization := &amp;quot;com.example&amp;quot; version := &amp;quot;1.0-SNAPSHOT&amp;quot; lazy val root = (project in file(&amp;quot;.&amp;quot;)).enablePlugins(PlayScala) scalaVersion := &amp;quot;2.11.8&amp;quot; libraryDependencies &#43;= filters libraryDependencies &#43;= &amp;quot;org.scalatestplus.play&amp;quot; %% &amp;quot;scalatestplus-play&amp;quot; % &amp;quot;1.">
 <meta name="twitter:image" content="http://bizreach.github.io/play2-hands-on/images/default.png">
 
 
@@ -80,7 +80,7 @@ Macの場合
 Homebrewでインストールします。
 brew update brew install sbt  どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。
 sbt sbt-version [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/) [info] 0.13.13  新規プロジェクト作成 コマンドプロンプトで以下のコマンドを実行します。
-sbt new playframework/play-scala-seed.g8  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。
+sbt new playframework/play-scala-seed.g8 --branch 2.5.x  プロジェクト名などを聞かれますが、ここではプロジェクト名をplay2-hands-onとし、他の項目は初期値のままプロジェクトを作成するものとします。
 play2-hands-onディレクトリのbuild.sbtにORMとしてSlickを使用するための設定を行います。
 name := &quot;&quot;&quot;play2-hands-on&quot;&quot;&quot; organization := &quot;com.example&quot; version := &quot;1.0-SNAPSHOT&quot; lazy val root = (project in file(&quot;.&quot;)).enablePlugins(PlayScala) scalaVersion := &quot;2.11.8&quot; libraryDependencies += filters libraryDependencies += &quot;org.scalatestplus.play&quot; %% &quot;scalatestplus-play&quot; % &quot;1."
   }
@@ -165,7 +165,7 @@ brew install sbt
 
 <p>コマンドプロンプトで以下のコマンドを実行します。</p>
 
-<pre><code>sbt new playframework/play-scala-seed.g8
+<pre><code>sbt new playframework/play-scala-seed.g8 --branch 2.5.x
 </code></pre>
 
 <p>プロジェクト名などを聞かれますが、ここではプロジェクト名を<code>play2-hands-on</code>とし、他の項目は初期値のままプロジェクトを作成するものとします。</p>
