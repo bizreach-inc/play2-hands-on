@@ -109,4 +109,4 @@ SELECT * FROM USERS ORDER BY ID
 
 ここまで実装したらブラウザから http://localhost:9000/user/list にアクセスします（`sbt run`を実行していない場合は実行してください）。すると以下のような画面が表示されるはずです。
 
-![ユーザ一覧画面](../images/play2.5-scalikejdbc2.5
+![ユーザ一覧画面](../images/play2.5-scalikejdbc2.5/user_list.png)
