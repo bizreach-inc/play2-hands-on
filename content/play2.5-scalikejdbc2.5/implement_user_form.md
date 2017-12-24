@@ -43,7 +43,7 @@ object UserController {
 続いて`views.user`パッケージに`edit.scala.html`を実装します。引数には`Form`のインスタンスと、プルダウンで選択する会社情報を格納した`Seq`を受け取ります。
 
 ```html
-@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit request: Request[Any], messages: Messages)
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Companies])(implicit request: Request[Any], messages: Messages)
 
 @import helper._
 
