@@ -614,7 +614,7 @@ object UserController { // フォームの値を格納するケースクラス c
 object UserController { // フォームの値を格納するケースクラス case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // formから送信されたデータ ⇔ ケースクラスの変換を行う val userForm = Form( mapping( &amp;quot;id&amp;quot; -&amp;gt; optional(longNumber), &amp;quot;name&amp;quot; -&amp;gt; nonEmptyText(maxLength = 20), &amp;quot;companyId&amp;quot; -&amp;gt; optional(number) )(UserForm.apply)(UserForm.unapply) ) }  コンパニオンオブジェクトとは、クラスやトレイトと同じファイル内に同じ名前で定義されたオブジェクトのことで、コンパニオンオブジェクトと対応するクラスやトレイトは互いにprivateなメンバーにアクセスできるなどの特徴があります。クラスやトレイトで使用する共通的なメソッドやクラス等を括り出したりするのに使います。
  POINT
  コンパニオンオブジェクトとは、クラスと同じファイル内に同じ名前で定義されたオブジェクトのことです FormはStrutsのアクションフォームのようなものです マッピングに従ってバリデーション（後述）が行われます   ビュー 続いてviews.userパッケージにedit.scala.htmlを実装します。引数にはFormのインスタンスと、プルダウンで選択する会社情報を格納したSeqを受け取ります。
-@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Tables.CompaniesRow])(implicit request: Request[Any], messages: Messages) @import helper.</description>
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Companies])(implicit request: Request[Any], messages: Messages) @import helper.</description>
     </item>
     
     <item>
