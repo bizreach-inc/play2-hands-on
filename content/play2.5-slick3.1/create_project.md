@@ -1,6 +1,5 @@
 ---
 title: プロジェクトの作成
-layout: play25-slick31
 ---
 
 ## sbtのインストール
