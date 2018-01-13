@@ -6,6 +6,11 @@
 {{ end }}
 
 {{ define "main" }}
+{{/* get current page toc. toc is "sortkey","contents_path","title","datadir" */}}
+{{ $curdir := replace $.Page.Dir "/" ""}}
+{{ $tmptoc := where $.Site.Data.playtoc "contents_path" $curdir }}
+{{ $currenttoc := index $tmptoc 0  }}
+{{ $datatoc := index $.Site.Data $currenttoc.datadir }}
 <div class="row">
   <div class="col-md-8">
 
@@ -18,7 +23,7 @@
         <li class="active">{{ .Title }}</li>
       </ol>
     </nav>
-    
+
     <article class="single">
       <div class="content-inner">
         <h1 class="title">{{ .Title }}</h1>
@@ -35,33 +40,32 @@
           {{ .Content }}
           <hr>
           <div class="nav">
-          {{ range $index, $element := $.Site.Data.play25slick31 }}
+          {{ range $index, $element := $datatoc}}
           {{ if eq $.File.BaseFileName $element.file }}
             {{ $prev := sub $index 1}}
             {{ $next := add $index 1}}
             {{ if ge $prev 0 }}
-              {{ $target := (index $.Site.Data.play25slick31 $prev) }}
+              {{ $target := (index $datatoc $prev) }}
               <a href="{{ $target.file }}.html" class="pull-left">＜{{ $target.title }}に戻る</a>
             {{ end }}
-            {{ if lt $next (len $.Site.Data.play25slick31) }}
-              {{ $target := (index $.Site.Data.play25slick31 $next) }}
+            {{ if lt $next (len $datatoc) }}
+              {{ $target := (index $datatoc $next) }}
               <a href="{{ $target.file }}.html" class="pull-right">{{ $target.title }}に進む＞</a>
             {{ end }}
           {{ end }}
           {{ end }}
-        </div>
+          </div>
         </div>
       </div>
     </article>
-    
   </div>
 
   <div class="col-md-4">
     <section>
-      <header>Play 2.5 + Slick 3.1</header>
+      <header>{{ chomp $currenttoc.titleside }}</header>
       <div>
         <ul>
-          {{ range $.Site.Data.play25slick31 }}
+          {{ range $datatoc }}
           {{ if eq $.File.BaseFileName .file }}
           <li class="p-terms"><a href="{{ .file }}.html" class="active">{{ .title }}</a></li>
           {{ else }}
@@ -73,4 +77,6 @@
     </section>
   </div>
 </div>
+
+
 {{ end }}

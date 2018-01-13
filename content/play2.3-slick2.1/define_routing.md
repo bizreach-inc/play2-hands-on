@@ -1,6 +1,5 @@
 ---
 title: ルーティングの定義
-layout: play23-slick21
 ---
 
 ## Bootstrapを使うための準備

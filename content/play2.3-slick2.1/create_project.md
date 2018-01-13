@@ -1,6 +1,5 @@
 ---
 title: プロジェクトの作成
-layout: play23-slick21
 ---
 
 ## Play本体のインストール

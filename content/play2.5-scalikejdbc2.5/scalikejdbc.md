@@ -1,6 +1,5 @@
 ---
 title: ScalikeJDBCでの実践的な検索処理
-layout: play25-scalikejdbc25
 ---
 
 ここまでの例ではscalikejdbcGenで自動生成されたメソッドや単一テーブルに対するシンプルなQueryDSLで処理できる例ばかりでしたが、ここではもう少し実践的な検索処理の実装方法について紹介します。

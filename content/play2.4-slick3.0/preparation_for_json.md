@@ -1,6 +1,5 @@
 ---
 title: JSON APIの準備
-layout: play24-slick30
 ---
 
 フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。

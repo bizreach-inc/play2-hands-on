@@ -1,6 +1,5 @@
 ---
 title: Play 2.5 + Slick 3.1ハンズオン
-layout: play25-slick31
 ---
 
 ## 目的

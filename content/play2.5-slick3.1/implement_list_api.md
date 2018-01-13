@@ -1,6 +1,5 @@
 ---
 title: ユーザ一覧APIの実装
-layout: play25-slick31
 ---
 
 `USERS`テーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。

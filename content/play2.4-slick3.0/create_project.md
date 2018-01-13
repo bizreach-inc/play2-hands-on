@@ -1,6 +1,5 @@
 ---
 title: プロジェクトの作成
-layout: play24-slick30
 ---
 
 ## Play本体のインストール

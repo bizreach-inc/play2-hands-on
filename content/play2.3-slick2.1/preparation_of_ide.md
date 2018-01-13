@@ -1,6 +1,5 @@
 ---
 title: IDEの準備
-layout: play23-slick21
 ---
 
 ## プラグインのインストール

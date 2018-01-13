@@ -1,6 +1,5 @@
 ---
 title: IDEの準備
-layout: play25-scalikejdbc25
 ---
 
 ## プラグインのインストール
