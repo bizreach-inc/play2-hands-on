@@ -6,14 +6,11 @@
 {{ end }}
 
 {{ define "main" }}
-
 {{/* get current page toc. toc is "sortkey","contents_path","title","datadir" */}}
 {{ $curdir := replace $.Page.Dir "/" ""}}
 {{ $tmptoc := where $.Site.Data.playtoc "contents_path" $curdir }}
 {{ $currenttoc := index $tmptoc 0  }}
 {{ $datatoc := index $.Site.Data $currenttoc.datadir }}
-
-
 <div class="row">
   <div class="col-md-8">
 
@@ -65,7 +62,7 @@
 
   <div class="col-md-4">
     <section>
-      <header>{{ $currenttoc.title }}</header>
+      <header>{{ chomp $currenttoc.titleside }}</header>
       <div>
         <ul>
           {{ range $datatoc }}

@@ -41,8 +41,7 @@
             使用するフレームワークおよびバージョンは以下の通りです。
           </p>
           <ul>
-            {{ range $alltoc }}
-              <li><a href="{{ .contents_path }}/index.html">{{ .title }}</a></li>
+            {{ range $alltoc }}<li><a href="{{ .contents_path }}/index.html">{{  chomp .title }}</a></li>
             {{ end }}
           </ul>
           <h2>内容</h2>
@@ -68,8 +67,7 @@
       <header>バージョン</header>
       <div>
         <ul>
-          {{ range $alltoc }}
-            <li class="p-terms"><a href="{{ .contents_path }}/index.html">{{ .title }}</a></li>
+          {{ range $alltoc }}<li class="p-terms"><a href="{{ .contents_path }}/index.html">{{  chomp .title }}</a></li>
           {{ end }}
         </ul>
       </div>
