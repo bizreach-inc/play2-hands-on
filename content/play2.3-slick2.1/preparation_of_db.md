@@ -1,6 +1,5 @@
 ---
 title: DBの準備
-layout: play23-slick21
 ---
 
 ## ツールプロジェクトの準備

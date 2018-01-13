@@ -1,6 +1,5 @@
 ---
 title: ユーザ削除APIの実装
-layout: play23-slick21
 ---
 
 指定したIDのユーザを`USERS`テーブルから削除します。
