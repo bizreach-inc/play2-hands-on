@@ -1,6 +1,5 @@
 ---
 title: Tips
-layout: play24-slick30
 ---
 
 ## Play2
