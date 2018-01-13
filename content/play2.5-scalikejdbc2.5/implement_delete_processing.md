@@ -1,6 +1,5 @@
 ---
 title: 削除処理の実装
-layout: play25-scalikejdbc25
 ---
 
 指定したIDのユーザを`USERS`テーブルから削除し、一覧画面へリダイレクトします。

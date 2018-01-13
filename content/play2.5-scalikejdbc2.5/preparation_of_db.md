@@ -1,6 +1,5 @@
 ---
 title: DBの準備
-layout: play25-scalikejdbc25
 ---
 
 ## ツールプロジェクトの準備

@@ -1,6 +1,5 @@
 ---
 title: ルーティングの定義
-layout: play25-scalikejdbc25
 ---
 
 ## Bootstrapを使うための準備

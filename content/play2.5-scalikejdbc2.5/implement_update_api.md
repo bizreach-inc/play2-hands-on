@@ -1,6 +1,5 @@
 ---
 title: ユーザ登録・更新APIの実装
-layout: play25-scalikejdbc25
 ---
 
 ユーザ情報をJSONで受け取り、登録もしくは更新を行います。
