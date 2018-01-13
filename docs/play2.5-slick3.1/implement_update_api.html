@@ -103,6 +103,11 @@ implicit val userFormFormat = new Reads[UserForm]{ def reads(js: JsValue): UserF
     <main>
       <div class="container">
         
+
+
+
+
+
 <div class="row">
   <div class="col-md-8">
 
@@ -115,7 +120,7 @@ implicit val userFormFormat = new Reads[UserForm]{ def reads(js: JsValue): UserF
         <li class="active">ユーザ登録・更新APIの実装</li>
       </ol>
     </nav>
-    
+
     <article class="single">
       <div class="content-inner">
         <h1 class="title">ユーザ登録・更新APIの実装</h1>
@@ -296,11 +301,10 @@ implicit val userFormWrites = Json.writes[UserForm]
           
           
           
-        </div>
+          </div>
         </div>
       </div>
     </article>
-    
   </div>
 
   <div class="col-md-4">
@@ -366,6 +370,8 @@ implicit val userFormWrites = Json.writes[UserForm]
     </section>
   </div>
 </div>
+
+
 
       </div>
     </main>
