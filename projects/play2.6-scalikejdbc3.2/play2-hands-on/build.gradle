@@ -3,10 +3,6 @@ plugins {
     id 'idea'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.1'
-}
-
 repositories {
     jcenter()
     maven {
@@ -20,8 +16,8 @@ repositories {
     }
 }
 
-def playVersion = '2.5.10'
-def scalaVersion = '2.11'
+def playVersion = '2.6.11'
+def scalaVersion = '2.12'
 
 model {
     components {
@@ -39,6 +35,9 @@ model {
 }
 
 dependencies {
+    play "com.typesafe.play:play-guice_$scalaVersion:$playVersion"
+    play "com.typesafe.play:play-logback_$scalaVersion:$playVersion"
+    play "com.h2database:h2:1.4.196"
     ['filters-helpers', 'play-logback'].each { playModule ->
         play "com.typesafe.play:${playModule}_$scalaVersion:$playVersion"
     }

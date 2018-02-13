@@ -3,7 +3,7 @@ package controllers
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-import play.api.i18n.{MessagesApi, I18nSupport}
+import play.api.i18n.I18nSupport
 import javax.inject.Inject
 import scalikejdbc._
 import models._
@@ -24,7 +24,8 @@ object UserController {
 
 }
 
-class UserController @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class UserController @Inject()(components: ControllerComponents)
+  extends AbstractController(components) with I18nSupport {
   import UserController._
 
   private val u = Users.syntax("u")

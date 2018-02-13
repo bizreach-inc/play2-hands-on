@@ -1,23 +1,33 @@
 name := """play2-hands-on"""
 organization := "com.example"
-
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.4"
 
-libraryDependencies += filters
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+libraryDependencies += guice
+// Open ID
+// libraryDependencies += openId
+
+// Play JSON
+// libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.0"
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
+
 
 libraryDependencies ++= Seq(
-  "com.h2database" % "h2" % "1.4.193",
-  "org.scalikejdbc" %% "scalikejdbc" % "2.5.1",
-  "org.scalikejdbc" %% "scalikejdbc-config" % "2.5.1",
-  "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.5.1"
+  "com.h2database" % "h2" % "1.4.196",
+  "org.scalikejdbc" %% "scalikejdbc" % "3.2.1",
+  "org.scalikejdbc" %% "scalikejdbc-config" % "3.2.1",
+  "org.scalikejdbc" %% "scalikejdbc-test" % "3.2.1" % "test",
+  "ch.qos.logback"  %  "logback-classic"    % "1.2.3",
+  "org.specs2" %% "specs2-core" % "4.0.2" % "test",
+  "org.specs2" %% "specs2-junit" % "4.0.2" % "test",
+  "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.0-scalikejdbc-3.2"
 )
 
-scalikejdbcSettings
+enablePlugins(ScalikejdbcPlugin)
+
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"

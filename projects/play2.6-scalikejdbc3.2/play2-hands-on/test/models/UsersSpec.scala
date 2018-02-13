@@ -5,7 +5,7 @@ import org.specs2.mutable._
 import scalikejdbc._
 
 
-class UsersSpec extends Specification {
+class UsersSpec extends Specification with settings.DBSettings {
 
   "Users" should {
 
@@ -42,7 +42,7 @@ class UsersSpec extends Specification {
     "save a record" in new AutoRollback {
       val entity = Users.findAll().head
       // TODO modify something
-      val modified = entity
+      val modified = entity.copy(id = 4L, name = "Jiro Yamada")
       val updated = Users.save(modified)
       updated should not equalTo(entity)
     }

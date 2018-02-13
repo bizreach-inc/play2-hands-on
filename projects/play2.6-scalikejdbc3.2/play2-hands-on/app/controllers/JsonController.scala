@@ -1,5 +1,7 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.mvc._
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
@@ -27,7 +29,8 @@ object JsonController {
 
 }
 
-class JsonController extends Controller {
+class JsonController @Inject()(components: ControllerComponents)
+  extends AbstractController(components) {
   import JsonController._
 
   /**
