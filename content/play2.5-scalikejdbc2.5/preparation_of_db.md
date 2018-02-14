@@ -93,7 +93,7 @@ scalikejdbcSettings
 ではコードを自動生成してみましょう。`play2-hands-on`プロジェクトのルートディレクトリで以下のコマンドを実行します。
 
 ```
-sbt "scalikejdbcGen USERS, COMPANIES"
+sbt "scalikejdbcGenAll"
 ```
 
 すると`play2-hands-on`プロジェクトの`app/models`パッケージにモデルクラスが生成されます。
