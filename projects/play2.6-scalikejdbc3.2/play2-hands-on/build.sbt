@@ -14,15 +14,13 @@ libraryDependencies += guice
 // libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.0"
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 
+libraryDependencies += specs2 % Test
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.4.196",
   "org.scalikejdbc" %% "scalikejdbc" % "3.2.1",
   "org.scalikejdbc" %% "scalikejdbc-config" % "3.2.1",
   "org.scalikejdbc" %% "scalikejdbc-test" % "3.2.1" % "test",
-  "ch.qos.logback"  %  "logback-classic"    % "1.2.3",
-  "org.specs2" %% "specs2-core" % "4.0.2" % "test",
-  "org.specs2" %% "specs2-junit" % "4.0.2" % "test",
   "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.0-scalikejdbc-3.2"
 )
 
