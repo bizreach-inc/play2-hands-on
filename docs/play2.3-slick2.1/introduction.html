@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
 
 
-<link rel="canonical" href="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_update_processing.html">
+<link rel="canonical" href="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/introduction.html">
 
 
     
@@ -21,23 +21,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>登録・更新処理の実装 - Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
+    <title>Play 2.3 &#43; Slick 2.1ハンズオン - Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
     
-<meta name="description" content="入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。 エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。 エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。  コントローラ UserControllerのメソッドのうち、登録処理を行うcreateメソッドと更新処理を行うupdateメソッドを実装します。入力フォームの値を受け取るには、userForm.bindFromRequestメソッドでリクエストの内容をFormにバインドし、foldメソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下はcreateメソッドの実装例です。def create = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // リクエストの内容をバインド userForm.bindFromRequest.fold( // エラーの場合 error =&amp;gt; { BadRequest(views.html.user.edit(error, Companies.findAll())) }, // OKの場合 form =&amp;gt; { // ユーザを登録 Users.create(form.name, form.companyId) // 一覧画面へリダイレクト Redirect(routes.UserController.list) } ) } }  updateメソッドも同じように実装します。def update = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // リクエストの内容をバインド userForm.">
+<meta name="description" content="目的 Play2 &#43; Slickを使ってWebアプリケーションを作成するハンズオンです。主な目的は以下の通りです。 Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。構成 使用するフレームワークおよびバージョンは以下の通りです。 Play 2.3.x Slick 2.1.x  前提条件 このハンズオンを実施するにあたっての前提条件は以下の通りです。 JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること JDK 1.7以降がインストールされていること EclipseもしくはIntelliJ IDEAの最新版がインストールされていること  内容 ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。 ユーザ一覧を表示する 新規ユーザ登録を行う ユーザ情報を編集する ユーザを削除する  また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。">
 
-<meta property="og:title" content="登録・更新処理の実装 - Play2 &#43; Slick / ScalikeJDBCハンズオン">
+<meta property="og:title" content="Play 2.3 &#43; Slick 2.1ハンズオン - Play2 &#43; Slick / ScalikeJDBCハンズオン">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_update_processing.html">
+<meta property="og:url" content="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/introduction.html">
 <meta property="og:image" content="http://bizreach.github.io/play2-hands-on/images/default.png">
 <meta property="og:site_name" content="Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta property="og:description" content="入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。 エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。 エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。  コントローラ UserControllerのメソッドのうち、登録処理を行うcreateメソッドと更新処理を行うupdateメソッドを実装します。入力フォームの値を受け取るには、userForm.bindFromRequestメソッドでリクエストの内容をFormにバインドし、foldメソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下はcreateメソッドの実装例です。def create = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // リクエストの内容をバインド userForm.bindFromRequest.fold( // エラーの場合 error =&amp;gt; { BadRequest(views.html.user.edit(error, Companies.findAll())) }, // OKの場合 form =&amp;gt; { // ユーザを登録 Users.create(form.name, form.companyId) // 一覧画面へリダイレクト Redirect(routes.UserController.list) } ) } }  updateメソッドも同じように実装します。def update = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // リクエストの内容をバインド userForm.">
+<meta property="og:description" content="目的 Play2 &#43; Slickを使ってWebアプリケーションを作成するハンズオンです。主な目的は以下の通りです。 Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。構成 使用するフレームワークおよびバージョンは以下の通りです。 Play 2.3.x Slick 2.1.x  前提条件 このハンズオンを実施するにあたっての前提条件は以下の通りです。 JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること JDK 1.7以降がインストールされていること EclipseもしくはIntelliJ IDEAの最新版がインストールされていること  内容 ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。 ユーザ一覧を表示する 新規ユーザ登録を行う ユーザ情報を編集する ユーザを削除する  また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta name="twitter:url" content="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_update_processing.html">
-<meta name="twitter:title" content="登録・更新処理の実装 - Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta name="twitter:description" content="入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。 エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。 エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。  コントローラ UserControllerのメソッドのうち、登録処理を行うcreateメソッドと更新処理を行うupdateメソッドを実装します。入力フォームの値を受け取るには、userForm.bindFromRequestメソッドでリクエストの内容をFormにバインドし、foldメソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下はcreateメソッドの実装例です。def create = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // リクエストの内容をバインド userForm.bindFromRequest.fold( // エラーの場合 error =&amp;gt; { BadRequest(views.html.user.edit(error, Companies.findAll())) }, // OKの場合 form =&amp;gt; { // ユーザを登録 Users.create(form.name, form.companyId) // 一覧画面へリダイレクト Redirect(routes.UserController.list) } ) } }  updateメソッドも同じように実装します。def update = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // リクエストの内容をバインド userForm.">
+<meta name="twitter:url" content="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/introduction.html">
+<meta name="twitter:title" content="Play 2.3 &#43; Slick 2.1ハンズオン - Play2 &#43; Slick / ScalikeJDBCハンズオン">
+<meta name="twitter:description" content="目的 Play2 &#43; Slickを使ってWebアプリケーションを作成するハンズオンです。主な目的は以下の通りです。 Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。構成 使用するフレームワークおよびバージョンは以下の通りです。 Play 2.3.x Slick 2.1.x  前提条件 このハンズオンを実施するにあたっての前提条件は以下の通りです。 JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること JDK 1.7以降がインストールされていること EclipseもしくはIntelliJ IDEAの最新版がインストールされていること  内容 ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。 ユーザ一覧を表示する 新規ユーザ登録を行う ユーザ情報を編集する ユーザを削除する  また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。">
 <meta name="twitter:image" content="http://bizreach.github.io/play2-hands-on/images/default.png">
 
 
@@ -49,7 +49,7 @@
       "@type": "WebPage",
       "@id":"http://bizreach.github.io/play2-hands-on/"
     },
-    "headline": "登録・更新処理の実装 - Play2 &#43; Slick / ScalikeJDBCハンズオン",
+    "headline": "Play 2.3 &#43; Slick 2.1ハンズオン - Play2 &#43; Slick / ScalikeJDBCハンズオン",
     "image": {
       "@type": "ImageObject",
       "url": "http://bizreach.github.io/play2-hands-on/images/default.png",
@@ -72,11 +72,13 @@
         "height": 60
       }
     },
-    "description": "入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。
- エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。 エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。  コントローラ UserControllerのメソッドのうち、登録処理を行うcreateメソッドと更新処理を行うupdateメソッドを実装します。
-入力フォームの値を受け取るには、userForm.bindFromRequestメソッドでリクエストの内容をFormにバインドし、foldメソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下はcreateメソッドの実装例です。
-def create = Action { implicit request =&gt; DB.localTx { implicit session =&gt; // リクエストの内容をバインド userForm.bindFromRequest.fold( // エラーの場合 error =&gt; { BadRequest(views.html.user.edit(error, Companies.findAll())) }, // OKの場合 form =&gt; { // ユーザを登録 Users.create(form.name, form.companyId) // 一覧画面へリダイレクト Redirect(routes.UserController.list) } ) } }  updateメソッドも同じように実装します。
-def update = Action { implicit request =&gt; DB.localTx { implicit session =&gt; // リクエストの内容をバインド userForm."
+    "description": "目的 Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。
+主な目的は以下の通りです。
+ Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。
+構成 使用するフレームワークおよびバージョンは以下の通りです。
+ Play 2.3.x Slick 2.1.x  前提条件 このハンズオンを実施するにあたっての前提条件は以下の通りです。
+ JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること JDK 1.7以降がインストールされていること EclipseもしくはIntelliJ IDEAの最新版がインストールされていること  内容 ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。
+ ユーザ一覧を表示する 新規ユーザ登録を行う ユーザ情報を編集する ユーザを削除する  また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。"
   }
 </script>
 
@@ -116,150 +118,96 @@ def update = Action { implicit request =&gt; DB.localTx { implicit session =&gt;
       <ol>
         <li><a href="http://bizreach.github.io/play2-hands-on/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/" itemprop="url"><span itemprop="title">play2.5-scalikejdbc2.5</span></a></li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/" itemprop="url"><span itemprop="title">play2.3-slick2.1</span></a></li>
         
-        <li class="active">登録・更新処理の実装</li>
+        <li class="active">Play 2.3 &#43; Slick 2.1ハンズオン</li>
       </ol>
     </nav>
 
     <article class="single">
       <div class="content-inner">
-        <h1 class="title">登録・更新処理の実装</h1>
+        <h1 class="title">Play 2.3 &#43; Slick 2.1ハンズオン</h1>
 
         <ul class="p-facts">
-          <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/">play2.5-scalikejdbc2.5</a></li>
+          <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/">play2.3-slick2.1</a></li>
           
         </ul>
 
         <div class="article-body">
           
 
-<p>入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。</p>
+<h2 id="目的">目的</h2>
+
+<p>Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。</p>
+
+<p>主な目的は以下の通りです。</p>
 
 <ul>
-<li>エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。</li>
-<li>エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。</li>
+<li>Scalaに触れてもらう</li>
+<li>数時間でとりあえず動くものを作ってみる</li>
 </ul>
 
-<h2 id="コントローラ">コントローラ</h2>
+<p>そのため、なるべくフレームワークが提供する機能をそのまま使います。</p>
 
-<p><code>UserController</code>のメソッドのうち、登録処理を行う<code>create</code>メソッドと更新処理を行う<code>update</code>メソッドを実装します。</p>
+<h2 id="構成">構成</h2>
 
-<p>入力フォームの値を受け取るには、<code>userForm.bindFromRequest</code>メソッドでリクエストの内容をFormにバインドし、<code>fold</code>メソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下は<code>create</code>メソッドの実装例です。</p>
-
-<pre><code class="language-scala">def create = Action { implicit request =&gt;
-  DB.localTx { implicit session =&gt;
-    // リクエストの内容をバインド
-    userForm.bindFromRequest.fold(
-      // エラーの場合
-      error =&gt; {
-        BadRequest(views.html.user.edit(error, Companies.findAll()))
-      },
-      // OKの場合
-      form  =&gt; {
-        // ユーザを登録
-        Users.create(form.name, form.companyId)
-        // 一覧画面へリダイレクト
-        Redirect(routes.UserController.list)
-      }
-    )
-  }
-}
-</code></pre>
-
-<p><code>update</code>メソッドも同じように実装します。</p>
-
-<pre><code class="language-scala">def update = Action { implicit request =&gt;
-  DB.localTx { implicit session =&gt;
-    // リクエストの内容をバインド
-    userForm.bindFromRequest.fold(
-      // エラーの場合は登録画面に戻す
-      error =&gt; {
-        BadRequest(views.html.user.edit(error, Companies.findAll()))
-      },
-      // OKの場合は登録を行い一覧画面にリダイレクトする
-      form =&gt; {
-        // ユーザ情報を更新
-        Users.find(form.id.get).foreach { user =&gt;
-          Users.save(user.copy(name = form.name, companyId = form.companyId))
-        }
-        // 一覧画面にリダイレクト
-        Redirect(routes.UserController.list)
-      }
-    )
-  }
-}
-</code></pre>
-
-<p>INSERTに対応する<code>Users.create()</code>や、UPDATEに対応する<code>Users.save()</code>など、ここでもscalikejdbcGenによって自動生成されたメソッドを使用しています。これらをQueryDSLを使って書き直すと以下のようになります。</p>
-
-<pre><code class="language-scala">// INSERTをQueryDSLで書き直した場合
-val generatedKey = withSQL {
-  insert.into(Users).namedValues(
-    column.name -&gt; name,
-    column.companyId -&gt; companyId
-  )
-}.updateAndReturnGeneratedKey.apply()
-
-// UPDATEをQueryDSLで書き直した場合
-withSQL {
-  update(Users).set(
-    column.id -&gt; entity.id,
-    column.name -&gt; entity.name,
-    column.companyId -&gt; entity.companyId
-  ).where.eq(column.id, entity.id)
-}.update.apply()
-</code></pre>
-
-<blockquote>
-<p><strong>POINT</strong></p>
+<p>使用するフレームワークおよびバージョンは以下の通りです。</p>
 
 <ul>
-<li>HTMLテンプレートでのリンク先と同様、リダイレクト先も<code>routes.・・・</code>でタイプセーフに指定することができます</li>
-<li><code>DB.localTx { ... }</code>でトランザクション管理されたセッションを取得することができます
-
-<ul>
-<li>この中の処理が正常に終了した場合はコミットされ、例外が発生した場合は自動的にロールバックされます</li>
-</ul></li>
+<li>Play 2.3.x</li>
+<li>Slick 2.1.x</li>
 </ul>
-</blockquote>
 
-<h2 id="実行">実行</h2>
+<h2 id="前提条件">前提条件</h2>
 
-<p>ここまで実装したら、登録画面や編集画面からユーザ情報の登録、編集を行えることを確認しましょう。ユーザ名を空欄や20文字以上で登録しようとするとエラーメッセージが表示され、バリデーションが働いていることも確認できるはずです。</p>
+<p>このハンズオンを実施するにあたっての前提条件は以下の通りです。</p>
 
-<p><strong>バリデーションエラー時の表示：</strong></p>
+<ul>
+<li>JavaおよびWebアプリケーションの開発に関する基本的な知識を持っていること</li>
+<li>JDK 1.7以降がインストールされていること</li>
+<li>EclipseもしくはIntelliJ IDEAの最新版がインストールされていること</li>
+</ul>
 
-<p><img src="../images/play2.5-scalikejdbc2.5/validation.png" alt="バリデーションエラー時の表示" /></p>
+<h2 id="内容">内容</h2>
+
+<p>ユーザ情報のCRUDを行う簡単なアプリケーションを作成します。</p>
+
+<ul>
+<li>ユーザ一覧を表示する</li>
+<li>新規ユーザ登録を行う</li>
+<li>ユーザ情報を編集する</li>
+<li>ユーザを削除する</li>
+</ul>
+
+<p><img src="../images/play2.3-slick2.1/flow.png" alt="作成するアプリケーションの画面遷移図" /></p>
+
+<p>また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。</p>
 
           <hr>
           <div class="nav">
           
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+            
             
             
             
               
-              <a href="implement_user_form.html" class="pull-left">＜ユーザ登録・編集画面の実装に戻る</a>
+              <a href="create_project.html" class="pull-right">プロジェクトの作成に進む＞</a>
             
-            
-              
-              <a href="implement_delete_processing.html" class="pull-right">削除処理の実装に進む＞</a>
-            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           
           
           
@@ -282,12 +230,12 @@ withSQL {
 
   <div class="col-md-4">
     <section>
-      <header>Play 2.5 &#43; ScalikeJDBC 2.5</header>
+      <header>Play 2.3 &#43; Slick 2.1</header>
       <div>
         <ul>
           
           
-          <li class="p-terms"><a href="introduction.html">イントロダクション</a></li>
+          <li class="p-terms"><a href="introduction.html" class="active">イントロダクション</a></li>
           
           
           
@@ -315,15 +263,11 @@ withSQL {
           
           
           
-          <li class="p-terms"><a href="implement_update_processing.html" class="active">登録・更新処理の実装</a></li>
+          <li class="p-terms"><a href="implement_update_processing.html">登録・更新処理の実装</a></li>
           
           
           
           <li class="p-terms"><a href="implement_delete_processing.html">削除処理の実装</a></li>
-          
-          
-          
-          <li class="p-terms"><a href="scalikejdbc.html">ScalikeJDBCでの実践的な検索処理</a></li>
           
           
           
@@ -340,6 +284,10 @@ withSQL {
           
           
           <li class="p-terms"><a href="implement_delete_api.html">ユーザ削除APIの実装</a></li>
+          
+          
+          
+          <li class="p-terms"><a href="tips.html">Tips</a></li>
           
           
         </ul>

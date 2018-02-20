@@ -1,5 +1,6 @@
 ---
-title: Play 2.4 + Slick 3.0ハンズオン
+title: Play 2.3 + Slick 2.1ハンズオン
+aliases: ["play2.3-slick2.1/"]
 ---
 
 ## 目的
@@ -17,8 +18,8 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 
 使用するフレームワークおよびバージョンは以下の通りです。
 
-* Play 2.4.x
-* Slick 3.0.x
+* Play 2.3.x
+* Slick 2.1.x
 
 ## 前提条件
 
@@ -37,6 +38,6 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 * ユーザ情報を編集する
 * ユーザを削除する
 
-![作成するアプリケーションの画面遷移図](../images/play2.4-slick3.0/flow.png)
+![作成するアプリケーションの画面遷移図](../images/play2.3-slick2.1/flow.png)
 
 また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。

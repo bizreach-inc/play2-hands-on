@@ -8,19 +8,67 @@
   </url>
   
   <url>
-    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/</loc>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_db.html</loc>
   </url>
   
   <url>
-    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/</loc>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_of_db.html</loc>
   </url>
   
   <url>
-    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/</loc>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_of_db.html</loc>
   </url>
   
   <url>
-    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/</loc>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_of_db.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_of_ide.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_of_ide.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_of_ide.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_of_ide.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/preparation_for_json.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/preparation_for_json.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/preparation_for_json.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/preparation_for_json.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/introduction.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/introduction.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/introduction.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/introduction.html</loc>
   </url>
   
   <url>
@@ -29,8 +77,184 @@
   </url>
   
   <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1.html</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0.html</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5.html</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1.html</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/scalikejdbc.html</loc>
+  </url>
+  
+  <url>
     <loc>http://bizreach.github.io/play2-hands-on/tags.html</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/tips.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/tips.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/create_project.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/create_project.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/create_project.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/create_project.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_list_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_list_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_list_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_list_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_list.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_user_list.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_user_list.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_user_list.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_delete_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_delete_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_delete_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_update_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_update_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_update_api.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_user_form.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_user_form.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_user_form.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_user_form.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/define_routing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/define_routing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/define_routing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/define_routing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_delete_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_delete_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_delete_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_delete_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.3-slick2.1/implement_update_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/implement_update_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_update_processing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/implement_update_processing.html</loc>
   </url>
   
 </urlset>

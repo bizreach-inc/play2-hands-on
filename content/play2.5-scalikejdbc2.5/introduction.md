@@ -1,10 +1,11 @@
 ---
-title: Play 2.3 + Slick 2.1ハンズオン
+title: Play 2.5 + ScalikeJDBC 2.5 ハンズオン
+aliases: ["play2.5-scalikejdbc2.5/"]
 ---
 
 ## 目的
 
-Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。
+Play2 + ScalikeJBDC を使ってWebアプリケーションを作成するハンズオンです。
 
 主な目的は以下の通りです。
 
@@ -17,8 +18,8 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 
 使用するフレームワークおよびバージョンは以下の通りです。
 
-* Play 2.3.x
-* Slick 2.1.x
+* Play 2.5.x
+* ScalikeJDBC 2.5.x
 
 ## 前提条件
 
@@ -37,6 +38,6 @@ Play2 + Slickを使ってWebアプリケーションを作成するハンズオ�
 * ユーザ情報を編集する
 * ユーザを削除する
 
-![作成するアプリケーションの画面遷移図](../images/play2.3-slick2.1/flow.png)
+![作成するアプリケーションの画面遷移図](../images/play2.5-scalikejdbc2.5/flow.png)
 
 また、後半ではこのアプリケーションと同じCRUD処理を行うJSONベースのWeb APIも作成します。

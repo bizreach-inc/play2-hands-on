@@ -59,10 +59,10 @@ package controllers import play.api.mvc._ import play.api.libs.concurrent.Execut
     
     <item>
       <title>Play 2.5 &#43; Slick 3.1ハンズオン</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/introduction.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-slick3.1/introduction.html</guid>
       <description>目的 Play2 + Slickを使ってWebアプリケーションを作成するハンズオンです。
 主な目的は以下の通りです。
  Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。

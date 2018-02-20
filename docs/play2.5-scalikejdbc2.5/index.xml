@@ -58,10 +58,10 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
     
     <item>
       <title>Play 2.5 &#43; ScalikeJDBC 2.5 ハンズオン</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/</link>
+      <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/introduction.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/</guid>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/introduction.html</guid>
       <description>目的 Play2 + ScalikeJBDC を使ってWebアプリケーションを作成するハンズオンです。
 主な目的は以下の通りです。
  Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。

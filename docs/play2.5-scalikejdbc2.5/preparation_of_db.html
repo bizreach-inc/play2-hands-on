@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="theme-color" content="#263238">
 
-<meta name="generator" content="Hugo 0.31.1" />
+<meta name="generator" content="Hugo 0.36.1" />
 
 <link rel="shortcut icon" href="http://bizreach.github.io/play2-hands-on/images/favicon.ico" />
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
@@ -224,7 +224,7 @@ generator.dateTimeClass=java.time.OffsetDateTime
 
 <p>ではコードを自動生成してみましょう。<code>play2-hands-on</code>プロジェクトのルートディレクトリで以下のコマンドを実行します。</p>
 
-<pre><code>sbt &quot;scalikejdbcGen USERS, COMPANIES&quot;
+<pre><code>sbt &quot;scalikejdbcGenAll&quot;
 </code></pre>
 
 <p>すると<code>play2-hands-on</code>プロジェクトの<code>app/models</code>パッケージにモデルクラスが生成されます。</p>
@@ -310,12 +310,12 @@ play.modules.disabled += &quot;play.api.db.DBModule&quot;
 
   <div class="col-md-4">
     <section>
-      <header>Play 2.5 + ScalikeJDBC 2.5</header>
+      <header>Play 2.5 &#43; ScalikeJDBC 2.5</header>
       <div>
         <ul>
           
           
-          <li class="p-terms"><a href="index.html">イントロダクション</a></li>
+          <li class="p-terms"><a href="introduction.html">イントロダクション</a></li>
           
           
           

@@ -1,5 +1,5 @@
 [
-  {"file": "index", "title": "イントロダクション" },
+  {"file": "introduction", "title": "イントロダクション" },
   {"file": "create_project", "title": "プロジェクトの作成" },
   {"file": "preparation_of_ide", "title": "IDEの準備"},
   {"file": "preparation_of_db", "title": "DBの準備"},
