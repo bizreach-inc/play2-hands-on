@@ -10,7 +10,7 @@ title: ユーザ一覧の実装
 
 ```html
 @* このテンプレートの引数 *@
-@(users: Seq[models.Accounts])(implicit request: Request[Any])
+@(users: Seq[models.Users])(implicit request: Request[Any])
 
 @* テンプレートで利用可能なヘルパーをインポート *@
 @import helper._
