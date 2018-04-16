@@ -1,23 +1,29 @@
 [
   {"sortkey":1,
+    "contents_path": "play2.6-scalikejdbc3.2",
+    "title": "Play 2.6.x + ScalikeJDBC 3.2.x",
+    "titleside": "Play 2.6 + ScalikeJDBC 3.2",
+    "datadir": "play26scalikejdbc32"
+  },
+  {"sortkey":2,
     "contents_path": "play2.5-scalikejdbc2.5",
     "title": "Play 2.5.x + ScalikeJDBC 2.5.x",
     "titleside": "Play 2.5 + ScalikeJDBC 2.5",
     "datadir": "play25scalikejdbc25"
   },
-  {"sortkey":2,
+  {"sortkey":3,
     "contents_path": "play2.5-slick3.1",
     "title": "Play 2.5.x + Slick 3.1.x",
     "titleside": "Play 2.5 + Slick 3.1",
     "datadir": "play25slick31"
    },
-  {"sortkey":3,
+  {"sortkey":4,
     "contents_path": "play2.4-slick3.0",
     "title": "Play 2.4.x + Slick 3.0.x",
     "titleside": "Play 2.4 + Slick 3.0",
     "datadir": "play24slick30"
    },
-  {"sortkey":4,
+  {"sortkey":5,
     "contents_path": "play2.3-slick2.1",
     "title": "Play 2.3.x + Slick 2.1.x",
     "titleside": "Play 2.3 + Slick 2.1",
