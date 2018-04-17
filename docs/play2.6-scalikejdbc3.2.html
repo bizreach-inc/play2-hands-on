@@ -149,6 +149,30 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
       <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html">ScalikeJDBCのユニットテスト</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/">play2.6-scalikejdbc3.2</a></li>
+      
+    </ul>
+
+    <div class="summary">ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。
+このテストコードを少し編集して、実際にテストを動かしてみましょう。
+scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。
+libraryDependencies += &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot; % &quot;3.2.2&quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。
+初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。
+class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&quot;u&quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&quot;c&quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。
+UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。
+it should &quot;save a record&quot; in { implicit session =&gt; val entity = Users.</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html">プロジェクトの作成</a></h2>
@@ -173,7 +197,7 @@ name := &quot;&quot;&quot;play2-hands-on&quot;&quot;&quot; organization := &quot
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_list_api.html" class="thumb"></a>
@@ -196,7 +220,7 @@ implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsV
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_list.html" class="thumb"></a>
@@ -215,7 +239,7 @@ implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsV
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_api.html" class="thumb"></a>
@@ -235,7 +259,7 @@ curl -XPOST http://localhost:9000/json/remove/1  </div>
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_api.html" class="thumb"></a>
@@ -252,29 +276,6 @@ curl -XPOST http://localhost:9000/json/remove/1  </div>
 Readsの定義 JsonControllerのコンパニオンオブジェクトにユーザ情報を受け取るためのケースクラスと、JSONからそのケースクラスに変換するためのReadsを定義します。
 object JsonController { ... // ユーザ情報を受け取るためのケースクラス case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // JSONをUserFormに変換するためのReadsを定義 implicit val userFormReads = ( (__ \ &quot;id&quot; ).readNullable[Long] and (__ \ &quot;name&quot; ).read[String] and (__ \ &quot;companyId&quot;).readNullable[Int] )(UserForm) }  前述のWritesと同様、DSLを使わずに以下のように記述することもできます。
 implicit val userFormFormat = new Reads[UserForm]{ def reads(js: JsValue): UserForm = { UserForm( id = (js \ &quot;id&quot; ).asOpt[Long], name = (js \ &quot;name&quot; ).as[String], companyId = (js \ &quot;companyId&quot;).</div>
-  </div>
-</article>
-</div>
-      
-      
-      <div class="col-sm-6 col-xs-12"><article class="li">
-  <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html" class="thumb"></a>
-  <div class="content-inner thin">
-    <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html">ユーザ登録・編集画面の実装</a></h2>
-
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/">play2.6-scalikejdbc3.2</a></li>
-      
-    </ul>
-
-    <div class="summary">リクエストパラメータにIDが指定されているかどうかに応じて以下の処理を行います。
- リクエストパラメータにIDなし ⇒ 新規登録画面を表示します。 リクエストパラメータにIDあり ⇒ USERSテーブルを検索し、該当のユーザ情報を初期表示した編集画面を表示します。  フォーム 画面からの入力値を受け取るためのFormを定義します。Formは必ずしもコントローラに定義する必要はないのですが、コントローラでの処理に強く依存するため特に理由がない限りコントローラクラスのコンパニオンオブジェクトに定義するとよいでしょう。
-ここではUserControllerと同じソースファイルに以下のようなコンパニオンオブジェクトを追加します。
-object UserController { // フォームの値を格納するケースクラス case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // formから送信されたデータ ⇔ ケースクラスの変換を行う val userForm = Form( mapping( &quot;id&quot; -&gt; optional(longNumber), &quot;name&quot; -&gt; nonEmptyText(maxLength = 20), &quot;companyId&quot; -&gt; optional(number) )(UserForm.apply)(UserForm.unapply) ) }  コンパニオンオブジェクトとは、クラスやトレイトと同じファイル内に同じ名前で定義されたオブジェクトのことで、コンパニオンオブジェクトと対応するクラスやトレイトは互いにprivateなメンバーにアクセスできるなどの特徴があります。クラスやトレイトで使用する共通的なメソッドやクラス等を括り出したりするのに使います。
- POINT
- コンパニオンオブジェクトとは、クラスと同じファイル内に同じ名前で定義されたオブジェクトのことです FormはStrutsのアクションフォームのようなものです マッピングに従ってバリデーション（後述）が行われます   ビュー 続いてviews.userパッケージにedit.scala.htmlを実装します。引数にはFormのインスタンスと、プルダウンで選択する会社情報を格納したSeqを受け取ります。
-@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Companies])(implicit request: MessagesRequestHeader) @import helper._ @main(&quot;ユーザ作成&quot;) { @* IDがある場合は更新処理、ない場合は登録処理を呼ぶ *@ @form(CSRF(userForm(&quot;id&quot;).</div>
   </div>
 </article>
 </div>

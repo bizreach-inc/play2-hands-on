@@ -72,7 +72,7 @@ generator.lineBreak=LF
 # generator.template: interpolation/queryDsl
 generator.template=queryDsl
 # generator.testTemplate: specs2unit/specs2acceptance/ScalaTestFlatSpec
-generator.testTemplate=specs2unit
+generator.testTemplate=ScalaTestFlatSpec
 generator.encoding=UTF-8
 # When you're using Scala 2.11 or higher, you can use case classes for 22+ columns tables
 generator.caseClassOnly=true

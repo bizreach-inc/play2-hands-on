@@ -71,6 +71,22 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
     </item>
     
     <item>
+      <title>ScalikeJDBCのユニットテスト</title>
+      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html</guid>
+      <description>ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。
+このテストコードを少し編集して、実際にテストを動かしてみましょう。
+scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。
+libraryDependencies += &amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-test&amp;quot; % &amp;quot;3.2.2&amp;quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。
+初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。
+class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&amp;quot;u&amp;quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&amp;quot;c&amp;quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。
+UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。
+it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val entity = Users.</description>
+    </item>
+    
+    <item>
       <title>プロジェクトの作成</title>
       <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

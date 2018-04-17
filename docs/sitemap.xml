@@ -122,6 +122,10 @@
   </url>
   
   <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html</loc>
+  </url>
+  
+  <url>
     <loc>http://bizreach.github.io/play2-hands-on/tags.html</loc>
     <priority>0</priority>
   </url>

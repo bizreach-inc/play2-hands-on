@@ -58,6 +58,29 @@
     <div class="row">
       
       <div class="col-sm-6 col-xs-12"><article class="li">
+  <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html" class="thumb"></a>
+  <div class="content-inner thin">
+    <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html">ユーザ登録・編集画面の実装</a></h2>
+
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/">play2.6-scalikejdbc3.2</a></li>
+      
+    </ul>
+
+    <div class="summary">リクエストパラメータにIDが指定されているかどうかに応じて以下の処理を行います。
+ リクエストパラメータにIDなし ⇒ 新規登録画面を表示します。 リクエストパラメータにIDあり ⇒ USERSテーブルを検索し、該当のユーザ情報を初期表示した編集画面を表示します。  フォーム 画面からの入力値を受け取るためのFormを定義します。Formは必ずしもコントローラに定義する必要はないのですが、コントローラでの処理に強く依存するため特に理由がない限りコントローラクラスのコンパニオンオブジェクトに定義するとよいでしょう。
+ここではUserControllerと同じソースファイルに以下のようなコンパニオンオブジェクトを追加します。
+object UserController { // フォームの値を格納するケースクラス case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // formから送信されたデータ ⇔ ケースクラスの変換を行う val userForm = Form( mapping( &quot;id&quot; -&gt; optional(longNumber), &quot;name&quot; -&gt; nonEmptyText(maxLength = 20), &quot;companyId&quot; -&gt; optional(number) )(UserForm.apply)(UserForm.unapply) ) }  コンパニオンオブジェクトとは、クラスやトレイトと同じファイル内に同じ名前で定義されたオブジェクトのことで、コンパニオンオブジェクトと対応するクラスやトレイトは互いにprivateなメンバーにアクセスできるなどの特徴があります。クラスやトレイトで使用する共通的なメソッドやクラス等を括り出したりするのに使います。
+ POINT
+ コンパニオンオブジェクトとは、クラスと同じファイル内に同じ名前で定義されたオブジェクトのことです FormはStrutsのアクションフォームのようなものです マッピングに従ってバリデーション（後述）が行われます   ビュー 続いてviews.userパッケージにedit.scala.htmlを実装します。引数にはFormのインスタンスと、プルダウンで選択する会社情報を格納したSeqを受け取ります。
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Companies])(implicit request: MessagesRequestHeader) @import helper._ @main(&quot;ユーザ作成&quot;) { @* IDがある場合は更新処理、ない場合は登録処理を呼ぶ *@ @form(CSRF(userForm(&quot;id&quot;).</div>
+  </div>
+</article>
+</div>
+      
+      
+      <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/define_routing.html" class="thumb"></a>
   <div class="content-inner thin">
     <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/define_routing.html">ルーティングの定義</a></h2>
@@ -75,7 +98,7 @@ package controllers import play.api.mvc._ import play.api.data._ import play.api
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_processing.html" class="thumb"></a>
@@ -95,7 +118,7 @@ withSQL { delete.from(Users).where.eq(Users.column.id, entity.id) }.update.apply
   </div>
 </article>
 </div>
-      <div class="col-sm-12"></div>
+      
       
       <div class="col-sm-6 col-xs-12"><article class="li">
   <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_processing.html" class="thumb"></a>
@@ -116,7 +139,7 @@ def update = Action { implicit request =&gt; DB.localTx { implicit session =&gt;
   </div>
 </article>
 </div>
-      
+      <div class="col-sm-12"></div>
       
     </div>
 
