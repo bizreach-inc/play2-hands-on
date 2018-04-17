@@ -71,15 +71,14 @@ val generatedKey = withSQL {
   )
 }.updateAndReturnGeneratedKey.apply()
 
-/* TODO UPDATEをQueryDSLで書き直した場合
+// UPDATEをQueryDSLで書き直した場合
 withSQL {
-  update(Users).set(
-    column.id -> entity.id,
-    column.name -> entity.name,
-    column.companyId -> entity.companyId
-  ).where.eq(column.id, entity.id)
+  val column = Users.column
+  QueryDSL.update(Users).set(
+    column.name -> form.name,
+    column.companyId -> form.companyId
+  ).where.eq(column.id, user.id)
 }.update.apply()
-*/
 ```
 
 > **POINT**
