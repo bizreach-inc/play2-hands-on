@@ -149,9 +149,9 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
       <div class="col-sm-12"></div>
       
       <div class="col-sm-6 col-xs-12"><article class="li">
-  <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html" class="thumb"></a>
+  <a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html" class="thumb"></a>
   <div class="content-inner thin">
-    <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html">ScalikeJDBCのユニットテスト</a></h2>
+    <h2 class="title"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html">ScalikeJDBCの実践的なトピック</a></h2>
 
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
@@ -159,14 +159,14 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
       
     </ul>
 
-    <div class="summary">ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。
-このテストコードを少し編集して、実際にテストを動かしてみましょう。
-scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。
-libraryDependencies += &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot; % &quot;3.2.2&quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。
-初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。
-class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&quot;u&quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&quot;c&quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。
-UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。
-it should &quot;save a record&quot; in { implicit session =&gt; val entity = Users.</div>
+    <div class="summary">ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。
+検索処理 複数のテーブルを結合したいケースはよくあります。
+INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。
+val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。
+val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。
+rs.intOpt(c.resultName.id).map(_ =&gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。
+sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。
+val users: Seq[(Users, Companies)] = sql&quot;&quot;&quot; |SELECT ${u.result.*}, ${c.</div>
   </div>
 </article>
 </div>

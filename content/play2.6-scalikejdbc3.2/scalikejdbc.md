@@ -1,26 +1,69 @@
 ---
-title: ScalikeJDBCのユニットテスト
+title: ScalikeJDBCの実践的なトピック
 ---
 
-ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。
-テストコードは`test/models`パッケージにあります。
+ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。
+
+## 検索処理
+
+複数のテーブルを結合したいケースはよくあります。
+
+INNER JOINはシンプルに`innerJoin`メソッドを使用します。検索結果の取得もシンプルです。以下の例では`USERS`テーブルと`COMPANIES`テーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。
+
+```scala
+val users: Seq[(Users, Companies)] = withSQL {
+  select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id)
+}.map { rs =>
+  (Users(u)(rs), Companies(c)(rs))
+}.list.apply()
+```
+
+LEFT JOINの場合は`leftJoin`メソッドを使用します。
+
+```scala
+val users: Seq[(Users, Option[Companies])] = withSQL {
+  select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id)
+}.map { rs =>
+  (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ => Companies(c)(rs)))
+}.list.apply()
+```
+
+LEFT JOINしたテーブルの値を取得する場合、`map()`メソッドで`Option`型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットから`COMPANIES`テーブルの`ID`カラムを`intOpt`メソッドで`Option[Int]`型として取得し、値が取得できた場合のみ`Companies`クラスにマッピングするという処理を行っています。
+
+```scala
+rs.intOpt(c.resultName.id).map(_ => Companies(c)(rs))
+```
+
+また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。
+
+`sql` interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。
+
+```scala
+val users: Seq[(Users, Companies)] = sql"""
+  |SELECT ${u.result.*}, ${c.result.*}
+  |FROM ${Users.as(u)} INNER JOIN ${Companies.as(c)}
+  |ON ${u.companyId} = ${c.id}
+""".stripMargin.map { rs =>
+  (Users(u)(rs), Companies(c)(rs))
+}.list.apply()
+```
+
+SELECT句に大量のカラムを記述する必要がなかったり、テーブル名やカラム名のタイプミスを防ぐことができます。また、`sql` interpolationを使う場合は`withSQL { ... }`で囲む必要はありません。`map()`メソッド以降はQueryDSLの場合と同じです。
+
+
+## ユニットテスト
+
+scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれます。テストコードは`test/models`パッケージにあります。
 
 このテストコードを少し編集して、実際にテストを動かしてみましょう。
 
-## scalikejdbc-testライブラリを追加
-
-`build.sbt`にライブラリを追加します。
+まず、`build.sbt`にscalikejdbc-testライブラリを追加します。
 
 ```scala
 libraryDependencies += "org.scalikejdbc" %% "scalikejdbc-test" % "3.2.2" % Test
 ```
 
-これで、自動生成されたテストコードのコンパイルが通るようになります。
-
-## 初期化処理を追加
-
-DBの接続情報を読み込む方法はいくつかありますが、今回は既に`conf/application.conf`にある`db.default.*`の設定をテストにも流用します。
-`UsersSpec`と`CompaniesSpec`に初期化処理を追加します。
+次に、DBの接続情報を読み込む処理をテストコードに追加します。方法はいくつかありますが、今回は既に`conf/application.conf`にある`db.default.*`の設定をテストにも流用します。
 
 ```scala
 class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback {
@@ -42,9 +85,7 @@ class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback {
 }
 ```
 
-## テストを修正
-
-自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。
+最後に、テストケースをハンズオンの形式に合わせて修正します。
 
 `UsersSpec`にある`save`メソッドのテストは、以下のようにTODOになっているところがあります。
 
@@ -123,8 +164,6 @@ class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback {
 }
 ```
 
-## 実行
-
 ここまで修正したらテストを実行します。
 
 ```
@@ -151,4 +190,5 @@ sbt "testOnly models.CompaniesSpec"
 
 ScalikeJDBCの詳細については以下のドキュメントが参考になります。
 
+- http://scalikejdbc.org/documentation/query-dsl.html
 - https://github.com/scalikejdbc/scalikejdbc-cookbook/blob/master/ja/08_unittest.md

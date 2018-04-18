@@ -9,8 +9,8 @@ import scalikejdbc._
 import models._
 
 object JsonController {
-  // UsersRowをJSONに変換するためのWritesを定義
-  implicit val usersRowWritesWrites = (
+  // UsersをJSONに変換するためのWritesを定義
+  implicit val usersWrites = (
     (__ \ "id"       ).write[Long]   and
     (__ \ "name"     ).write[String] and
     (__ \ "companyId").writeNullable[Int]
@@ -21,7 +21,7 @@ object JsonController {
   case class UserForm(id: Option[Long], name: String, companyId: Option[Int])
 
   // JSONをUserFormに変換するためのReadsを定義
-  implicit val userFormFormat = (
+  implicit val userFormReads = (
     (__ \ "id"       ).readNullable[Long] and
     (__ \ "name"     ).read[String]       and
     (__ \ "companyId").readNullable[Int]

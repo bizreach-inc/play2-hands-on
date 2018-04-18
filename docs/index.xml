@@ -346,19 +346,19 @@ val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT $
     </item>
     
     <item>
-      <title>ScalikeJDBCのユニットテスト</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html</link>
+      <title>ScalikeJDBCの実践的なトピック</title>
+      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html</guid>
-      <description>ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。
-このテストコードを少し編集して、実際にテストを動かしてみましょう。
-scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。
-libraryDependencies += &amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-test&amp;quot; % &amp;quot;3.2.2&amp;quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。
-初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。
-class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&amp;quot;u&amp;quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&amp;quot;c&amp;quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。
-UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。
-it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val entity = Users.</description>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html</guid>
+      <description>ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。
+検索処理 複数のテーブルを結合したいケースはよくあります。
+INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。
+val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。
+val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。
+rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。
+sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。
+val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT ${u.result.*}, ${c.</description>
     </item>
     
     <item>

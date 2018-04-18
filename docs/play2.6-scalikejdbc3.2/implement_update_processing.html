@@ -202,15 +202,14 @@ val generatedKey = withSQL {
   )
 }.updateAndReturnGeneratedKey.apply()
 
-/* TODO UPDATEをQueryDSLで書き直した場合
+// UPDATEをQueryDSLで書き直した場合
 withSQL {
-  update(Users).set(
-    column.id -&gt; entity.id,
-    column.name -&gt; entity.name,
-    column.companyId -&gt; entity.companyId
-  ).where.eq(column.id, entity.id)
+  val column = Users.column
+  QueryDSL.update(Users).set(
+    column.name -&gt; form.name,
+    column.companyId -&gt; form.companyId
+  ).where.eq(column.id, user.id)
 }.update.apply()
-*/
 </code></pre>
 
 <blockquote>
@@ -325,7 +324,7 @@ withSQL {
           
           
           
-          <li class="p-terms"><a href="scalikejdbc_test.html">ScalikeJDBCのユニットテスト</a></li>
+          <li class="p-terms"><a href="scalikejdbc.html">ScalikeJDBCの実践的なトピック</a></li>
           
           
           

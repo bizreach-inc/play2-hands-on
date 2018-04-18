@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
 
 
-<link rel="canonical" href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html">
+<link rel="canonical" href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html">
 
 
     
@@ -21,23 +21,23 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>ScalikeJDBCのユニットテスト - Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
+    <title>ScalikeJDBCの実践的なトピック - Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
     
-<meta name="description" content="ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。このテストコードを少し編集して、実際にテストを動かしてみましょう。scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。libraryDependencies &#43;= &amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-test&amp;quot; % &amp;quot;3.2.2&amp;quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&amp;quot;u&amp;quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&amp;quot;c&amp;quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val entity = Users.">
+<meta name="description" content="ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。検索処理 複数のテーブルを結合したいケースはよくあります。INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT ${u.result.*}, ${c.">
 
-<meta property="og:title" content="ScalikeJDBCのユニットテスト - Play2 &#43; Slick / ScalikeJDBCハンズオン">
+<meta property="og:title" content="ScalikeJDBCの実践的なトピック - Play2 &#43; Slick / ScalikeJDBCハンズオン">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html">
+<meta property="og:url" content="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html">
 <meta property="og:image" content="http://bizreach.github.io/play2-hands-on/images/default.png">
 <meta property="og:site_name" content="Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta property="og:description" content="ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。このテストコードを少し編集して、実際にテストを動かしてみましょう。scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。libraryDependencies &#43;= &amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-test&amp;quot; % &amp;quot;3.2.2&amp;quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&amp;quot;u&amp;quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&amp;quot;c&amp;quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val entity = Users.">
+<meta property="og:description" content="ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。検索処理 複数のテーブルを結合したいケースはよくあります。INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT ${u.result.*}, ${c.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta name="twitter:url" content="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc_test.html">
-<meta name="twitter:title" content="ScalikeJDBCのユニットテスト - Play2 &#43; Slick / ScalikeJDBCハンズオン">
-<meta name="twitter:description" content="ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。このテストコードを少し編集して、実際にテストを動かしてみましょう。scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。libraryDependencies &#43;= &amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-test&amp;quot; % &amp;quot;3.2.2&amp;quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&amp;quot;u&amp;quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&amp;quot;c&amp;quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val entity = Users.">
+<meta name="twitter:url" content="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html">
+<meta name="twitter:title" content="ScalikeJDBCの実践的なトピック - Play2 &#43; Slick / ScalikeJDBCハンズオン">
+<meta name="twitter:description" content="ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。検索処理 複数のテーブルを結合したいケースはよくあります。INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT ${u.result.*}, ${c.">
 <meta name="twitter:image" content="http://bizreach.github.io/play2-hands-on/images/default.png">
 
 
@@ -49,7 +49,7 @@
       "@type": "WebPage",
       "@id":"http://bizreach.github.io/play2-hands-on/"
     },
-    "headline": "ScalikeJDBCのユニットテスト - Play2 &#43; Slick / ScalikeJDBCハンズオン",
+    "headline": "ScalikeJDBCの実践的なトピック - Play2 &#43; Slick / ScalikeJDBCハンズオン",
     "image": {
       "@type": "ImageObject",
       "url": "http://bizreach.github.io/play2-hands-on/images/default.png",
@@ -72,14 +72,14 @@
         "height": 60
       }
     },
-    "description": "ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。 テストコードはtest/modelsパッケージにあります。
-このテストコードを少し編集して、実際にテストを動かしてみましょう。
-scalikejdbc-testライブラリを追加 build.sbtにユニットテストのサポート機能を提供するライブラリを追加します。
-libraryDependencies += &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot; % &quot;3.2.2&quot; % Test  これで、自動生成されたテストコードのコンパイルが通るようになります。
-初期化処理を追加 接続情報を読み込む方法はいくつかありますが、今回は既にconf/application.confにあるdb.default.*の設定を使います。 UsersSpecとCompaniesSpecに初期化処理を追加します。
-class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&quot;u&quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&quot;c&quot;) ... }  テストを修正 自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。
-UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。
-it should &quot;save a record&quot; in { implicit session =&gt; val entity = Users."
+    "description": "ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。
+検索処理 複数のテーブルを結合したいケースはよくあります。
+INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。
+val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。
+val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。
+rs.intOpt(c.resultName.id).map(_ =&gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。
+sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。
+val users: Seq[(Users, Companies)] = sql&quot;&quot;&quot; |SELECT ${u.result.*}, ${c."
   }
 </script>
 
@@ -121,13 +121,13 @@ it should &quot;save a record&quot; in { implicit session =&gt; val entity = Use
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/" itemprop="url"><span itemprop="title">play2.6-scalikejdbc3.2</span></a></li>
         
-        <li class="active">ScalikeJDBCのユニットテスト</li>
+        <li class="active">ScalikeJDBCの実践的なトピック</li>
       </ol>
     </nav>
 
     <article class="single">
       <div class="content-inner">
-        <h1 class="title">ScalikeJDBCのユニットテスト</h1>
+        <h1 class="title">ScalikeJDBCの実践的なトピック</h1>
 
         <ul class="p-facts">
           <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/">play2.6-scalikejdbc3.2</a></li>
@@ -137,24 +137,62 @@ it should &quot;save a record&quot; in { implicit session =&gt; val entity = Use
         <div class="article-body">
           
 
-<p>ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれています。
-テストコードは<code>test/models</code>パッケージにあります。</p>
+<p>ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。</p>
+
+<h2 id="検索処理">検索処理</h2>
+
+<p>複数のテーブルを結合したいケースはよくあります。</p>
+
+<p>INNER JOINはシンプルに<code>innerJoin</code>メソッドを使用します。検索結果の取得もシンプルです。以下の例では<code>USERS</code>テーブルと<code>COMPANIES</code>テーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。</p>
+
+<pre><code class="language-scala">val users: Seq[(Users, Companies)] = withSQL {
+  select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id)
+}.map { rs =&gt;
+  (Users(u)(rs), Companies(c)(rs))
+}.list.apply()
+</code></pre>
+
+<p>LEFT JOINの場合は<code>leftJoin</code>メソッドを使用します。</p>
+
+<pre><code class="language-scala">val users: Seq[(Users, Option[Companies])] = withSQL {
+  select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id)
+}.map { rs =&gt;
+  (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&gt; Companies(c)(rs)))
+}.list.apply()
+</code></pre>
+
+<p>LEFT JOINしたテーブルの値を取得する場合、<code>map()</code>メソッドで<code>Option</code>型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットから<code>COMPANIES</code>テーブルの<code>ID</code>カラムを<code>intOpt</code>メソッドで<code>Option[Int]</code>型として取得し、値が取得できた場合のみ<code>Companies</code>クラスにマッピングするという処理を行っています。</p>
+
+<pre><code class="language-scala">rs.intOpt(c.resultName.id).map(_ =&gt; Companies(c)(rs))
+</code></pre>
+
+<p>また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。</p>
+
+<p><code>sql</code> interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。</p>
+
+<pre><code class="language-scala">val users: Seq[(Users, Companies)] = sql&quot;&quot;&quot;
+  |SELECT ${u.result.*}, ${c.result.*}
+  |FROM ${Users.as(u)} INNER JOIN ${Companies.as(c)}
+  |ON ${u.companyId} = ${c.id}
+&quot;&quot;&quot;.stripMargin.map { rs =&gt;
+  (Users(u)(rs), Companies(c)(rs))
+}.list.apply()
+</code></pre>
+
+<p>SELECT句に大量のカラムを記述する必要がなかったり、テーブル名やカラム名のタイプミスを防ぐことができます。また、<code>sql</code> interpolationを使う場合は<code>withSQL { ... }</code>で囲む必要はありません。<code>map()</code>メソッド以降はQueryDSLの場合と同じです。</p>
+
+<h2 id="ユニットテスト">ユニットテスト</h2>
+
+<p>scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれます。テストコードは<code>test/models</code>パッケージにあります。</p>
 
 <p>このテストコードを少し編集して、実際にテストを動かしてみましょう。</p>
 
-<h2 id="scalikejdbc-testライブラリを追加">scalikejdbc-testライブラリを追加</h2>
-
-<p><code>build.sbt</code>にユニットテストのサポート機能を提供するライブラリを追加します。</p>
+<p>まず、<code>build.sbt</code>にscalikejdbc-testライブラリを追加します。</p>
 
 <pre><code class="language-scala">libraryDependencies += &quot;org.scalikejdbc&quot; %% &quot;scalikejdbc-test&quot; % &quot;3.2.2&quot; % Test
 </code></pre>
 
-<p>これで、自動生成されたテストコードのコンパイルが通るようになります。</p>
-
-<h2 id="初期化処理を追加">初期化処理を追加</h2>
-
-<p>接続情報を読み込む方法はいくつかありますが、今回は既に<code>conf/application.conf</code>にある<code>db.default.*</code>の設定を使います。
-<code>UsersSpec</code>と<code>CompaniesSpec</code>に初期化処理を追加します。</p>
+<p>次に、DBの接続情報を読み込む処理をテストコードに追加します。方法はいくつかありますが、今回は既に<code>conf/application.conf</code>にある<code>db.default.*</code>の設定をテストにも流用します。</p>
 
 <pre><code class="language-scala">class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback {
   // 初期化処理を追加
@@ -174,9 +212,7 @@ it should &quot;save a record&quot; in { implicit session =&gt; val entity = Use
 }
 </code></pre>
 
-<h2 id="テストを修正">テストを修正</h2>
-
-<p>自動生成はあくまで機械的な生成のため、状況に応じてテストケースを修正する必要があります。</p>
+<p>最後に、テストケースをハンズオンの形式に合わせて修正します。</p>
 
 <p><code>UsersSpec</code>にある<code>save</code>メソッドのテストは、以下のようにTODOになっているところがあります。</p>
 
@@ -193,7 +229,8 @@ it should &quot;save a record&quot; in { implicit session =&gt; val entity = Use
 
 <pre><code class="language-scala">it should &quot;save a record&quot; in { implicit session =&gt;
   val entity = Users.findAll().head
-  val modified = entity.copy(name = &quot;modify&quot;)   // nameを変更
+  // nameを変更
+  val modified = entity.copy(name = &quot;modify&quot;)
   val updated = Users.save(modified)
   updated should not equal(entity)
 }
@@ -203,7 +240,8 @@ it should &quot;save a record&quot; in { implicit session =&gt; val entity = Use
 
 <pre><code class="language-scala">it should &quot;save a record&quot; in { implicit session =&gt;
   val entity = Companies.findAll().head
-  val modified = entity.copy(name = &quot;modify&quot;)   // nameを変更
+  // nameを変更
+  val modified = entity.copy(name = &quot;modify&quot;)
   val updated = Companies.save(modified)
   updated should not equal(entity)
 }
@@ -224,29 +262,30 @@ ScalikeJDBCでは以下のように<code>fixture</code>メソッドをoverride�
   ...
 
   it should &quot;create new record&quot; in { implicit session =&gt;
-    val created = Companies.create(id = 999, name = &quot;MyString&quot;)     // 一意なIDを指定
+    // 一意なIDを指定
+    val created = Companies.create(id = 999, name = &quot;MyString&quot;)
     created should not be(null)
   }
 
   ...
 
   it should &quot;destroy a record&quot; in { implicit session =&gt;
-    val entity = Companies.find(123).get        // フィクスチャで生成したデータを取得
+    // フィクスチャで生成したデータが削除対象
+    val entity = Companies.find(123).get
     val deleted = Companies.destroy(entity)
     deleted should be(1)
-    val shouldBeNone = Companies.find(123)      // フィクスチャで生成したデータを取得
+    val shouldBeNone = Companies.find(123)
     shouldBeNone.isDefined should be(false)
   }
   it should &quot;perform batch insert&quot; in { implicit session =&gt;
-    val entities = Companies.findAllBy(sqls.in(c.id, Seq(123, 234)))  // フィクスチャで生成したデータを取得
+    // フィクスチャで生成したデータをバッチ更新
+    val entities = Companies.findAllBy(sqls.in(c.id, Seq(123, 234)))
     entities.foreach(e =&gt; Companies.destroy(e))
     val batchInserted = Companies.batchInsert(entities)
     batchInserted.size should be &gt;(0)
   }
 }
 </code></pre>
-
-<h2 id="実行">実行</h2>
 
 <p>ここまで修正したらテストを実行します。</p>
 
@@ -272,6 +311,7 @@ ScalikeJDBCでは以下のように<code>fixture</code>メソッドをoverride�
 <p>ScalikeJDBCの詳細については以下のドキュメントが参考になります。</p>
 
 <ul>
+<li><a href="http://scalikejdbc.org/documentation/query-dsl.html">http://scalikejdbc.org/documentation/query-dsl.html</a></li>
 <li><a href="https://github.com/scalikejdbc/scalikejdbc-cookbook/blob/master/ja/08_unittest.md">https://github.com/scalikejdbc/scalikejdbc-cookbook/blob/master/ja/08_unittest.md</a></li>
 </ul>
 
@@ -366,7 +406,7 @@ ScalikeJDBCでは以下のように<code>fixture</code>メソッドをoverride�
           
           
           
-          <li class="p-terms"><a href="scalikejdbc_test.html" class="active">ScalikeJDBCのユニットテスト</a></li>
+          <li class="p-terms"><a href="scalikejdbc.html" class="active">ScalikeJDBCの実践的なトピック</a></li>
           
           
           
