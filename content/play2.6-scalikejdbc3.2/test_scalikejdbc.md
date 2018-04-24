@@ -134,3 +134,7 @@ sbt test
 ```
 sbt "testOnly models.CompaniesSpec"
 ```
+
+ScalikeJDBCのユニットテストについては以下のドキュメントが参考になります。
+
+- https://github.com/scalikejdbc/scalikejdbc-cookbook/blob/master/ja/08_unittest.md
