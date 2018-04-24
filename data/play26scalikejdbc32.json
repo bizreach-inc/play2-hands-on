@@ -8,9 +8,11 @@
   {"file": "implement_user_form", "title": "ユーザ登録・編集画面の実装"},
   {"file": "implement_update_processing", "title": "登録・更新処理の実装"},
   {"file": "implement_delete_processing", "title": "削除処理の実装"},
-  {"file": "scalikejdbc", "title": "ScalikeJDBCの実践的なトピック"},
+  {"file": "implement_join", "title": "ジョインの必要な処理"},
   {"file": "preparation_for_json", "title": "JSON APIの準備"},
   {"file": "implement_list_api", "title": "ユーザ一覧APIの実装"},
   {"file": "implement_update_api", "title": "ユーザ登録・更新APIの実装"},
-  {"file": "implement_delete_api", "title": "ユーザ削除APIの実装"}
+  {"file": "implement_delete_api", "title": "ユーザ削除APIの実装"},
+  {"file": "test_scalikejdbc", "title": "ScalikeJDBCのテスト"},
+  {"file": "test_play", "title": "Play2のテスト"}
 ]

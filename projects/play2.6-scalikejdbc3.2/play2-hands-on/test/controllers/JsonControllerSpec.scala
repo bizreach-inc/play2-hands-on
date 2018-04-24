@@ -2,7 +2,7 @@ package controllers
 
 import org.scalatestplus.play._
 import org.scalatestplus.play.guice._
-import play.api.libs.json.JsValue
+import play.api.libs.json._
 import play.api.test._
 import play.api.test.Helpers._
 
@@ -17,7 +17,11 @@ class JsonControllerSpec extends PlaySpec with GuiceOneAppPerSuite with Injectin
 
       status(result) mustBe OK
       contentType(result) mustBe Some("application/json")
-      (contentAsJson(result) \ "users").as[List[JsValue]].size mustBe >(0)
+
+      val resultJson = contentAsJson(result)
+      val expectedJson = Json.parse("""{"users":[{"id":1,"name":"Taro Yamada","companyId":1},{"id":2,"name":"Jiro Sato"}]}""")
+
+      resultJson mustEqual expectedJson
     }
 
   }

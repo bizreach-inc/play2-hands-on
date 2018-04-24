@@ -62,7 +62,7 @@ class JsonController @Inject()(components: ControllerComponents)
       }
     }.recoverTotal { e =>
       // NGの場合はバリデーションエラーを返す
-      BadRequest(Json.obj("result" ->"failure", "error" -> JsError.toJson(e)))
+      BadRequest(Json.obj("result" -> "failure", "error" -> JsError.toJson(e)))
     }
   }
 
@@ -80,7 +80,7 @@ class JsonController @Inject()(components: ControllerComponents)
       }
     }.recoverTotal { e =>
       // NGの場合はバリデーションエラーを返す
-      BadRequest(Json.obj("result" ->"failure", "error" -> JsError.toJson(e)))
+      BadRequest(Json.obj("result" -> "failure", "error" -> JsError.toJson(e)))
     }
   }
 
