@@ -37,7 +37,7 @@ implicit val usersRowWritesFormat = new Writes[UsersRow]{
 
 > **POINT**
 >
-> * Play2のJSONサポートではオブジェクトとJSONの返還を行うために`Reads`や`Writes`でマッピングを定義する必要があります
+> * Play2のJSONサポートではオブジェクトとJSONの変換を行うために`Reads`や`Writes`でマッピングを定義する必要があります
 > * Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます
 
 ## コントローラ

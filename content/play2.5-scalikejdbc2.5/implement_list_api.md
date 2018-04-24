@@ -8,12 +8,12 @@ title: ユーザ一覧APIの実装
 
 Play2のJSONサポートでは、ScalaオブジェクトをJSONに変換するには`Writes`、JSONをScalaオブジェクトに変換するためには`Reads`を定義する必要があります。
 
-ここでは`USERS`テーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、`USERS`テーブルに対応する`UsersRow`クラスに対応する`Writes`を定義しておく必要があります。画面から値を受け取る`Form`と同様、該当のコントローラ（ここでは`JsonController`）のコンパニオンオブジェクトとして以下の内容を追加します。
+ここでは`USERS`テーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、`USERS`テーブルに対応する`Users`クラスに対応する`Writes`を定義しておく必要があります。画面から値を受け取る`Form`と同様、該当のコントローラ（ここでは`JsonController`）のコンパニオンオブジェクトとして以下の内容を追加します。
 
 ```scala
 object JsonController {
-  // UsersRowをJSONに変換するためのWritesを定義
-  implicit val usersRowWritesWrites = (
+  // UsersをJSONに変換するためのWritesを定義
+  implicit val usersWrites = (
     (__ \ "id"       ).write[Long]   and
     (__ \ "name"     ).write[String] and
     (__ \ "companyId").writeNullable[Int]
@@ -37,7 +37,7 @@ implicit val usersWritesFormat = new Writes[Users]{
 
 > **POINT**
 >
-> * Play2のJSONサポートではオブジェクトとJSONの返還を行うために`Reads`や`Writes`でマッピングを定義する必要があります
+> * Play2のJSONサポートではオブジェクトとJSONの変換を行うために`Reads`や`Writes`でマッピングを定義する必要があります
 > * Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます
 
 ## コントローラ
