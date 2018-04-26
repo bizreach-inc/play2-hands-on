@@ -22,7 +22,7 @@ class JsonControllerSpec extends PlaySpec with GuiceOneAppPerSuite with Injectin
       val controller = inject[JsonController]
       // FakeRequestを使ってコントローラーのメソッドを呼び出す
       val result = controller.list.apply(FakeRequest())
-      
+
       // レスポンスのステータスを確認
       status(result) mustBe OK
       // レスポンスのContent-Typeを確認
@@ -62,5 +62,4 @@ sbt test
 sbt "testOnly controllers.JsonControllerSpec"
 ```
 
-ここではアプリケーションの実行時と同じDBを使用してテストを実行しているため、DBの状態が初期状態から変わっているとテストが失敗してしまいます。実際にはテスト専用のDBを用いたり、テスト毎にDBの内容をロールバックするといった工夫も必要になってきます。
-
+テスト用のDBが初期状態から変わっているとテストが失敗してしまうので、実際にはテスト毎に変更内容をロールバックするといった工夫も必要になってきます。
