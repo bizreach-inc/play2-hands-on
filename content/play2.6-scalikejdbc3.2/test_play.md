@@ -62,4 +62,6 @@ sbt test
 sbt "testOnly controllers.JsonControllerSpec"
 ```
 
-テスト用のDBが初期状態から変わっているとテストが失敗してしまうので、実際にはテスト毎に変更内容をロールバックするといった工夫も必要になってきます。
+テスト用のDBが初期状態から変わっているとテストが失敗してしまうので、実際にはテスト毎に変更内容をロールバックするといった工夫も必要になってきます。ScalikeJDBCにはPlay2のアプリケーション向けのテストフィクスチャが提供されていますので、このようなライブラリを活用するのもよいでしょう。
+
+- https://github.com/scalikejdbc/scalikejdbc-cookbook/blob/master/ja/10_play.md#scalikejdbc-play-fixture
