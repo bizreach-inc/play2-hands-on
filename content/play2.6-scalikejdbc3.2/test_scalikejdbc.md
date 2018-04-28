@@ -5,6 +5,7 @@ title: ScalikeJDBCのテスト
 scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれます。テストコードは`test/models`パッケージにあります。
 
 このテストコードを少し編集して、実際にテストを動かしてみましょう。
+今回はテスト用のDB`h2/test.mv.db`を用意していますので、こちらを使うようにします。
 
 まず、`build.sbt`にscalikejdbc-testライブラリを追加します。
 
@@ -12,7 +13,21 @@ scalikejdbcGenではソースコード生成時に対応するテストコード
 libraryDependencies += "org.scalikejdbc" %% "scalikejdbc-test" % "3.2.2" % Test
 ```
 
-次に、DBの接続情報を読み込む処理をテストコードに追加します。方法はいくつかありますが、今回は既に`conf/application.conf`にある`db.default.*`の設定をテストにも流用します。
+次に、テスト用のDBを読み込む準備をします。方法はいくつかありますが、今回は`conf/test.conf`というファイルを以下の内容で作成します。
+
+```properties
+include "application.conf"
+
+db.default.url="jdbc:h2:tcp://localhost/test"
+```
+
+テストではこちらの設定を読み込むよう`build.sbt`に以下を追加します。
+
+```scala
+javaOptions in Test += "-Dconfig.file=conf/test.conf"
+```
+
+初期化処理をテストコードに追加します。
 
 ```scala
 class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback {
