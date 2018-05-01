@@ -3,7 +3,6 @@ package controllers
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-import play.api.i18n.I18nSupport
 import javax.inject.Inject
 import scalikejdbc._
 import models._
@@ -24,8 +23,8 @@ object UserController {
 
 }
 
-class UserController @Inject()(components: ControllerComponents)
-  extends AbstractController(components) with I18nSupport {
+class UserController @Inject()(components: MessagesControllerComponents)
+  extends MessagesAbstractController(components) {
   import UserController._
 
   private val u = Users.syntax("u")
@@ -82,7 +81,7 @@ class UserController @Inject()(components: ControllerComponents)
       userForm.bindFromRequest.fold(
         // エラーの場合
         error => {
-          BadRequest(views.html.user.edit(error, Companies.findAll())) // TODO
+          BadRequest(views.html.user.edit(error, Companies.findAll()))
         },
         // OKの場合
         form  => {
@@ -102,11 +101,11 @@ class UserController @Inject()(components: ControllerComponents)
     DB.localTx { implicit session =>
       // リクエストの内容をバインド
       userForm.bindFromRequest.fold(
-        // エラーの場合は登録画面に戻す
+        // エラーの場合は編集画面に戻す
         error => {
-          BadRequest(views.html.user.edit(error, Companies.findAll())) // TODO
+          BadRequest(views.html.user.edit(error, Companies.findAll()))
         },
-        // OKの場合は登録を行い一覧画面にリダイレクトする
+        // OKの場合は更新を行い一覧画面にリダイレクトする
         form => {
           // ユーザ情報を更新
           Users.find(form.id.get).foreach { account =>
