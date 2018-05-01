@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="theme-color" content="#263238">
 
-<meta name="generator" content="Hugo 0.38.2" />
+<meta name="generator" content="Hugo 0.39" />
 
 <link rel="shortcut icon" href="http://bizreach.github.io/play2-hands-on/images/favicon.ico" />
 <link rel="apple-touch-icon" href="http://bizreach.github.io/play2-hands-on/images/logo.png">
@@ -193,7 +193,7 @@ Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSON�
 ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersRowクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
 object JsonController { // UsersRowをJSONに変換するためのWritesを定義 implicit val usersRowWritesWrites = ( (__ \ &quot;id&quot; ).write[Long] and (__ \ &quot;name&quot; ).write[String] and (__ \ &quot;companyId&quot;).writeNullable[Int] )(unlift(UsersRow.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
 implicit val usersRowWritesFormat = new Writes[UsersRow]{ def writes(user: UsersRow): JsValue = { Json.obj( &quot;id&quot; -&gt; user.id, &quot;name&quot; -&gt; user.name, &quot;companyId&quot; -&gt; user.companyId ) } }   POINT
- Play2のJSONサポートではオブジェクトとJSONの返還を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
+ Play2のJSONサポートではオブジェクトとJSONの変換を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
 // コンパニオンオブジェクトに定義したReads、Writesを参照するためにimport文を追加 import JsonController.</div>
   </div>
 </article>

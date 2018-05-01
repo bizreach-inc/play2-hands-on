@@ -332,6 +332,17 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
     </item>
     
     <item>
+      <title>Play2のテスト</title>
+      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</guid>
+      <description>Play2はPlay2で開発されたアプリケーションのユニットテストのための機能を提供しています。デフォルトでHomeControllerに対するテストケースが生成されていますが、ここではハンズオンで作成したJSON APIに対するテストを作成してみましょう。
+test/controllersに以下の内容でJsonControllerSpecを作成します。
+package controllers import org.scalatestplus.play._ import org.scalatestplus.play.guice._ import play.api.libs.json._ import play.api.test._ import play.api.test.Helpers._ class JsonControllerSpec extends PlaySpec with GuiceOneAppPerSuite with Injecting { &amp;quot;JsonController GET&amp;quot; should { &amp;quot;request users list from the application&amp;quot; in { // Guiceからコントローラーのインスタンスを取得 val controller = inject[JsonController] // FakeRequestを使ってコントローラーのメソッドを呼び出す val result = controller.list.apply(FakeRequest()) // レスポンスのステータスを確認 status(result) mustBe OK // レスポンスのContent-Typeを確認 contentType(result) mustBe Some(&amp;quot;application/json&amp;quot;) // レスポンスのJSONを確認 val resultJson = contentAsJson(result) val expectedJson = Json.parse( &amp;quot;&amp;quot;&amp;quot;{&amp;quot;users&amp;quot;:[{&amp;quot;id&amp;quot;:1,&amp;quot;name&amp;quot;:&amp;quot;Taro Yamada&amp;quot;,&amp;quot;companyId&amp;quot;:1},{&amp;quot;id&amp;quot;:2,&amp;quot;name&amp;quot;:&amp;quot;Jiro Sato&amp;quot;}]}&amp;quot;&amp;quot;&amp;quot; ) resultJson mustEqual expectedJson } } }  このテストケースでは実際にHTTPリクエストを送信するのではなく、FakeRequestというダミーのリクエストを使用してコントローラーを呼び出しています。テストケース内ではテスト用のヘルパーメソッドでレスポンスの情報を取得することができるので、それらの情報が期待通りかどうかを確認することでテストを行うことができます。</description>
+    </item>
+    
+    <item>
       <title>ScalikeJDBCでの実践的な検索処理</title>
       <link>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/scalikejdbc.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -346,19 +357,20 @@ val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT $
     </item>
     
     <item>
-      <title>ScalikeJDBCの実践的なトピック</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html</link>
+      <title>ScalikeJDBCのテスト</title>
+      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html</guid>
-      <description>ここまでscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLによる処理をみてきましたが、ここではもう少し実践的なトピックについて紹介します。
-検索処理 複数のテーブルを結合したいケースはよくあります。
-INNER JOINはシンプルにinnerJoinメソッドを使用します。検索結果の取得もシンプルです。以下の例ではUSERSテーブルとCOMPANIESテーブルをINNER JOINし、検索結果をそれぞれのモデルクラスのタプルのシーケンスで取得しています。
-val users: Seq[(Users, Companies)] = withSQL { select.from(Users as u).innerJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), Companies(c)(rs)) }.list.apply()  LEFT JOINの場合はleftJoinメソッドを使用します。
-val users: Seq[(Users, Option[Companies])] = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id) }.map { rs =&amp;gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))) }.list.apply()  LEFT JOINしたテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。
-rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  また、集計処理といった少し複雑なSQLの場合は直接記述したいことがあります。
-sql interpolationを使うと文字列リテラルで生SQLを記述することができます。ただし、SQLを完全に記述するだけでなく、自動生成されたクラスを使って記述を補助することができます。
-val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT ${u.result.*}, ${c.</description>
+      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</guid>
+      <description>scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれます。テストコードはtest/modelsパッケージにあります。
+このテストコードを少し編集して、実際にテストを動かしてみましょう。 今回はテスト用のDBh2/test.mv.dbを用意していますので、こちらを使うようにします。
+まず、build.sbtにscalikejdbc-testライブラリを追加します。
+libraryDependencies += &amp;quot;org.scalikejdbc&amp;quot; %% &amp;quot;scalikejdbc-test&amp;quot; % &amp;quot;3.2.2&amp;quot; % Test  次に、テスト用のDBを読み込む準備をします。方法はいくつかありますが、今回はconf/test.confというファイルを以下の内容で作成します。
+include &amp;quot;application.conf&amp;quot; db.default.url=&amp;quot;jdbc:h2:tcp://localhost/test&amp;quot;  テストではこちらの設定を読み込むようbuild.sbtに以下を追加します。
+javaOptions in Test += &amp;quot;-Dconfig.file=conf/test.conf&amp;quot;  初期化処理をテストコードに追加します。
+class UsersSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val u = Users.syntax(&amp;quot;u&amp;quot;) ... }  class CompaniesSpec extends fixture.FlatSpec with Matchers with AutoRollback { // 初期化処理を追加 config.DBs.setup() val c = Companies.syntax(&amp;quot;c&amp;quot;) ... }  最後に、テストケースをハンズオンの形式に合わせて修正します。
+UsersSpecにあるsaveメソッドのテストは、以下のようにTODOになっているところがあります。
+it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val entity = Users.</description>
     </item>
     
     <item>
@@ -377,6 +389,21 @@ val users: Seq[(Users, Companies)] = sql&amp;quot;&amp;quot;&amp;quot; |SELECT $
       
       <guid>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/tips.html</guid>
       <description>Play2  playコマンド実行時のVMオプションの設定  ヒープ設定やプロキシ設定などJVMの起動オプションを設定するには環境変数JAVA_OPTSを使用します  Playが使用するローカルリポジトリ  以前のバージョンのPlayはPLAY_HOME/repositoryディレクトリ配下に独自のローカルリポジトリとキャッシュを持っていましたが、Play 2.3ではSBT標準のHOME/.ivy2ディレクトリ配下を使うようになりました  Play公式サイトのドキュメントは https://www.playframework.com/documentation/2.5.x/Home にあります（2.5.x向けのドキュメントは日本語には未翻訳です） Play 2.5以前から2.5へのマイグレーションについては以下のドキュメントを参照してください  Play 2.5 Migration Guide   Slick  https://github.com/bizreach/slick-reference でSlickのリファレンスを公開しています Slick 2.xから3.0へのマイグレーションについては http://slick.typesafe.com/doc/3.0.0/upgrade.html#upgrade-from-2-1-to-3-0 を参照してください  ScalaIDE  Scala IDEはEclipseのバージョン、Scalaのバージョンにあわせて更新サイトが用意されています  最新情報は http://scala-ide.org/download/current.html を参照してください   IntelliJ IDEA  キーボードショートカット  (Windows) http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf (Mac) http://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard_Mac.pdf  IDEAの外観を変更  スキンの変更（背景を黒に） [Appearance]→[Theme]の箇所を&amp;rdquo;Default&amp;rdquo;から&amp;rdquo;Darcula&amp;rdquo;に変更  IntelliJ上でクラスパスが解決できない場合  StringなどJavaの基本的な型が解決できずエラーになってしまう場合は実行した直後はJDKが選択されていない可能性があります [File]→[Project Structure&amp;hellip;]からインストール済みのJDKを選択してください  build.sbtを変更してもクラスパスが解決されないことがありますが、その場合は「File」→「Invalidate Caches / Restart&amp;hellip;」でIntelliJのキャッシュをクリアしてみてください   ##その他</description>
+    </item>
+    
+    <item>
+      <title>ジョインの必要な処理</title>
+      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</guid>
+      <description>ここまではscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLを使用してきましたが、テーブルのジョインが必要なケースについても実装してみましょう。
+ユーザの一覧画面に以下のように会社名を表示するようにしてみます。
+コントローラの修正 まずはUserControllerのlistメソッドを以下のように修正します。
+def list = Action { implicit request =&amp;gt; DB.readOnly { implicit session =&amp;gt; // ユーザのリストを取得 val users = withSQL { select.from(Users as u).leftJoin(Companies as c).on(u.companyId, c.id).orderBy(u.id.asc) }.map { rs =&amp;gt; (Users(u)(rs), rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))) }.list.apply() // 一覧画面を表示 Ok(views.html.user.list(users)) } }  外部結合したテーブルの値を取得する場合、map()メソッドでOption型に変換する必要があるという点に注意してください。以下のコードは、まず結果セットからCOMPANIESテーブルのIDカラムをintOptメソッドでOption[Int]型として取得し、値が取得できた場合のみCompaniesクラスにマッピングするという処理を行っています。
+rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  なお、内部結合の場合はleftJoinの代わりにinnerJoinメソッドを使用します。この場合、map()メソッドでOption型に変換する必要はありません。
+ビューの修正 続いてlist.scala.htmlを以下のように修正します。検索結果の型がList[Users]からList[(Users, Option[Companies])]に変わり、表に「会社名」という列を追加しています。
+@(users: Seq[(models.Users, Option[models.Companies])])(implicit request: RequestHeader) @import helper._ @main(&amp;quot;ユーザ一覧&amp;quot;) { &amp;lt;div&amp;gt; &amp;lt;a href=&amp;quot;@routes.UserController.edit()&amp;quot; class=&amp;quot;btn btn-success&amp;quot; role=&amp;quot;button&amp;quot;&amp;gt;新規作成&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;col-xs-6&amp;quot;&amp;gt; &amp;lt;table class=&amp;quot;table table-hover&amp;quot;&amp;gt; &amp;lt;thead&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;ID&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;名前&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;会社名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;&amp;amp;nbsp;&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/thead&amp;gt; &amp;lt;tbody&amp;gt; @users.</description>
     </item>
     
     <item>
@@ -488,7 +515,7 @@ Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSON�
 ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersRowクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
 object JsonController { // UsersRowをJSONに変換するためのWritesを定義 implicit val usersRowWritesWrites = ( (__ \ &amp;quot;id&amp;quot; ).write[Long] and (__ \ &amp;quot;name&amp;quot; ).write[String] and (__ \ &amp;quot;companyId&amp;quot;).writeNullable[Int] )(unlift(UsersRow.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
 implicit val usersRowWritesFormat = new Writes[UsersRow]{ def writes(user: UsersRow): JsValue = { Json.obj( &amp;quot;id&amp;quot; -&amp;gt; user.id, &amp;quot;name&amp;quot; -&amp;gt; user.name, &amp;quot;companyId&amp;quot; -&amp;gt; user.companyId ) } }   POINT
- Play2のJSONサポートではオブジェクトとJSONの返還を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
+ Play2のJSONサポートではオブジェクトとJSONの変換を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
 // コンパニオンオブジェクトに定義したReads、Writesを参照するためにimport文を追加 import JsonController.</description>
     </item>
     
@@ -500,10 +527,10 @@ implicit val usersRowWritesFormat = new Writes[UsersRow]{ def writes(user: Users
       <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_list_api.html</guid>
       <description>USERSテーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。
 Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSONに変換するにはWrites、JSONをScalaオブジェクトに変換するためにはReadsを定義する必要があります。
-ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersRowクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
-object JsonController { // UsersRowをJSONに変換するためのWritesを定義 implicit val usersRowWritesWrites = ( (__ \ &amp;quot;id&amp;quot; ).write[Long] and (__ \ &amp;quot;name&amp;quot; ).write[String] and (__ \ &amp;quot;companyId&amp;quot;).writeNullable[Int] )(unlift(Users.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
+ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
+object JsonController { // UsersをJSONに変換するためのWritesを定義 implicit val usersWrites = ( (__ \ &amp;quot;id&amp;quot; ).write[Long] and (__ \ &amp;quot;name&amp;quot; ).write[String] and (__ \ &amp;quot;companyId&amp;quot;).writeNullable[Int] )(unlift(Users.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
 implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsValue = { Json.obj( &amp;quot;id&amp;quot; -&amp;gt; user.id, &amp;quot;name&amp;quot; -&amp;gt; user.name, &amp;quot;companyId&amp;quot; -&amp;gt; user.companyId ) } }   POINT
- Play2のJSONサポートではオブジェクトとJSONの返還を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
+ Play2のJSONサポートではオブジェクトとJSONの変換を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
 // コンパニオンオブジェクトに定義したReads、Writesを参照するためにimport文を追加 import JsonController.</description>
     </item>
     
@@ -518,7 +545,7 @@ Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSON�
 ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersRowクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
 object JsonController { // UsersRowをJSONに変換するためのWritesを定義 implicit val usersRowWritesWrites = ( (__ \ &amp;quot;id&amp;quot; ).write[Long] and (__ \ &amp;quot;name&amp;quot; ).write[String] and (__ \ &amp;quot;companyId&amp;quot;).writeNullable[Int] )(unlift(UsersRow.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
 implicit val usersRowWritesFormat = new Writes[UsersRow]{ def writes(user: UsersRow): JsValue = { Json.obj( &amp;quot;id&amp;quot; -&amp;gt; user.id, &amp;quot;name&amp;quot; -&amp;gt; user.name, &amp;quot;companyId&amp;quot; -&amp;gt; user.companyId ) } }   POINT
- Play2のJSONサポートではオブジェクトとJSONの返還を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
+ Play2のJSONサポートではオブジェクトとJSONの変換を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
 // コンパニオンオブジェクトに定義したReads、Writesを参照するためにimport文を追加 import JsonController.</description>
     </item>
     

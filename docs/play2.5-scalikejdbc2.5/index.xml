@@ -112,10 +112,10 @@ name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quo
       <guid>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/implement_list_api.html</guid>
       <description>USERSテーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。
 Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSONに変換するにはWrites、JSONをScalaオブジェクトに変換するためにはReadsを定義する必要があります。
-ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersRowクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
-object JsonController { // UsersRowをJSONに変換するためのWritesを定義 implicit val usersRowWritesWrites = ( (__ \ &amp;quot;id&amp;quot; ).write[Long] and (__ \ &amp;quot;name&amp;quot; ).write[String] and (__ \ &amp;quot;companyId&amp;quot;).writeNullable[Int] )(unlift(Users.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
+ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルに対応するUsersクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
+object JsonController { // UsersをJSONに変換するためのWritesを定義 implicit val usersWrites = ( (__ \ &amp;quot;id&amp;quot; ).write[Long] and (__ \ &amp;quot;name&amp;quot; ).write[String] and (__ \ &amp;quot;companyId&amp;quot;).writeNullable[Int] )(unlift(Users.unapply)) }  Play2のJSONサポートが提供するDSLを使用してマッピングを定義していますが、DSLを使わずに以下のように記述することもできます。
 implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsValue = { Json.obj( &amp;quot;id&amp;quot; -&amp;gt; user.id, &amp;quot;name&amp;quot; -&amp;gt; user.name, &amp;quot;companyId&amp;quot; -&amp;gt; user.companyId ) } }   POINT
- Play2のJSONサポートではオブジェクトとJSONの返還を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
+ Play2のJSONサポートではオブジェクトとJSONの変換を行うためにReadsやWritesでマッピングを定義する必要があります Play2のJSONサポートは単純なケースクラスの変換だけでなく、より複雑な変換やバリデーションなどを行うこともできます   コントローラ JsonControllerのlistメソッドを以下のように実装します。
 // コンパニオンオブジェクトに定義したReads、Writesを参照するためにimport文を追加 import JsonController.</description>
     </item>
     

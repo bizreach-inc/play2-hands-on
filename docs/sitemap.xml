@@ -118,11 +118,15 @@
   </url>
   
   <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</loc>
+  </url>
+  
+  <url>
     <loc>http://bizreach.github.io/play2-hands-on/play2.5-scalikejdbc2.5/scalikejdbc.html</loc>
   </url>
   
   <url>
-    <loc>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/scalikejdbc.html</loc>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</loc>
   </url>
   
   <url>
@@ -136,6 +140,10 @@
   
   <url>
     <loc>http://bizreach.github.io/play2-hands-on/play2.4-slick3.0/tips.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</loc>
   </url>
   
   <url>
