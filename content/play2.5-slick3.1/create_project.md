@@ -24,7 +24,7 @@ brew install sbt
 どちらの場合もインストール後以下のようにしてsbtコマンドが使えること、sbtのバージョンが0.13.13以降であることを確認してください。
 
 ```
-sbt sbt-version
+sbt sbtVersion
 [info] Loading global plugins from /Users/naoki.takezoe/.sbt/0.13/plugins
 [info] Set current project to naoki-takezoe (in build file:/Users/naoki.takezoe/)
 [info] 0.13.13
