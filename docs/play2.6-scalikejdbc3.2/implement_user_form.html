@@ -217,9 +217,9 @@ object UserController { // フォームの値を格納するケースクラス c
 <pre><code class="language-scala">// コンパニオンオブジェクトに定義したFormを参照するためにimport文を追加
 import UserController._
 
-def edit(id: Option[Long]) = Action { implicit request =&gt;
-  val c = Companies.syntax(&quot;c&quot;)
+private val c = Companies.syntax(&quot;c&quot;)
 
+def edit(id: Option[Long]) = Action { implicit request =&gt;
   DB.readOnly { implicit session =&gt;
     // リクエストパラメータにIDが存在する場合
     val form = id match {
