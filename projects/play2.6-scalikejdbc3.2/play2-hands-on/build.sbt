@@ -15,7 +15,8 @@ libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc" % "3.2.2",
   "org.scalikejdbc" %% "scalikejdbc-config" % "3.2.2",
   "org.scalikejdbc" %% "scalikejdbc-test" % "3.2.2" % "test",
-  "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.0-scalikejdbc-3.2"
+  "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.0-scalikejdbc-3.2",
+  "javax.xml.bind" % "jaxb-api" % "2.2.12"
 )
 
 enablePlugins(ScalikejdbcPlugin)
