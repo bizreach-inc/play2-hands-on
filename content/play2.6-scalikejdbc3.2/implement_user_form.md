@@ -89,9 +89,9 @@ def edit(id: Option[Long]) = Action { implicit request =>
       // IDが渡されなかった場合は新規登録フォーム
       case None => userForm
       // IDからユーザ情報を1件取得してフォームに詰める
-      case Some(id) => {
-        val user = Users.find(id).get
-        userForm.fill(UserForm(Some(user.id), user.name, user.companyId))
+      case Some(id) => Users.find(id) match {
+        case Some(user) => userForm.fill(UserForm(Some(user.id), user.name, user.companyId))
+        case None => userForm
       }
     }
 
