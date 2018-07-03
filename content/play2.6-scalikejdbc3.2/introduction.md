@@ -5,7 +5,7 @@ aliases: ["play2.6-scalikejdbc3.2/"]
 
 ## 目的
 
-Play2 + ScalikeJBDC を使ってWebアプリケーションを作成するハンズオンです。
+Play2 + ScalikeJDBC を使ってWebアプリケーションを作成するハンズオンです。
 
 主な目的は以下の通りです。
 
