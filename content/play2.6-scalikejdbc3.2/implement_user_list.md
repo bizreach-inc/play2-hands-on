@@ -81,7 +81,17 @@ def list = Action { implicit request =>
 }
 ```
 
-`val u = Users.syntax("u")`はScalikeJDBCのQueryDSL（SQLをタイプセーフに記述するためのDSL）を使用する際にテーブル毎に必要となるものです。クラス内の様々なメソッドで同じものを使用する場合はクラスのフィールドとして定義するようにしてもよいでしょう。
+`val u = Users.syntax("u")`はScalikeJDBCのQueryDSL（SQLをタイプセーフに記述するためのDSL）を使用する際にテーブル毎に必要となるものです。クラス内の様々なメソッドで同じものを使用する場合は以下のようにクラスのフィールドとして定義するようにしてもよいでしょう。
+
+```scala
+class UserController @Inject()(components: MessagesControllerComponents)
+  extends MessagesAbstractController(components) {
+
+  private val u = Users.syntax("u")
+
+  ...
+}
+```
 
 ```scala
 val users = withSQL {

@@ -213,7 +213,16 @@
 }
 </code></pre>
 
-<p><code>val u = Users.syntax(&quot;u&quot;)</code>はScalikeJDBCのQueryDSL（SQLをタイプセーフに記述するためのDSL）を使用する際にテーブル毎に必要となるものです。クラス内の様々なメソッドで同じものを使用する場合はクラスのフィールドとして定義するようにしてもよいでしょう。</p>
+<p><code>val u = Users.syntax(&quot;u&quot;)</code>はScalikeJDBCのQueryDSL（SQLをタイプセーフに記述するためのDSL）を使用する際にテーブル毎に必要となるものです。クラス内の様々なメソッドで同じものを使用する場合は以下のようにクラスのフィールドとして定義するようにしてもよいでしょう。</p>
+
+<pre><code class="language-scala">class UserController @Inject()(components: MessagesControllerComponents)
+  extends MessagesAbstractController(components) {
+
+  private val u = Users.syntax(&quot;u&quot;)
+
+  ...
+}
+</code></pre>
 
 <pre><code class="language-scala">val users = withSQL {
   select.from(Users as u).orderBy(u.id.asc)

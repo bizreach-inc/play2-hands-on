@@ -80,9 +80,9 @@ object UserController {
 // コンパニオンオブジェクトに定義したFormを参照するためにimport文を追加
 import UserController._
 
-def edit(id: Option[Long]) = Action { implicit request =>
-  val c = Companies.syntax("c")
+private val c = Companies.syntax("c")
 
+def edit(id: Option[Long]) = Action { implicit request =>
   DB.readOnly { implicit session =>
     // リクエストパラメータにIDが存在する場合
     val form = id match {
