@@ -3,7 +3,7 @@
 Play2 + Slick / ScalikeJDBCを使ってWebアプリケーションを作成するハンズオンです。
 以下のURLで公開されています。
 
-http://bizreach.github.io/play2-hands-on/
+https://bizreach.github.io/play2-hands-on/
 
 ## 執筆者向け情報
 
