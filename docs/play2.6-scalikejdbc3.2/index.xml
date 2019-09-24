@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Play2.6-scalikejdbc3.2s on Play2 &#43; Slick / ScalikeJDBCハンズオン</title>
-    <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2.html</link>
+    <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2.html</link>
     <description>Recent content in Play2.6-scalikejdbc3.2s on Play2 &#43; Slick / ScalikeJDBCハンズオン</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>BizReach, Inc</copyright>
     
-	<atom:link href="http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DBの準備</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_db.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_db.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_db.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_db.html</guid>
       <description>ツールプロジェクトの準備 h2.zip をダウンロードし、以下のようにplay2-hands-onプロジェクトと同じディレクトリに展開します。
 +-/play2-hands-on | | | +-/app | | | +-/conf | | | +-... | +-/h2 | +-create.sql | +-data.mv.db | +-...  H2の起動 Windowsの場合
 まず、h2/start.batをダブルクリックしてH2データベースを起動します。データベースには以下のスキーマのテーブルが作成済みの状態になっています。
@@ -30,10 +30,10 @@ libraryDependencies += &amp;quot;com.h2database&amp;quot; % &amp;quot;h2&amp;quo
     
     <item>
       <title>IDEの準備</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_ide.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_ide.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_ide.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_of_ide.html</guid>
       <description>プラグインのインストール Java8 + IntelliJは予めインストール済みとします。まずは以下の手順でIntelliJにScala開発用のプラグインを導入します。
  メニュー[IntelliJ IDEA]→[Preferences]→[Plugins]→[Install JetBrains plugin&amp;hellip;]をクリック [Scala]を選択し、右クリック[Download and Install]をクリック  ※IntelliJ Ultimate EditionはPlayプラグインを使うことができ、PlayプロジェクトをIntelliJで作成したり、HTMLテンプレートや設定ファイルなどを編集するためのエディタが追加されます。
 プロジェクトのインポート IntelliJのScalaプラグインはSBTプロジェクトをネイティブサポートしており、「Import Project」をクリックし、Play2プロジェクトのルートディレクトリを選択するとSBTプロジェクトとしてインポートすることができます。
@@ -44,10 +44,10 @@ build.sbtを編集してライブラリを追加した場合、ウィンドウ�
     
     <item>
       <title>JSON APIの準備</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_for_json.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_for_json.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_for_json.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/preparation_for_json.html</guid>
       <description>フロントエンドがAngularJSやスマートフォンアプリの場合、サーバサイドはJSONを返却するAPIを提供する必要があります。ここまでに作成してきたユーザ情報のCRUD処理について、Play2のJSONサポート機能を使ってJSONベースのWeb APIを実装します。
 コントローラの雛形を作る controllersパッケージにJsonControllerクラスを以下の内容で作成します。ScalikeJDBCやPlay2のJSONサポートを使用するためのimport文を予め含めています。
 package controllers import play.api.mvc._ import play.api.libs.json._ import play.api.libs.functional.syntax._ import javax.inject.Inject import scalikejdbc._ import models._ class JsonController @Inject()(components: ControllerComponents) extends AbstractController(components) { /** * 一覧表示 */ def list = TODO /** * ユーザ登録 */ def create = TODO /** * ユーザ更新 */ def update = TODO /** * ユーザ削除 */ def remove(id: Long) = TODO }  UserControllerとは異なり、テンプレートでの国際化機能を使わないためControllerComponentsをDIし、AbstractControllerクラスを継承します。
@@ -57,10 +57,10 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
     
     <item>
       <title>Play 2.6 &#43; ScalikeJDBC 3.2 ハンズオン</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/introduction.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/introduction.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/introduction.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/introduction.html</guid>
       <description>目的 Play2 + ScalikeJDBC を使ってWebアプリケーションを作成するハンズオンです。
 主な目的は以下の通りです。
  Scalaに触れてもらう 数時間でとりあえず動くものを作ってみる  そのため、なるべくフレームワークが提供する機能をそのまま使います。
@@ -72,10 +72,10 @@ package controllers import play.api.mvc._ import play.api.libs.json._ import pla
     
     <item>
       <title>Play2のテスト</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_play.html</guid>
       <description>Play2はPlay2で開発されたアプリケーションのユニットテストのための機能を提供しています。デフォルトでHomeControllerに対するテストケースが生成されていますが、ここではハンズオンで作成したJSON APIに対するテストを作成してみましょう。
 test/controllersに以下の内容でJsonControllerSpecを作成します。
 package controllers import org.scalatestplus.play._ import org.scalatestplus.play.guice._ import play.api.libs.json._ import play.api.test._ import play.api.test.Helpers._ class JsonControllerSpec extends PlaySpec with GuiceOneAppPerSuite with Injecting { &amp;quot;JsonController GET&amp;quot; should { &amp;quot;request users list from the application&amp;quot; in { // Guiceからコントローラーのインスタンスを取得 val controller = inject[JsonController] // FakeRequestを使ってコントローラーのメソッドを呼び出す val result = controller.list.apply(FakeRequest()) // レスポンスのステータスを確認 status(result) mustBe OK // レスポンスのContent-Typeを確認 contentType(result) mustBe Some(&amp;quot;application/json&amp;quot;) // レスポンスのJSONを確認 val resultJson = contentAsJson(result) val expectedJson = Json.parse( &amp;quot;&amp;quot;&amp;quot;{&amp;quot;users&amp;quot;:[{&amp;quot;id&amp;quot;:1,&amp;quot;name&amp;quot;:&amp;quot;Taro Yamada&amp;quot;,&amp;quot;companyId&amp;quot;:1},{&amp;quot;id&amp;quot;:2,&amp;quot;name&amp;quot;:&amp;quot;Jiro Sato&amp;quot;}]}&amp;quot;&amp;quot;&amp;quot; ) resultJson mustEqual expectedJson } } }  このテストケースでは実際にHTTPリクエストを送信するのではなく、FakeRequestというダミーのリクエストを使用してコントローラーを呼び出しています。テストケース内ではテスト用のヘルパーメソッドでレスポンスの情報を取得することができるので、それらの情報が期待通りかどうかを確認することでテストを行うことができます。</description>
@@ -83,10 +83,10 @@ package controllers import org.scalatestplus.play._ import org.scalatestplus.pla
     
     <item>
       <title>ScalikeJDBCのテスト</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/test_scalikejdbc.html</guid>
       <description>scalikejdbcGenではソースコード生成時に対応するテストコードも自動生成してくれます。テストコードはtest/modelsパッケージにあります。
 このテストコードを少し編集して、実際にテストを動かしてみましょう。 今回はテスト用のDBh2/test.mv.dbを用意していますので、こちらを使うようにします。
 まず、build.sbtにscalikejdbc-testライブラリを追加します。
@@ -100,10 +100,10 @@ it should &amp;quot;save a record&amp;quot; in { implicit session =&amp;gt; val 
     
     <item>
       <title>ジョインの必要な処理</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_join.html</guid>
       <description>ここまではscalikejdbcGenで自動生成されたメソッドやシンプルなQueryDSLを使用してきましたが、テーブルのジョインが必要なケースについても実装してみましょう。
 ユーザの一覧画面に以下のように会社名を表示するようにしてみます。
 コントローラの修正 まずはUserControllerのlistメソッドを以下のように修正します。
@@ -115,10 +115,10 @@ rs.intOpt(c.resultName.id).map(_ =&amp;gt; Companies(c)(rs))  なお、内部結
     
     <item>
       <title>プロジェクトの作成</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/create_project.html</guid>
       <description>sbtのインストール まずはsbtをインストールします。sbtはScalaの標準的なビルドツールです。
 Windowsの場合
 以下のリンクからインストーラをダウンロードしてインストールします。
@@ -134,10 +134,10 @@ name := &amp;quot;&amp;quot;&amp;quot;play2-hands-on&amp;quot;&amp;quot;&amp;quo
     
     <item>
       <title>ユーザ一覧APIの実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_list_api.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_list_api.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_list_api.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_list_api.html</guid>
       <description>USERSテーブルからIDの昇順に全件取得し、ユーザ一覧をJSONで返します。
 Writesの定義 Play2のJSONサポートでは、ScalaオブジェクトをJSONに変換するためのWrites、JSONをScalaオブジェクトに変換するためのReadsを定義する必要があります。
 ここではUSERSテーブルを検索して取得したケースクラスのリストをJSONに変換して返却するので、USERSテーブルのUsersクラスに対応するWritesを定義しておく必要があります。画面から値を受け取るFormと同様、該当のコントローラ（ここではJsonController）のコンパニオンオブジェクトとして以下の内容を追加します。
@@ -149,10 +149,10 @@ implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsV
     
     <item>
       <title>ユーザ一覧の実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_list.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_list.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_list.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_list.html</guid>
       <description>USERSテーブルからIDの昇順に全件取得し、ユーザ一覧画面を表示します。
 ビュー テンプレートはviewsパッケージに作成します。appディレクトリ配下にviews.userパッケージを作成し、以下の内容でlist.scala.htmlを作成します。
 @* このテンプレートの引数 *@ @(users: Seq[models.Users])(implicit request: RequestHeader) @* テンプレートで利用可能なヘルパーをインポート *@ @import helper._ @* main.scala.htmlを呼び出す *@ @main(&amp;quot;ユーザ一覧&amp;quot;) { &amp;lt;div&amp;gt; &amp;lt;a href=&amp;quot;@routes.UserController.edit()&amp;quot; class=&amp;quot;btn btn-success&amp;quot; role=&amp;quot;button&amp;quot;&amp;gt;新規作成&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;col-xs-6&amp;quot;&amp;gt; &amp;lt;table class=&amp;quot;table table-hover&amp;quot;&amp;gt; &amp;lt;thead&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;ID&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;名前&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;&amp;amp;nbsp;&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/thead&amp;gt; &amp;lt;tbody&amp;gt; @* ユーザの一覧をループで出力 *@ @users.map { user =&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;@user.id&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;a href=&amp;quot;@routes.UserController.edit(Some(user.id))&amp;quot;&amp;gt;@user.name&amp;lt;/a&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;@helper.form(CSRF(routes.UserController.remove(user.id))){ &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;削除&amp;quot; class=&amp;quot;btn btn-danger btn-xs&amp;quot;/&amp;gt; } &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; } &amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/div&amp;gt; }  テンプレート一行目に(implicit request: RequestHeader)という引数が定義されていますが、これはテンプレート中で使用しているCSRFというヘルパーを使用するために必要なものです。PlayではデフォルトでCSRF対策のためのフィルタが有効になっており、フォームの送信先を指定する際に@helper.</description>
@@ -160,10 +160,10 @@ implicit val usersWritesFormat = new Writes[Users]{ def writes(user: Users): JsV
     
     <item>
       <title>ユーザ削除APIの実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_api.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_api.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_api.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_api.html</guid>
       <description> 指定したIDのユーザをUSERSテーブルから削除します。
 コントローラ JsonControllerのremoveメソッドを以下のように実装します。
 def remove(id: Long) = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // ユーザを削除 Users.find(id).foreach { user =&amp;gt; Users.destroy(user) } Ok(Json.obj(&amp;quot;result&amp;quot; -&amp;gt; &amp;quot;success&amp;quot;)) } }  実行 コマンドラインから以下のコマンドを実行してユーザが削除されることを確認してください。
@@ -172,10 +172,10 @@ curl -XPOST http://localhost:9000/json/remove/1  </description>
     
     <item>
       <title>ユーザ登録・更新APIの実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_api.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_api.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_api.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_api.html</guid>
       <description>ユーザ情報をJSONで受け取り、登録もしくは更新を行います。
 Readsの定義 JsonControllerのコンパニオンオブジェクトにユーザ情報を受け取るためのケースクラスと、JSONからそのケースクラスに変換するためのReadsを定義します。
 object JsonController { ... // ユーザ情報を受け取るためのケースクラス case class UserForm(id: Option[Long], name: String, companyId: Option[Int]) // JSONをUserFormに変換するためのReadsを定義 implicit val userFormReads = ( (__ \ &amp;quot;id&amp;quot; ).readNullable[Long] and (__ \ &amp;quot;name&amp;quot; ).read[String] and (__ \ &amp;quot;companyId&amp;quot;).readNullable[Int] )(UserForm) }  前述のWritesと同様、DSLを使わずに以下のように記述することもできます。
@@ -184,10 +184,10 @@ implicit val userFormFormat = new Reads[UserForm]{ def reads(js: JsValue): UserF
     
     <item>
       <title>ユーザ登録・編集画面の実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_user_form.html</guid>
       <description>リクエストパラメータにIDが指定されているかどうかに応じて以下の処理を行います。
  リクエストパラメータにIDなし ⇒ 新規登録画面を表示します。 リクエストパラメータにIDあり ⇒ USERSテーブルを検索し、該当のユーザ情報を初期表示した編集画面を表示します。  フォーム 画面からの入力値を受け取るためのFormを定義します。Formは必ずしもコントローラに定義する必要はないのですが、コントローラでの処理に強く依存するため特に理由がない限りコントローラクラスのコンパニオンオブジェクトに定義するとよいでしょう。
 ここではUserControllerと同じソースファイルに以下のようなコンパニオンオブジェクトを追加します。
@@ -199,10 +199,10 @@ object UserController { // フォームの値を格納するケースクラス c
     
     <item>
       <title>ルーティングの定義</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/define_routing.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/define_routing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/define_routing.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/define_routing.html</guid>
       <description>Bootstrapを使うための準備 sbt newコマンドで作成されたプロジェクトにはデフォルトのレイアウトテンプレートとしてapp/views/main.scala.htmlが生成されています。ここにBootstrapで使用するCSSとJavaScriptを追加します。
 @(title: String)(content: Html) &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;@title&amp;lt;/title&amp;gt; &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;@routes.Assets.versioned(&amp;quot;stylesheets/main.css&amp;quot;)&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;shortcut icon&amp;quot; type=&amp;quot;image/png&amp;quot; href=&amp;quot;@routes.Assets.versioned(&amp;quot;images/favicon.png&amp;quot;)&amp;quot;&amp;gt; @* ↓↓↓↓ここから追加↓↓↓↓ *@ &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;screen&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; @* ↑↑↑↑ここまで追加↑↑↑↑ *@ &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; @content &amp;lt;script src=&amp;quot;@routes.Assets.versioned(&amp;quot;javascripts/main.js&amp;quot;)&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  また、デフォルトではContent-Security-Policyヘッダがdefault-src &#39;self&#39;を返すため上記で指定した外部CDNのCSSファイルやJavaScriptファイルを読み込むことができません。そこでconf/application.confに以下の設定を追加してContent-Security-Policyヘッダが出力されないようにしておきます。
 play.filters.headers.contentSecurityPolicy=null  コントローラの雛形を作る controllersパッケージにUserControllerクラスを以下のように作成します。
@@ -211,10 +211,10 @@ package controllers import play.api.mvc._ import play.api.data._ import play.api
     
     <item>
       <title>削除処理の実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_processing.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_processing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_processing.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_delete_processing.html</guid>
       <description>指定したIDのユーザをUSERSテーブルから削除し、一覧画面へリダイレクトします。
 コントローラ すでに一覧画面に「削除」ボタンは表示されているので、そこから呼び出されるコントローラのメソッドのみ実装します。
 def remove(id: Long) = Action { implicit request =&amp;gt; DB.localTx { implicit session =&amp;gt; // ユーザを削除 Users.find(id).foreach { user =&amp;gt; Users.destroy(user) } // 一覧画面へリダイレクト Redirect(routes.UserController.list) } }  ここでもscalikejdbcGenで自動生成されたUsers.destroy()メソッドを使用して削除処理を行っています。これをQueryDSLで書き直すと以下のようになります。
@@ -223,10 +223,10 @@ withSQL { delete.from(Users).where.eq(Users.column.id, entity.id) }.update.apply
     
     <item>
       <title>登録・更新処理の実装</title>
-      <link>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_processing.html</link>
+      <link>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_processing.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_processing.html</guid>
+      <guid>https://bizreach.github.io/play2-hands-on/play2.6-scalikejdbc3.2/implement_update_processing.html</guid>
       <description>入力値のバリデーションを行い、エラーの有無に応じて以下の処理を行います。
  エラーあり ⇒ フォームにエラー情報をセットして入力フォームに戻ります。 エラーなし ⇒ DBへの登録・更新処理を行い、一覧画面へリダイレクトします。  コントローラ UserControllerのメソッドのうち、登録処理を行うcreateメソッドと更新処理を行うupdateメソッドを実装します。
 入力フォームの値を受け取るには、userForm.bindFromRequestメソッドでリクエストの内容をFormにバインドし、foldメソッドでエラーがあった場合の処理と、OKの場合の処理を記述します。以下はcreateメソッドの実装例です。

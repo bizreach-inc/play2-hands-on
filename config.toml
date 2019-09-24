@@ -1,6 +1,6 @@
 languageCode = "ja-JP"
 title = "Play2 + Slick / ScalikeJDBCハンズオン"
-baseURL = "http://bizreach.github.io/play2-hands-on/"
+baseURL = "https://bizreach.github.io/play2-hands-on/"
 theme = "hugo_theme_robust"
 metadataformat = "yaml"
 canonifyurls = true
