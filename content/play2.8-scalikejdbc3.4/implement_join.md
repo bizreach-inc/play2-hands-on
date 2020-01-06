@@ -45,32 +45,32 @@ rs.intOpt(c.resultName.id).map(_ => Companies(c)(rs))
 @import helper._
 @main("ユーザ一覧") {
 <div>
-  <a href="@routes.UserController.edit()" class="btn btn-success" role="button">新規作成</a>
+    <a href="@routes.UserController.edit()" class="btn btn-success" role="button">新規作成</a>
 </div>
-<div class="col-xs-6">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>名前</th>
-        <th>会社名</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-    @users.map { case (user, company) =>
-      <tr>
-        <td>@user.id</td>
-        <td><a href="@routes.UserController.edit(Some(user.id))">@user.name</a></td>
-        <td>@company.map(_.name)</td>
-        <td>@helper.form(CSRF(routes.UserController.remove(user.id))){
-          <input type="submit" value="削除" class="btn btn-danger btn-xs"/>
+<div class="col-6">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>会社名</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        @users.map { case (user, company) =>
+        <tr>
+            <td>@user.id</td>
+            <td><a href="@routes.UserController.edit(Some(user.id))">@user.name</a></td>
+            <td>@company.map(_.name)</td>
+            <td>@helper.form(CSRF(routes.UserController.remove(user.id))){
+                <input type="submit" value="削除" class="btn btn-danger btn-sm"/>
+                }
+            </td>
+        </tr>
         }
-        </td>
-      </tr>
-    }
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 </div>
 }
 ```

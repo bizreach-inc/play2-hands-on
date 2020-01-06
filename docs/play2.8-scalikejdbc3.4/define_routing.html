@@ -151,9 +151,7 @@
         &lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;@routes.Assets.versioned(&quot;stylesheets/main.css&quot;)&quot;&gt;
         &lt;link rel=&quot;shortcut icon&quot; type=&quot;image/png&quot; href=&quot;@routes.Assets.versioned(&quot;images/favicon.png&quot;)&quot;&gt;
         @* ↓↓↓↓ここから追加↓↓↓↓ *@
-        &lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css&quot;&gt;
-        &lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css&quot;&gt;
-        &lt;script src=&quot;//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+        &lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css&quot;&gt;
         @* ↑↑↑↑ここまで追加↑↑↑↑ *@
 
     &lt;/head&gt;
@@ -165,7 +163,6 @@
       &lt;script src=&quot;@routes.Assets.versioned(&quot;javascripts/main.js&quot;)&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-
 </code></pre>
 
 <p>また、デフォルトでは<code>Content-Security-Policy</code>ヘッダが<code>default-src 'self'</code>を返すため上記で指定した外部CDNのCSSファイルやJavaScriptファイルを読み込むことができません。そこで<code>conf/application.conf</code>に以下の設定を追加して<code>Content-Security-Policy</code>ヘッダが出力されないようにしておきます。</p>

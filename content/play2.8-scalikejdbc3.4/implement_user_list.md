@@ -22,7 +22,7 @@ title: ユーザ一覧の実装
   <a href="@routes.UserController.edit()" class="btn btn-success" role="button">新規作成</a>
 </div>
 
-<div class="col-xs-6">
+<div class="col-6">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -38,7 +38,7 @@ title: ユーザ一覧の実装
         <td>@user.id</td>
         <td><a href="@routes.UserController.edit(Some(user.id))">@user.name</a></td>
         <td>@helper.form(CSRF(routes.UserController.remove(user.id))){
-          <input type="submit" value="削除" class="btn btn-danger btn-xs"/>
+          <input type="submit" value="削除" class="btn btn-danger btn-sm"/>
         }
         </td>
       </tr>
