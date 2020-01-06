@@ -1,0 +1,25 @@
+@(userForm: Form[controllers.UserController.UserForm], companies: Seq[models.Companies])(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@main("ユーザ作成") {
+
+@* IDがある場合は更新処理、ない場合は登録処理を呼ぶ *@
+@form(CSRF(userForm("id").value.map(x => routes.UserController.update).getOrElse(routes.UserController.create)), Symbol("class") -> "container", Symbol("role") -> "form") {
+<fieldset>
+    <div class="form-group">
+        @inputText(userForm("name"), Symbol("label") -> "名前")
+    </div>
+    <div class="form-group">
+        @select(userForm("companyId"), companies.map(x => x.id.toString -> x.name).toSeq, Symbol("label") -> "会社", Symbol("default") -> "-- 会社名を選択してください --")
+    </div>
+    @* IDがある場合（更新の場合）のみhiddenを出力する *@
+    @userForm("id").value.map { value =>
+    <input type="hidden" name="id" value="@value" />
+    }
+    <div>
+        <input type="submit" value="保存" class="btn btn-success">
+    </div>
+</fieldset>
+}
+}

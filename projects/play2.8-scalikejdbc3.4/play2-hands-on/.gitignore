@@ -1,0 +1,12 @@
+logs
+target
+/.g8
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/target
+/project/project
+/project/target
+/RUNNING_PID
