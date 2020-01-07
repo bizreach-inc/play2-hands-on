@@ -23,9 +23,7 @@ title: ルーティングの定義
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
         @* ↓↓↓↓ここから追加↓↓↓↓ *@
-        <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         @* ↑↑↑↑ここまで追加↑↑↑↑ *@
 
     </head>
@@ -37,7 +35,6 @@ title: ルーティングの定義
       <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
     </body>
 </html>
-
 ```
 
 また、デフォルトでは`Content-Security-Policy`ヘッダが`default-src 'self'`を返すため上記で指定した外部CDNのCSSファイルやJavaScriptファイルを読み込むことができません。そこで`conf/application.conf`に以下の設定を追加して`Content-Security-Policy`ヘッダが出力されないようにしておきます。
