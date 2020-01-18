@@ -93,4 +93,4 @@ withSQL {
 
 **バリデーションエラー時の表示：**
 
-![バリデーションエラー時の表示](../images/play8-scalikejdbc3.4/validation.png)
+![バリデーションエラー時の表示](../images/play2.8-scalikejdbc3.4/validation.png)
