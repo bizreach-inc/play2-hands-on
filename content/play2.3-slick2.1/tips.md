@@ -12,7 +12,7 @@ title: Tips
 
 ## Slick
 
-* https://github.com/bizreach/slick-reference でSlickのリファレンスを公開しています
+* https://github.com/bizreach-inc/slick-reference でSlickのリファレンスを公開しています
 
 ## ScalaIDE
 

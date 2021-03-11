@@ -14,7 +14,7 @@ title: Tips
 
 ## Slick
 
-* https://github.com/bizreach/slick-reference でSlickのリファレンスを公開しています
+* https://github.com/bizreach-inc/slick-reference でSlickのリファレンスを公開しています
 * Slick 2.xから3.0へのマイグレーションについては http://slick.typesafe.com/doc/3.0.0/upgrade.html#upgrade-from-2-1-to-3-0 を参照してください
 
 ## ScalaIDE
