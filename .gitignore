@@ -1,0 +1,13 @@
+.idea
+
+### Hugo template
+# Generated files by hugo
+/docs/
+/resources/_gen/
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+.hugo_build.lock
