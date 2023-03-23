@@ -1,6 +1,6 @@
 ---
 title: Play 2.8 + ScalikeJDBC 3.4 ハンズオン
-aliases: ["play2.8-scalikejdbc3.4/"]
+aliases: ["index.html"]
 ---
 
 ## 目的

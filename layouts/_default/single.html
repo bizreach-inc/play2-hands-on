@@ -7,7 +7,7 @@
 
 {{ define "main" }}
 {{/* get current page toc. toc is "sortkey","contents_path","title","datadir" */}}
-{{ $curdir := replace $.Page.Dir "/" ""}}
+{{ $curdir := replace $.File.Dir "/" ""}}
 {{ $tmptoc := where $.Site.Data.playtoc "contents_path" $curdir }}
 {{ $currenttoc := index $tmptoc 0  }}
 {{ $datatoc := index $.Site.Data $currenttoc.datadir }}

@@ -1,6 +1,6 @@
 ---
 title: Play 2.5 + Slick 3.1ハンズオン
-aliases: ["play2.5-slick3.1/"]
+aliases: ["index.html"]
 ---
 
 ## 目的
